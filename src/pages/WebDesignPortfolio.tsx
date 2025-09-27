@@ -23,7 +23,7 @@ const initialPortfolioItems: PortfolioItemType[] = [
   {
     id: 2,
     title: "GOWERA",
-    imageUrl: "/lovable-uploads/6a9984fe-a9bb-4fe7-8b59-8222fd6c6332.png",
+    imageUrl: "/lovable-uploads/GOWERA.JPG",
     url: "https://gowera.com",
     description: "Une plateforme de streaming radio gratuite, connectant les auditeurs aux stations du monde entier en un clic.",
     technologies: ["React", "Node.js", "CSS3", "API Integration"],
@@ -31,20 +31,47 @@ const initialPortfolioItems: PortfolioItemType[] = [
   },
   {
     id: 3,
-    title: "RSIRDC",
-    imageUrl: "/lovable-uploads/6a9984fe-a9bb-4fe7-8b59-8222fd6c6332.png",
-    url: "https://rsirdc.org",
-    description: "Site institutionnel avec design moderne et intuitif pour une organisation non gouvernementale.",
-    technologies: ["WordPress", "Elementor", "PHP", "jQuery"],
+    title: "FOMUBISA-ASBL",
+    imageUrl: "/lovable-uploads/FOMUBISA.ORG.JPG",
+    url: "https://fomubisa.org",
+    description: "Site institutionnel déterminé pour la réhabilitation de la dignité de la femme congolaise, luttant contre les violences basées sur le genre.",
+    technologies: ["WordPress", "CSS3", "Responsive Design", "JavaScript"],
     isLoading: true
   },
   {
     id: 4,
-    title: "Site Vitrine Entreprise",
-    imageUrl: "/lovable-uploads/6a9984fe-a9bb-4fe7-8b59-8222fd6c6332.png",
-    url: "https://corporate-webdesign.example.com",
-    description: "Site vitrine pour une entreprise de conseil avec un design épuré et professionnel.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Bootstrap"],
+    title: "KAKO FM 97.2 MHz",
+    imageUrl: "/lovable-uploads/KAKOFM.NET.JPG",
+    url: "https://kakofm.net",
+    description: "Radio & Télévision Kako - La voix de la jeunesse engagée, avec streaming en direct et programmes interactifs.",
+    technologies: ["HTML5", "CSS3", "JavaScript", "Audio Streaming"],
+    isLoading: true
+  },
+  {
+    id: 5,
+    title: "La Fortune RDC",
+    imageUrl: "/lovable-uploads/LA_FORTURE_RDC_lafortunerdc.net.JPG",
+    url: "https://lafortunerdc.net",
+    description: "Site d'actualités et d'informations sur la République Démocratique du Congo avec contenu multimédia riche.",
+    technologies: ["WordPress", "News CMS", "Responsive Design", "SEO"],
+    isLoading: true
+  },
+  {
+    id: 6,
+    title: "Radio Sauti ya Injili",
+    imageUrl: "/lovable-uploads/RSIRDC.JPG",
+    url: "https://rsirdc.org",
+    description: "Radio chrétienne à Goma, diffusant la Bonne Nouvelle à travers le monde avec streaming en direct.",
+    technologies: ["WordPress", "Audio Streaming", "Responsive Design", "CMS"],
+    isLoading: true
+  },
+  {
+    id: 7,
+    title: "Visite Congo",
+    imageUrl: "/lovable-uploads/VISITECONGO.NET.JPG",
+    url: "https://visitecongo.net",
+    description: "Premier site du tourisme en ligne pour découvrir la RDC dans toute sa splendeur avec galeries et documentaires.",
+    technologies: ["WordPress", "Tourism CMS", "Gallery", "Responsive Design"],
     isLoading: true
   }
 ];
