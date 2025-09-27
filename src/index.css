@@ -1,0 +1,112 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border selection:bg-turquoise/10 selection:text-white;
+  }
+  
+  body {
+    @apply bg-darkGray text-white antialiased scroll-smooth;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .container {
+    @apply px-4 md:px-6 mx-auto max-w-7xl;
+  }
+  
+  .section {
+    @apply py-16 md:py-24;
+  }
+  
+  .turquoise-text {
+    @apply text-turquoise;
+  }
+  
+  .turquoise-glow {
+    @apply shadow-[0_0_15px_rgba(0,255,255,0.5)];
+  }
+  
+  .btn {
+    @apply px-6 py-3 rounded transition-all duration-300 inline-block text-center;
+  }
+  
+  .btn-primary {
+    @apply bg-turquoise text-black hover:bg-turquoise/80;
+  }
+  
+  .btn-outline {
+    @apply border border-turquoise text-turquoise hover:bg-turquoise/10;
+  }
+  
+  .card {
+    @apply bg-mediumGray rounded-lg p-6 transition-all duration-300 hover:shadow-lg;
+  }
+  
+  .service-card {
+    @apply card text-center p-8;
+  }
+  
+  .testimonial-card {
+    @apply card relative;
+  }
+  
+  .border-glow {
+    @apply border border-turquoise/50 animate-glow;
+  }
+
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold mb-6 relative inline-block;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-0.5 bg-turquoise;
+  }
+  
+  /* Custom scrollbar for search results */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.5);
+  }
+}
