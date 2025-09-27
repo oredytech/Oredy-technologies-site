@@ -17,10 +17,11 @@ const Footer = () => {
           {/* Logo et description */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-turquoise rounded-lg flex items-center justify-center">
-                <span className="text-black font-bold text-lg">O</span>
-              </div>
-              <span className="text-xl font-bold text-white">OREDY TECH</span>
+              <img 
+                src="/lovable-uploads/87061d3a-bd9e-4646-a028-77c0524dc6b5.png" 
+                alt="OREDY Technologies Logo" 
+                className="h-10 w-auto"
+              />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
               Votre partenaire digital pour des solutions web innovantes et performantes. 
@@ -59,7 +60,11 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone size={16} className="text-turquoise" />
-                <span className="text-gray-400 text-sm">+243 123 456 789</span>
+                <span className="text-gray-400 text-sm">+243851006476</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone size={16} className="text-turquoise" />
+                <span className="text-gray-400 text-sm">+243996886079</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail size={16} className="text-turquoise" />
