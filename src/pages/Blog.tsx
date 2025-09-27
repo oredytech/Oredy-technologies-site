@@ -73,10 +73,10 @@ const Blog = () => {
               <>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {posts.map((post) => (
-                    <article key={post.id} className="card group hover:transform hover:scale-105">
+                    <article key={post.id} className="group hover:transform hover:scale-105 bg-mediumGray rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg">
                       {post._links['wp:featuredmedia'] && (
                         <Link to={`/blog/${post.slug}`}>
-                          <div className="aspect-video bg-gray-700 rounded-lg mb-4 overflow-hidden">
+                          <div className="aspect-video bg-gray-700 overflow-hidden">
                             <img 
                               src={post._links['wp:featuredmedia'][0]?.href || '/placeholder.svg'}
                               alt={stripHtml(post.title.rendered)}
@@ -86,6 +86,8 @@ const Blog = () => {
                           </div>
                         </Link>
                       )}
+                      
+                      <div className="p-6">
                       
                       <div className="flex items-center text-sm text-gray-400 mb-2">
                         <Calendar size={14} className="mr-1" />
@@ -111,6 +113,7 @@ const Blog = () => {
                         Lire la suite
                         <ArrowRight size={16} className="ml-1 group-hover/link:translate-x-1 transition-transform" />
                       </Link>
+                      </div>
                     </article>
                   ))}
                 </div>
