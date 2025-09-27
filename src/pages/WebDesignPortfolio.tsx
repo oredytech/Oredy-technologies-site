@@ -89,8 +89,10 @@ const WebDesignPortfolio = () => {
               <ArrowLeft size={16} className="mr-2" />
               Retour aux services
             </Link>
-            <h1 className="text-3xl md:text-4xl font-bold mb-3">Projets Web Design</h1>
-            <p className="text-gray-400">Découvrez mes créations web design et interfaces utilisateur.</p>
+            <div className="text-center bg-secondary/30 rounded-lg p-8 mb-6">
+              <h1 className="text-3xl md:text-4xl font-bold mb-3 text-turquoise">Projets Web Design</h1>
+              <p className="text-gray-400">Découvrez mes créations web design et interfaces utilisateur.</p>
+            </div>
           </div>
 
           <PortfolioList 
