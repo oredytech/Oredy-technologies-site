@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { WordPressPost, WordPressMedia } from '@/types/wordpress';
 
-const WP_API_BASE = 'https://totalementactus.net/wp-json/wp/v2';
+const WP_API_BASE = 'https://oredytech.com/wp-json/wp/v2';
 
 export const useWordPressBlog = (page: number = 1, perPage: number = 10) => {
   const [posts, setPosts] = useState<WordPressPost[]>([]);
