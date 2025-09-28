@@ -48,6 +48,9 @@ export interface WordPressPost {
     "wp:term": Array<{ taxonomy: string; embeddable: boolean; href: string }>;
     curies: Array<{ name: string; href: string; templated: boolean }>;
   };
+  _embedded?: {
+    'wp:featuredmedia'?: WordPressMedia[];
+  };
 }
 
 export interface WordPressMedia {

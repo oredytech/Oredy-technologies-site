@@ -61,9 +61,9 @@ const Blog = () => {
               </div> : <>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {posts.map(post => <article key={post.id} className="card group hover:transform hover:scale-105">
-                      {post._links['wp:featuredmedia'] && <Link to={`/blog/${post.slug}`}>
+                      {post._embedded?.['wp:featuredmedia']?.[0] && <Link to={`/blog/${post.slug}`}>
                           <div className="aspect-video bg-gray-700 rounded-lg mb-4 overflow-hidden">
-                            <img src={post._links['wp:featuredmedia'][0]?.href || '/placeholder.svg'} alt={stripHtml(post.title.rendered)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
+                            <img src={post._embedded['wp:featuredmedia'][0].source_url || '/placeholder.svg'} alt={stripHtml(post.title.rendered)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
                           </div>
                         </Link>}
                       

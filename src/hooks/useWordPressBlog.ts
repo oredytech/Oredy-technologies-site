@@ -17,7 +17,7 @@ export const useWordPressBlog = (page: number = 1, perPage: number = 10) => {
         setError(null);
         
         const response = await fetch(
-          `${WP_API_BASE}/posts?page=${page}&per_page=${perPage}&_embed=wp:featuredmedia`
+          `${WP_API_BASE}/posts?page=${page}&per_page=${perPage}&_embed`
         );
         
         if (!response.ok) {
@@ -57,7 +57,7 @@ export const useWordPressPost = (slug: string) => {
         setLoading(true);
         setError(null);
         
-        const response = await fetch(`${WP_API_BASE}/posts?slug=${slug}&_embed=wp:featuredmedia`);
+        const response = await fetch(`${WP_API_BASE}/posts?slug=${slug}&_embed`);
         
         if (!response.ok) {
           throw new Error('Article non trouvé');

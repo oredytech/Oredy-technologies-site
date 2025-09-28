@@ -66,10 +66,10 @@ const BlogSection = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {posts.slice(0, 3).map((post) => (
             <article key={post.id} className="card group hover:transform hover:scale-105">
-              {post._links['wp:featuredmedia'] && (
+              {post._embedded?.['wp:featuredmedia']?.[0] && (
                 <div className="aspect-video bg-gray-700 rounded-lg mb-4 overflow-hidden">
                   <img 
-                    src={post._links['wp:featuredmedia'][0]?.href || '/placeholder.svg'}
+                    src={post._embedded['wp:featuredmedia'][0].source_url || '/placeholder.svg'}
                     alt={stripHtml(post.title.rendered)}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                     loading="lazy"
