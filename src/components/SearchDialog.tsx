@@ -25,65 +25,149 @@ const searchData: SearchResult[] = [
   {
     id: '1',
     title: 'Accueil',
-    description: 'Page d\'accueil du site',
+    description: 'Page d\'accueil du site - Développeur WordPress et Web',
     url: '/',
     category: 'Pages'
   },
   {
     id: '2',
     title: 'À propos',
-    description: 'En savoir plus sur moi',
+    description: 'En savoir plus sur moi - Oredy Musanda, développeur web expert',
     url: '/about',
     category: 'Pages'
   },
   {
     id: '3',
     title: 'CV',
-    description: 'Mon parcours professionnel',
+    description: 'Mon parcours professionnel, compétences et expériences',
     url: '/cv',
     category: 'Pages'
   },
   {
     id: '4',
     title: 'WordPress',
-    description: 'Projets WordPress',
+    description: 'Projets WordPress - Sites web et applications',
     url: '/portfolio/wordpress',
     category: 'Portfolio'
   },
   {
     id: '5',
     title: 'Web Design',
-    description: 'Projets de design web',
+    description: 'Projets de design web - UI/UX et interfaces modernes',
     url: '/portfolio/webdesign',
     category: 'Portfolio'
   },
   {
     id: '6',
     title: 'Développement',
-    description: 'Projets de développement',
+    description: 'Projets de développement web - Applications React et plus',
     url: '/portfolio/development',
     category: 'Portfolio'
   },
   {
     id: '7',
     title: 'Services',
-    description: 'Mes services professionnels',
-    url: '/#services',
-    category: 'Sections'
+    description: 'Mes services professionnels - Développement web, WordPress, consulting',
+    url: '/services',
+    category: 'Pages'
   },
   {
     id: '8',
     title: 'Témoignages',
-    description: 'Avis de clients',
-    url: '/#testimonials',
-    category: 'Sections'
+    description: 'Avis de clients satisfaits',
+    url: '/testimonials',
+    category: 'Pages'
   },
   {
     id: '9',
     title: 'Contact',
-    description: 'Me contacter',
-    url: '/#contact',
-    category: 'Sections'
+    description: 'Me contacter pour vos projets web',
+    url: '/contact',
+    category: 'Pages'
+  },
+  {
+    id: '10',
+    title: 'Blog',
+    description: 'Articles, tutoriels et actualités tech',
+    url: '/blog',
+    category: 'Pages'
+  },
+  {
+    id: '11',
+    title: 'Développement WordPress',
+    description: 'Création de sites WordPress personnalisés et optimisés',
+    url: '/#services',
+    category: 'Services'
+  },
+  {
+    id: '12',
+    title: 'Développement Web',
+    description: 'Applications web modernes avec React, TypeScript',
+    url: '/#services',
+    category: 'Services'
+  },
+  {
+    id: '13',
+    title: 'Design UI/UX',
+    description: 'Conception d\'interfaces utilisateur intuitives',
+    url: '/#services',
+    category: 'Services'
+  },
+  {
+    id: '14',
+    title: 'E-commerce',
+    description: 'Boutiques en ligne avec WooCommerce et solutions custom',
+    url: '/#services',
+    category: 'Services'
+  },
+  {
+    id: '15',
+    title: 'Maintenance Web',
+    description: 'Support technique et maintenance de sites web',
+    url: '/#services',
+    category: 'Services'
+  },
+  {
+    id: '16',
+    title: 'React',
+    description: 'Développement d\'applications React modernes',
+    url: '/portfolio/development',
+    category: 'Technologies'
+  },
+  {
+    id: '17',
+    title: 'TypeScript',
+    description: 'Applications JavaScript typées et robustes',
+    url: '/portfolio/development',
+    category: 'Technologies'
+  },
+  {
+    id: '18',
+    title: 'Tailwind CSS',
+    description: 'Framework CSS utility-first pour designs modernes',
+    url: '/portfolio/development',
+    category: 'Technologies'
+  },
+  {
+    id: '19',
+    title: 'PHP',
+    description: 'Développement backend et WordPress en PHP',
+    url: '/portfolio/wordpress',
+    category: 'Technologies'
+  },
+  {
+    id: '20',
+    title: 'Cybersécurité',
+    description: 'Articles et conseils sur la sécurité informatique',
+    url: '/blog',
+    category: 'Blog'
+  },
+  {
+    id: '21',
+    title: 'Guide anti-arnaque Facebook',
+    description: 'Comment se protéger des arnaques sur Facebook',
+    url: '/blog',
+    category: 'Blog'
   }
 ];
 
