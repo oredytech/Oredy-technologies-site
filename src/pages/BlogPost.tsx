@@ -141,31 +141,35 @@ const BlogPost = () => {
               <div className="lg:col-span-3">
                 <div 
                   className="prose prose-invert prose-xl max-w-none
-                    prose-headings:text-white prose-headings:font-bold prose-headings:mb-12 prose-headings:mt-20
-                    prose-h1:text-6xl prose-h1:mb-16 prose-h1:mt-0 prose-h1:leading-tight prose-h1:text-white prose-h1:font-extrabold
-                    prose-h2:text-5xl prose-h2:mb-14 prose-h2:mt-20 prose-h2:border-b-2 prose-h2:border-turquoise/40 prose-h2:pb-6 prose-h2:text-turquoise prose-h2:font-bold
-                    prose-h3:text-4xl prose-h3:mb-12 prose-h3:mt-18 prose-h3:text-turquoise prose-h3:font-bold prose-h3:bg-turquoise/5 prose-h3:px-4 prose-h3:py-2 prose-h3:rounded-lg
-                    prose-h4:text-2xl prose-h4:mb-8 prose-h4:mt-14 prose-h4:text-turquoise/90 prose-h4:font-semibold
-                    prose-h5:text-xl prose-h5:mb-6 prose-h5:mt-12 prose-h5:text-white prose-h5:font-semibold
-                    prose-h6:text-lg prose-h6:mb-5 prose-h6:mt-10 prose-h6:text-gray-300 prose-h6:font-medium
-                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-10 prose-p:mt-0 prose-p:text-[18px] prose-p:text-justify
+                    prose-headings:text-white prose-headings:font-bold prose-headings:mb-8 prose-headings:mt-12
+                    prose-h1:text-5xl prose-h1:mb-12 prose-h1:mt-0 prose-h1:leading-tight prose-h1:text-white prose-h1:font-extrabold
+                    prose-h2:text-4xl prose-h2:mb-8 prose-h2:mt-16 prose-h2:text-turquoise prose-h2:font-bold prose-h2:border-b-2 prose-h2:border-turquoise/30 prose-h2:pb-4
+                    prose-h3:text-3xl prose-h3:mb-6 prose-h3:mt-12 prose-h3:text-turquoise prose-h3:font-bold prose-h3:leading-snug
+                    prose-h4:text-2xl prose-h4:mb-5 prose-h4:mt-10 prose-h4:text-white prose-h4:font-semibold
+                    prose-h5:text-xl prose-h5:mb-4 prose-h5:mt-8 prose-h5:text-white prose-h5:font-semibold
+                    prose-h6:text-lg prose-h6:mb-3 prose-h6:mt-6 prose-h6:text-gray-300 prose-h6:font-medium
+                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-6 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify
                     prose-a:text-turquoise prose-a:underline prose-a:decoration-2 prose-a:underline-offset-4 prose-a:decoration-turquoise/60 
                     hover:prose-a:text-white hover:prose-a:decoration-turquoise hover:prose-a:bg-turquoise/10 prose-a:transition-all prose-a:duration-200 
                     prose-a:font-semibold prose-a:px-1 prose-a:py-0.5 prose-a:rounded
-                    prose-strong:text-white prose-strong:font-bold
+                    prose-strong:text-white prose-strong:font-bold prose-strong:text-lg
                     prose-em:text-gray-300 prose-em:italic
-                    prose-ul:text-gray-300 prose-ul:mb-10 prose-ul:mt-8 prose-ul:space-y-4 prose-ul:pl-6
-                    prose-ol:text-gray-300 prose-ol:mb-10 prose-ol:mt-8 prose-ol:space-y-4 prose-ol:pl-6
-                    prose-li:text-gray-300 prose-li:mb-3 prose-li:leading-relaxed
+                    prose-ul:text-gray-300 prose-ul:mb-6 prose-ul:mt-4 prose-ul:space-y-2 prose-ul:pl-6
+                    prose-ol:text-gray-300 prose-ol:mb-6 prose-ol:mt-4 prose-ol:space-y-2 prose-ol:pl-6
+                    prose-li:text-gray-300 prose-li:mb-2 prose-li:leading-relaxed
                     prose-blockquote:border-l-4 prose-blockquote:border-l-turquoise prose-blockquote:bg-gray-800/50 
-                    prose-blockquote:text-gray-200 prose-blockquote:pl-8 prose-blockquote:py-8 prose-blockquote:mb-12 prose-blockquote:mt-10
+                    prose-blockquote:text-gray-200 prose-blockquote:pl-6 prose-blockquote:py-6 prose-blockquote:mb-8 prose-blockquote:mt-6
                     prose-blockquote:italic prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:rounded-r-lg
-                    prose-blockquote:shadow-lg prose-blockquote:mx-4
                     prose-code:bg-gray-800 prose-code:text-turquoise prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                    prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:p-6 prose-pre:rounded-lg prose-pre:mb-10 prose-pre:mt-8
-                    prose-img:rounded-lg prose-img:mb-10 prose-img:mt-8 prose-img:shadow-lg
-                    prose-hr:border-gray-700 prose-hr:my-16 prose-hr:border-t-2
-                    [&>*]:mb-6 [&>p+p]:mt-8"
+                    prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:p-6 prose-pre:rounded-lg prose-pre:mb-8 prose-pre:mt-6
+                    prose-img:rounded-lg prose-img:mb-8 prose-img:mt-6 prose-img:shadow-lg
+                    prose-hr:border-gray-700 prose-hr:my-12 prose-hr:border-t-2
+                    [&_h1]:text-5xl [&_h1]:font-extrabold [&_h1]:text-white [&_h1]:mb-8 [&_h1]:mt-12 [&_h1]:leading-tight
+                    [&_h2]:text-4xl [&_h2]:font-bold [&_h2]:text-turquoise [&_h2]:mb-6 [&_h2]:mt-12 [&_h2]:border-b-2 [&_h2]:border-turquoise/30 [&_h2]:pb-3
+                    [&_h3]:text-3xl [&_h3]:font-bold [&_h3]:text-turquoise [&_h3]:mb-5 [&_h3]:mt-10 [&_h3]:leading-snug
+                    [&_h4]:text-2xl [&_h4]:font-semibold [&_h4]:text-white [&_h4]:mb-4 [&_h4]:mt-8
+                    [&_h5]:text-xl [&_h5]:font-semibold [&_h5]:text-white [&_h5]:mb-3 [&_h5]:mt-6
+                    [&_h6]:text-lg [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5"
                   dangerouslySetInnerHTML={{ __html: post.content.rendered }}
                 />
 
