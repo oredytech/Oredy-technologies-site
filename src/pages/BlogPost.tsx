@@ -140,17 +140,19 @@ const BlogPost = () => {
             <div className="lg:grid lg:grid-cols-4 lg:gap-8">
               <div className="lg:col-span-3">
                 <div 
-                  className="prose prose-invert prose-lg max-w-none
-                    prose-headings:text-white prose-headings:font-bold prose-headings:mb-10 prose-headings:mt-16
-                    prose-h1:text-4xl prose-h1:mb-12 prose-h1:mt-0 prose-h1:leading-tight
-                    prose-h2:text-3xl prose-h2:mb-10 prose-h2:mt-16 prose-h2:border-b prose-h2:border-turquoise/30 prose-h2:pb-4
-                    prose-h3:text-2xl prose-h3:mb-8 prose-h3:mt-14 prose-h3:text-turquoise prose-h3:font-semibold
-                    prose-h4:text-xl prose-h4:mb-6 prose-h4:mt-12 prose-h4:text-turquoise/80 prose-h4:font-medium
-                    prose-h5:text-lg prose-h5:mb-5 prose-h5:mt-10 prose-h5:text-white prose-h5:font-medium
-                    prose-h6:text-base prose-h6:mb-4 prose-h6:mt-8 prose-h6:text-gray-300 prose-h6:font-medium
-                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-10 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify
-                    prose-a:text-turquoise prose-a:no-underline hover:prose-a:underline prose-a:transition-colors prose-a:font-medium
-                    prose-strong:text-white prose-strong:font-semibold
+                  className="prose prose-invert prose-xl max-w-none
+                    prose-headings:text-white prose-headings:font-bold prose-headings:mb-12 prose-headings:mt-20
+                    prose-h1:text-6xl prose-h1:mb-16 prose-h1:mt-0 prose-h1:leading-tight prose-h1:text-white prose-h1:font-extrabold
+                    prose-h2:text-5xl prose-h2:mb-14 prose-h2:mt-20 prose-h2:border-b-2 prose-h2:border-turquoise/40 prose-h2:pb-6 prose-h2:text-turquoise prose-h2:font-bold
+                    prose-h3:text-4xl prose-h3:mb-12 prose-h3:mt-18 prose-h3:text-turquoise prose-h3:font-bold prose-h3:bg-turquoise/5 prose-h3:px-4 prose-h3:py-2 prose-h3:rounded-lg
+                    prose-h4:text-2xl prose-h4:mb-8 prose-h4:mt-14 prose-h4:text-turquoise/90 prose-h4:font-semibold
+                    prose-h5:text-xl prose-h5:mb-6 prose-h5:mt-12 prose-h5:text-white prose-h5:font-semibold
+                    prose-h6:text-lg prose-h6:mb-5 prose-h6:mt-10 prose-h6:text-gray-300 prose-h6:font-medium
+                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-10 prose-p:mt-0 prose-p:text-[18px] prose-p:text-justify
+                    prose-a:text-turquoise prose-a:underline prose-a:decoration-2 prose-a:underline-offset-4 prose-a:decoration-turquoise/60 
+                    hover:prose-a:text-white hover:prose-a:decoration-turquoise hover:prose-a:bg-turquoise/10 prose-a:transition-all prose-a:duration-200 
+                    prose-a:font-semibold prose-a:px-1 prose-a:py-0.5 prose-a:rounded
+                    prose-strong:text-white prose-strong:font-bold
                     prose-em:text-gray-300 prose-em:italic
                     prose-ul:text-gray-300 prose-ul:mb-10 prose-ul:mt-8 prose-ul:space-y-4 prose-ul:pl-6
                     prose-ol:text-gray-300 prose-ol:mb-10 prose-ol:mt-8 prose-ol:space-y-4 prose-ol:pl-6
