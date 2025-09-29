@@ -4,16 +4,23 @@ import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useWordPressBlog } from '@/hooks/useWordPressBlog';
+import { useWordPressCategories } from '@/hooks/useWordPressCategories';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { categories } = useWordPressCategories();
+  
+  // Récupérer le paramètre de catégorie depuis l'URL
+  const urlParams = new URLSearchParams(location.search);
+  const selectedCategoryId = urlParams.get('category') ? parseInt(urlParams.get('category')!) : null;
+  
   const {
     posts,
     totalPages,
     loading,
     error
-  } = useWordPressBlog(currentPage, 10);
+  } = useWordPressBlog(currentPage, 10, selectedCategoryId);
 
   // Auto-rotate background images
   useEffect(() => {

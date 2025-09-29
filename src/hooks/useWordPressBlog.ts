@@ -3,7 +3,7 @@ import { WordPressPost, WordPressMedia } from '@/types/wordpress';
 
 const WP_API_BASE = 'https://oredytech.com/wp-json/wp/v2';
 
-export const useWordPressBlog = (page: number = 1, perPage: number = 10) => {
+export const useWordPressBlog = (page: number = 1, perPage: number = 10, categoryId?: number | null) => {
   const [posts, setPosts] = useState<WordPressPost[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [totalPosts, setTotalPosts] = useState(0);
@@ -16,9 +16,12 @@ export const useWordPressBlog = (page: number = 1, perPage: number = 10) => {
         setLoading(true);
         setError(null);
         
-        const response = await fetch(
-          `${WP_API_BASE}/posts?page=${page}&per_page=${perPage}&_embed`
-        );
+        let url = `${WP_API_BASE}/posts?page=${page}&per_page=${perPage}&_embed`;
+        if (categoryId) {
+          url += `&categories=${categoryId}`;
+        }
+        
+        const response = await fetch(url);
         
         if (!response.ok) {
           throw new Error('Erreur lors de la récupération des articles');
@@ -40,7 +43,7 @@ export const useWordPressBlog = (page: number = 1, perPage: number = 10) => {
     };
 
     fetchPosts();
-  }, [page, perPage]);
+  }, [page, perPage, categoryId]);
 
   return { posts, totalPages, totalPosts, loading, error };
 };

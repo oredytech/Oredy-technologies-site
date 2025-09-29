@@ -109,4 +109,29 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 255, 255, 0.5);
   }
+
+  /* Related article inline styles */
+  .related-article-inline {
+    border: 1px solid rgba(75, 85, 99, 1) !important;
+    background: rgba(31, 41, 55, 0.3) !important;
+    border-radius: 0.5rem !important;
+    padding: 1rem !important;
+    margin: 2rem 0 !important;
+  }
+
+  .related-article-inline a {
+    text-decoration: none !important;
+    color: inherit !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+  }
+
+  .related-article-inline:hover {
+    border-color: rgba(20, 184, 166, 0.5) !important;
+  }
+
+  .related-article-inline a:hover h4 {
+    color: rgb(20, 184, 166) !important;
+  }
 }

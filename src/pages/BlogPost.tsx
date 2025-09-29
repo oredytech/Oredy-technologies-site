@@ -1,15 +1,68 @@
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, ArrowLeft, Share2, Facebook, Twitter, MessageCircle, Copy, Check } from 'lucide-react';
-import { useState } from 'react';
+import { Calendar, ArrowLeft, Share2, Facebook, Twitter, MessageCircle, Copy, Check, Tag } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useWordPressPost } from '@/hooks/useWordPressBlog';
+import { useWordPressCategories, useWordPressPostsByCategory } from '@/hooks/useWordPressCategories';
+import RelatedArticleCard from '@/components/blog/RelatedArticleCard';
 import { Button } from '@/components/ui/button';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { post, featuredMedia, loading, error } = useWordPressPost(slug || '');
+  const { categories } = useWordPressCategories();
   const [linkCopied, setLinkCopied] = useState(false);
+
+  // Récupérer la catégorie principale de l'article
+  const postCategoryId = post?.categories?.[0];
+  const postCategory = categories.find(cat => cat.id === postCategoryId);
+  
+  // Récupérer les articles de la même catégorie
+  const { posts: relatedPosts } = useWordPressPostsByCategory(postCategoryId || 0, post?.id);
+
+  // Fonction pour injecter les articles liés dans le contenu
+  const injectRelatedArticles = (content: string) => {
+    if (!relatedPosts.length) return content;
+
+    // Séparer le contenu en paragraphes
+    const paragraphs = content.split('</p>');
+    const result = [];
+    
+    let relatedIndex = 0;
+    for (let i = 0; i < paragraphs.length; i++) {
+      result.push(paragraphs[i]);
+      
+      // Ajouter un article lié après chaque 2 paragraphes
+      if ((i + 1) % 2 === 0 && relatedIndex < relatedPosts.length && i < paragraphs.length - 1) {
+        const relatedPost = relatedPosts[relatedIndex];
+        const featuredImage = relatedPost._embedded?.['wp:featuredmedia']?.[0];
+        
+        result.push(`
+          <div class="related-article-inline my-8 p-4 bg-gray-800/30 border border-gray-700 rounded-lg">
+            <a href="/blog/${relatedPost.slug}" class="flex items-center gap-3 text-decoration-none hover:text-turquoise transition-colors group">
+              ${featuredImage ? `
+                <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
+                  <img src="${featuredImage.source_url}" alt="${relatedPost.title.rendered}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+                </div>
+              ` : ''}
+              <div class="flex-1">
+                <p class="text-sm text-turquoise font-medium mb-1">Lire aussi :</p>
+                <h4 class="text-sm font-semibold text-white group-hover:text-turquoise transition-colors">${relatedPost.title.rendered}</h4>
+              </div>
+            </a>
+          </div>
+        `);
+        relatedIndex++;
+      }
+      
+      if (i < paragraphs.length - 1) {
+        result.push('</p>');
+      }
+    }
+    
+    return result.join('');
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {
@@ -125,9 +178,17 @@ const BlogPost = () => {
               </div>
             </header>
 
-            {/* Featured Image */}
+            {/* Featured Image with Category Badge */}
             {featuredMedia && (
-              <div className="mb-8">
+              <div className="mb-8 relative">
+                {postCategory && (
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-turquoise text-darkGray text-sm font-semibold rounded-full">
+                      <Tag size={14} />
+                      {postCategory.name}
+                    </span>
+                  </div>
+                )}
                 <img 
                   src={featuredMedia.source_url}
                   alt={featuredMedia.alt_text || post.title.rendered}
@@ -169,8 +230,9 @@ const BlogPost = () => {
                     [&_h3]:text-[24px] [&_h3]:font-bold [&_h3]:text-turquoise [&_h3]:mb-5 [&_h3]:mt-10 [&_h3]:leading-snug
                     [&_h4]:text-[22px] [&_h4]:font-semibold [&_h4]:text-white [&_h4]:mb-4 [&_h4]:mt-8
                     [&_h5]:text-[20px] [&_h5]:font-semibold [&_h5]:text-white [&_h5]:mb-3 [&_h5]:mt-6
-                    [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5"
-                  dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+                    [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5
+                    [&_.related-article-inline]:not-prose [&_.related-article-inline_*]:m-0"
+                  dangerouslySetInnerHTML={{ __html: injectRelatedArticles(post.content.rendered) }}
                 />
 
                 {/* Social Sharing */}
@@ -256,8 +318,29 @@ const BlogPost = () => {
               </div>
 
               {/* Sidebar */}
-              <aside className="lg:col-span-1 mt-12 lg:mt-0">
-                <div className="card sticky top-24">
+              <aside className="lg:col-span-1 mt-12 lg:mt-0 space-y-6">
+                {/* Categories */}
+                <div className="card">
+                  <h3 className="text-lg font-semibold mb-4">Catégories</h3>
+                  <div className="space-y-2">
+                    {categories.map((category) => (
+                      <Link
+                        key={category.id}
+                        to={`/blog?category=${category.id}`}
+                        className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
+                          category.id === postCategoryId
+                            ? 'bg-turquoise text-darkGray font-semibold'
+                            : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                        }`}
+                      >
+                        {category.name} ({category.count})
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+
+                {/* À propos d'OREDY */}
+                <div className="card">
                   <h3 className="text-lg font-semibold mb-4">À propos d'OREDY</h3>
                   <p className="text-gray-300 text-sm mb-4">
                     OREDY Technologies est une agence spécialisée dans le développement web, 
