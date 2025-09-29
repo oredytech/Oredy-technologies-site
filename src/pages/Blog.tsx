@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -7,12 +7,25 @@ import { useWordPressBlog } from '@/hooks/useWordPressBlog';
 import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from '@/components/ui/pagination';
 const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const {
     posts,
     totalPages,
     loading,
     error
   } = useWordPressBlog(currentPage, 10);
+
+  // Auto-rotate background images
+  useEffect(() => {
+    if (posts.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % Math.min(5, posts.length));
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [posts.length]);
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('fr-FR', {
       year: 'numeric',
@@ -35,13 +48,38 @@ const Blog = () => {
       <Header />
       
       <main className="pt-20">
-        <section className="section">
-          <div className="container">
+        <section className="section relative overflow-hidden">
+          {/* Background carousel with images from recent posts */}
+          <div className="absolute inset-0">
+            <div className="relative w-full h-full">
+              {posts.slice(0, 5).map((post, index) => {
+                const image = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+                if (!image) return null;
+                return (
+                  <div
+                    key={post.id}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                      index === currentImageIndex ? 'opacity-15' : 'opacity-0'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt=""
+                      className="w-full h-full object-cover scale-110 animate-fade-in"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-b from-darkGray/70 via-darkGray/80 to-darkGray/90"></div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          
+          <div className="container relative z-10">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
                 Blog 
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in">
                 Découvrez nos articles, tutoriels et actualités sur les technologies web, 
                 le développement et les tendances du numérique.
               </p>
