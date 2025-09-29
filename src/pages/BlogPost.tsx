@@ -140,7 +140,7 @@ const BlogPost = () => {
             <div className="lg:grid lg:grid-cols-4 lg:gap-8">
               <div className="lg:col-span-3">
                 <div 
-                  className="prose prose-invert prose-xl max-w-none
+                  className="prose prose-invert prose-xl max-w-none whitespace-pre-line
                     prose-headings:text-white prose-headings:font-bold prose-headings:mb-8 prose-headings:mt-12
                     prose-h1:text-[28px] prose-h1:mb-12 prose-h1:mt-0 prose-h1:leading-tight prose-h1:text-white prose-h1:font-extrabold
                     prose-h2:text-[26px] prose-h2:mb-8 prose-h2:mt-16 prose-h2:text-turquoise prose-h2:font-bold
@@ -148,7 +148,7 @@ const BlogPost = () => {
                     prose-h4:text-[22px] prose-h4:mb-5 prose-h4:mt-10 prose-h4:text-white prose-h4:font-semibold
                     prose-h5:text-[20px] prose-h5:mb-4 prose-h5:mt-8 prose-h5:text-white prose-h5:font-semibold
                     prose-h6:text-[18px] prose-h6:mb-3 prose-h6:mt-6 prose-h6:text-gray-300 prose-h6:font-medium
-                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-6 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify
+                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-8 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify prose-p:whitespace-pre-wrap
                     prose-a:text-turquoise prose-a:underline prose-a:decoration-2 prose-a:underline-offset-4 prose-a:decoration-turquoise/60 
                     hover:prose-a:text-white hover:prose-a:decoration-turquoise hover:prose-a:bg-turquoise/10 prose-a:transition-all prose-a:duration-200 
                     prose-a:font-semibold prose-a:px-1 prose-a:py-0.5 prose-a:rounded
@@ -157,9 +157,9 @@ const BlogPost = () => {
                     prose-ul:text-gray-300 prose-ul:mb-6 prose-ul:mt-4 prose-ul:space-y-2 prose-ul:pl-6
                     prose-ol:text-gray-300 prose-ol:mb-6 prose-ol:mt-4 prose-ol:space-y-2 prose-ol:pl-6
                     prose-li:text-gray-300 prose-li:mb-2 prose-li:leading-relaxed
-                    prose-blockquote:border-l-4 prose-blockquote:border-l-turquoise prose-blockquote:bg-gray-800/50 
-                    prose-blockquote:text-gray-200 prose-blockquote:pl-6 prose-blockquote:py-6 prose-blockquote:mb-8 prose-blockquote:mt-6
-                    prose-blockquote:italic prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:rounded-r-lg
+                    prose-blockquote:border-l-4 prose-blockquote:border-l-turquoise prose-blockquote:bg-gradient-to-r prose-blockquote:from-turquoise/10 prose-blockquote:to-transparent
+                    prose-blockquote:text-turquoise prose-blockquote:pl-6 prose-blockquote:py-6 prose-blockquote:mb-8 prose-blockquote:mt-6
+                    prose-blockquote:italic prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:shadow-lg
                     prose-code:bg-gray-800 prose-code:text-turquoise prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono
                     prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:p-6 prose-pre:rounded-lg prose-pre:mb-8 prose-pre:mt-6
                     prose-img:rounded-lg prose-img:mb-8 prose-img:mt-6 prose-img:shadow-lg
@@ -169,7 +169,8 @@ const BlogPost = () => {
                     [&_h3]:text-[24px] [&_h3]:font-bold [&_h3]:text-turquoise [&_h3]:mb-5 [&_h3]:mt-10 [&_h3]:leading-snug
                     [&_h4]:text-[22px] [&_h4]:font-semibold [&_h4]:text-white [&_h4]:mb-4 [&_h4]:mt-8
                     [&_h5]:text-[20px] [&_h5]:font-semibold [&_h5]:text-white [&_h5]:mb-3 [&_h5]:mt-6
-                    [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5"
+                    [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5
+                    [&_p]:whitespace-pre-wrap [&_p]:mb-8"
                   dangerouslySetInnerHTML={{ __html: post.content.rendered }}
                 />
 
