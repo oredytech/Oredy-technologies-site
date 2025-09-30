@@ -21,27 +21,12 @@ const BlogPost = () => {
   // Récupérer les articles de la même catégorie
   const { posts: relatedPosts } = useWordPressPostsByCategory(postCategoryId || 0, post?.id);
 
-  // Fonction pour détecter et convertir les URLs en liens cliquables
-  const convertUrlsToLinks = (content: string) => {
-    // Regex pour détecter les URLs (http, https, www)
-    const urlRegex = /(https?:\/\/[^\s<>]+|www\.[^\s<>]+)/gi;
-    
-    return content.replace(urlRegex, (url) => {
-      // Ajouter https:// si l'URL commence par www
-      const fullUrl = url.startsWith('www.') ? `https://${url}` : url;
-      return `<a href="${fullUrl}" target="_blank" style="color: #ef4444; font-style: italic; text-decoration: none;" onmouseover="this.style.color='#dc2626'" onmouseout="this.style.color='#ef4444'">${url}</a>`;
-    });
-  };
-
   // Fonction pour injecter les articles liés dans le contenu
   const injectRelatedArticles = (content: string) => {
-    // D'abord convertir les URLs en liens
-    let processedContent = convertUrlsToLinks(content);
-    
-    if (!relatedPosts.length) return processedContent;
+    if (!relatedPosts.length) return content;
 
     // Séparer le contenu en paragraphes
-    const paragraphs = processedContent.split('</p>');
+    const paragraphs = content.split('</p>');
     const result = [];
     
     let relatedIndex = 0;
