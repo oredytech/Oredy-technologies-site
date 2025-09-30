@@ -319,7 +319,7 @@ const BlogPost = () => {
               </div>
 
               {/* Sidebar */}
-              <aside className="lg:col-span-1 mt-12 lg:mt-0 space-y-6">
+              <aside className="lg:col-span-1 mt-12 lg:mt-0 space-y-6 lg:sticky lg:top-24 lg:h-fit">
                 {/* Categories */}
                 <div className="card">
                   <h3 className="text-lg font-semibold mb-4">Catégories</h3>
