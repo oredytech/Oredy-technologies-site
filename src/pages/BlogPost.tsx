@@ -210,8 +210,8 @@ const BlogPost = () => {
                     prose-h5:text-[20px] prose-h5:mb-4 prose-h5:mt-8 prose-h5:text-white prose-h5:font-semibold
                     prose-h6:text-[18px] prose-h6:mb-3 prose-h6:mt-6 prose-h6:text-gray-300 prose-h6:font-medium
                     prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-4 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify
-                    prose-a:text-turquoise prose-a:underline prose-a:decoration-2 prose-a:underline-offset-4 prose-a:decoration-turquoise/60 
-                    hover:prose-a:text-white hover:prose-a:decoration-turquoise hover:prose-a:bg-turquoise/10 prose-a:transition-all prose-a:duration-200 
+                    prose-a:text-red-500 prose-a:italic prose-a:underline prose-a:decoration-2 prose-a:underline-offset-4 prose-a:decoration-red-500/60 
+                    hover:prose-a:text-red-400 hover:prose-a:decoration-red-400 hover:prose-a:bg-red-500/10 prose-a:transition-all prose-a:duration-200 
                     prose-a:font-semibold prose-a:px-1 prose-a:py-0.5 prose-a:rounded
                     prose-strong:text-white prose-strong:font-bold prose-strong:text-lg
                     prose-em:text-gray-300 prose-em:italic
@@ -231,8 +231,9 @@ const BlogPost = () => {
                     [&_h4]:text-[22px] [&_h4]:font-semibold [&_h4]:text-white [&_h4]:mb-4 [&_h4]:mt-8
                     [&_h5]:text-[20px] [&_h5]:font-semibold [&_h5]:text-white [&_h5]:mb-3 [&_h5]:mt-6
                     [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5
-                    [&_.related-article-inline]:not-prose [&_.related-article-inline_*]:m-0"
-                  dangerouslySetInnerHTML={{ __html: injectRelatedArticles(post.content.rendered) }}
+                    [&_.related-article-inline]:not-prose [&_.related-article-inline_*]:m-0
+                    [&_a]:text-red-500 [&_a]:italic [&_a]:no-underline hover:[&_a]:text-red-400 [&_a]:transition-colors"
+                  dangerouslySetInnerHTML={{ __html: injectRelatedArticles(post.content.rendered).replace(/<a /g, '<a target="_blank" ') }}
                 />
 
                 {/* Social Sharing */}
