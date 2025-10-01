@@ -1,6 +1,8 @@
 
 import { useState } from 'react';
 import { Facebook, Instagram, Mail } from 'lucide-react';
+import { useEmailJS } from '@/hooks/useEmailJS';
+import { toast } from 'sonner';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -10,21 +12,29 @@ const Contact = () => {
     message: ''
   });
 
+  const { sendEmail, isLoading } = useEmailJS();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+    
+    const result = await sendEmail(formData);
+    
+    if (result.success) {
+      toast.success('Message envoyé avec succès !');
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } else {
+      toast.error('Erreur lors de l\'envoi du message. Veuillez réessayer.');
+    }
   };
 
   return (
@@ -114,8 +124,9 @@ const Contact = () => {
               <button 
                 type="submit" 
                 className="btn btn-primary w-full"
+                disabled={isLoading}
               >
-                ENVOYER LE MESSAGE
+                {isLoading ? 'ENVOI EN COURS...' : 'ENVOYER LE MESSAGE'}
               </button>
             </form>
           </div>
