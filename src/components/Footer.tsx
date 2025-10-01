@@ -120,12 +120,12 @@ const Footer = () => {
               Copyright © 2024 Tout droit réservé | OREDY TECHNOLOGIES
             </p>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-turquoise transition-colors">
+              <Link to="/privacy-policy" className="text-gray-400 hover:text-turquoise transition-colors">
                 Politique de confidentialité
-              </a>
-              <a href="#" className="text-gray-400 hover:text-turquoise transition-colors">
+              </Link>
+              <Link to="/terms-of-service" className="text-gray-400 hover:text-turquoise transition-colors">
                 Conditions d'utilisation
-              </a>
+              </Link>
             </div>
           </div>
         </div>
