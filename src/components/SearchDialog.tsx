@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
+  DialogDescription,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -232,6 +233,9 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ open, onOpenChange }) => {
             <SearchIcon className="h-5 w-5 text-turquoise" />
             Recherche
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Recherchez du contenu sur le site
+          </DialogDescription>
         </DialogHeader>
         
         <Command className="bg-transparent rounded-t-none">
