@@ -40,7 +40,7 @@ const BlogPost = () => {
         
         result.push(`
           <div class="related-article-inline my-8 p-4 bg-gray-800/30 border border-gray-700 rounded-lg">
-            <a href="/blog/${relatedPost.slug}" class="flex items-center gap-3 text-decoration-none hover:text-turquoise transition-colors group">
+            <a href="https://oredytech.com/blog/${relatedPost.slug}" class="flex items-center gap-3 text-decoration-none hover:text-turquoise transition-colors group">
               ${featuredImage ? `
                 <div class="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
                   <img src="${featuredImage.source_url}" alt="${relatedPost.title.rendered}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
