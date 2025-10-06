@@ -215,9 +215,9 @@ const BlogPost = () => {
                     prose-a:font-semibold prose-a:px-1 prose-a:py-0.5 prose-a:rounded
                     prose-strong:text-white prose-strong:font-bold prose-strong:text-lg
                     prose-em:text-gray-300 prose-em:italic
-                    prose-ul:text-gray-300 prose-ul:mb-6 prose-ul:mt-4 prose-ul:space-y-2 prose-ul:pl-6
-                    prose-ol:text-gray-300 prose-ol:mb-6 prose-ol:mt-4 prose-ol:space-y-2 prose-ol:pl-6
-                    prose-li:text-gray-300 prose-li:mb-2 prose-li:leading-relaxed
+                    prose-ul:text-gray-300 prose-ul:mb-8 prose-ul:mt-8 prose-ul:space-y-3 prose-ul:pl-8 prose-ul:list-disc
+                    prose-ol:text-gray-300 prose-ol:mb-8 prose-ol:mt-8 prose-ol:space-y-3 prose-ol:pl-8 prose-ol:list-decimal
+                    prose-li:text-gray-300 prose-li:mb-3 prose-li:leading-relaxed prose-li:text-[17px]
                     prose-blockquote:border-l-4 prose-blockquote:border-l-turquoise prose-blockquote:bg-gradient-to-r prose-blockquote:from-turquoise/10 prose-blockquote:to-transparent
                     prose-blockquote:text-turquoise prose-blockquote:pl-6 prose-blockquote:py-6 prose-blockquote:mb-8 prose-blockquote:mt-6
                     prose-blockquote:italic prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:shadow-lg
@@ -232,7 +232,10 @@ const BlogPost = () => {
                     [&_h5]:text-[20px] [&_h5]:font-semibold [&_h5]:text-white [&_h5]:mb-3 [&_h5]:mt-6
                     [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5
                     [&_.related-article-inline]:not-prose [&_.related-article-inline_*]:m-0
-                    [&_a]:text-red-500 [&_a]:italic [&_a]:no-underline hover:[&_a]:text-red-400 [&_a]:transition-colors"
+                    [&_a]:text-red-500 [&_a]:italic [&_a]:no-underline hover:[&_a]:text-red-400 [&_a]:transition-colors
+                    [&_ul]:mb-8 [&_ul]:mt-8 [&_ul]:pl-8 [&_ul]:space-y-3 [&_ul]:list-disc
+                    [&_ol]:mb-8 [&_ol]:mt-8 [&_ol]:pl-8 [&_ol]:space-y-3 [&_ol]:list-decimal
+                    [&_li]:mb-3 [&_li]:text-[17px] [&_li]:leading-relaxed"
                   dangerouslySetInnerHTML={{ __html: injectRelatedArticles(post.content.rendered).replace(/<a /g, '<a target="_blank" ') }}
                 />
 
