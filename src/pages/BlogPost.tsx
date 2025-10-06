@@ -47,8 +47,8 @@ const BlogPost = () => {
                 </div>
               ` : ''}
               <div class="flex-1">
-                <p class="text-sm text-turquoise font-medium mb-1">Lire aussi :</p>
-                <h4 class="text-sm font-semibold text-white group-hover:text-turquoise transition-colors">${relatedPost.title.rendered}</h4>
+                <p class="text-xs sm:text-sm text-turquoise font-medium mb-1">Lire aussi :</p>
+                <h4 class="text-xs sm:text-sm font-semibold text-white group-hover:text-turquoise transition-colors">${relatedPost.title.rendered}</h4>
               </div>
             </a>
           </div>
