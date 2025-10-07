@@ -14,16 +14,16 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main className="pt-20">
         <div className="min-h-[80vh] flex items-center justify-center">
           <div className="text-center">
             <h1 className="text-6xl font-bold mb-4 text-turquoise">404</h1>
-            <p className="text-xl text-gray-300 mb-8">Oops! Page not found</p>
+            <p className="text-xl text-muted-foreground mb-8">Oops! Page not found</p>
             <Link 
               to="/" 
-              className="inline-flex items-center px-6 py-3 bg-turquoise text-darkGray font-semibold rounded-lg hover:bg-turquoise/90 transition-colors"
+              className="inline-flex items-center px-6 py-3 bg-turquoise text-black font-semibold rounded-lg hover:bg-turquoise/90 transition-colors"
             >
               Retour à l'accueil
             </Link>

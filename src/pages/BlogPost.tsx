@@ -105,18 +105,18 @@ const BlogPost = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-darkGray text-white">
+      <div className="min-h-screen bg-background text-foreground">
         <Header />
         <main className="pt-20">
           <div className="container section">
             <div className="animate-pulse">
-              <div className="h-8 bg-gray-600 rounded mb-4 w-3/4"></div>
-              <div className="h-4 bg-gray-600 rounded mb-6 w-1/4"></div>
-              <div className="h-96 bg-gray-600 rounded mb-8"></div>
+              <div className="h-8 bg-muted rounded mb-4 w-3/4"></div>
+              <div className="h-4 bg-muted rounded mb-6 w-1/4"></div>
+              <div className="h-96 bg-muted rounded mb-8"></div>
               <div className="space-y-4">
-                <div className="h-4 bg-gray-600 rounded"></div>
-                <div className="h-4 bg-gray-600 rounded w-5/6"></div>
-                <div className="h-4 bg-gray-600 rounded w-4/6"></div>
+                <div className="h-4 bg-muted rounded"></div>
+                <div className="h-4 bg-muted rounded w-5/6"></div>
+                <div className="h-4 bg-muted rounded w-4/6"></div>
               </div>
             </div>
           </div>
@@ -128,12 +128,12 @@ const BlogPost = () => {
 
   if (error || !post) {
     return (
-      <div className="min-h-screen bg-darkGray text-white">
+      <div className="min-h-screen bg-background text-foreground">
         <Header />
         <main className="pt-20">
           <div className="container section text-center">
             <h1 className="text-4xl font-bold mb-4 text-red-400">Article non trouvé</h1>
-            <p className="text-gray-300 mb-8">{error || 'Cet article n\'existe pas ou a été supprimé.'}</p>
+            <p className="text-muted-foreground mb-8">{error || 'Cet article n\'existe pas ou a été supprimé.'}</p>
             <Link to="/blog">
               <Button className="btn btn-primary">
                 <ArrowLeft className="mr-2" size={16} />
@@ -148,7 +148,7 @@ const BlogPost = () => {
   }
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       
       <main className="pt-20">
@@ -172,7 +172,7 @@ const BlogPost = () => {
                 dangerouslySetInnerHTML={{ __html: post.title.rendered }}
               />
               
-              <div className="flex items-center text-gray-400 mb-6">
+              <div className="flex items-center text-muted-foreground mb-6">
                 <Calendar size={16} className="mr-2" />
                 {formatDate(post.date)}
               </div>
@@ -183,7 +183,7 @@ const BlogPost = () => {
               <div className="mb-8 relative">
                 {postCategory && (
                   <div className="absolute top-4 left-4 z-10">
-                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-turquoise text-darkGray text-sm font-semibold rounded-full">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-turquoise text-black text-sm font-semibold rounded-full">
                       <Tag size={14} />
                       {postCategory.name}
                     </span>
@@ -202,35 +202,35 @@ const BlogPost = () => {
               <div className="lg:col-span-3">
                 <div 
                   className="prose prose-invert prose-xl max-w-none
-                    prose-headings:text-white prose-headings:font-bold prose-headings:mb-8 prose-headings:mt-12
-                    prose-h1:text-[28px] prose-h1:mb-12 prose-h1:mt-0 prose-h1:leading-tight prose-h1:text-white prose-h1:font-extrabold
+                    prose-headings:text-foreground prose-headings:font-bold prose-headings:mb-8 prose-headings:mt-12
+                    prose-h1:text-[28px] prose-h1:mb-12 prose-h1:mt-0 prose-h1:leading-tight prose-h1:text-foreground prose-h1:font-extrabold
                     prose-h2:text-[26px] prose-h2:mb-8 prose-h2:mt-16 prose-h2:text-turquoise prose-h2:font-bold
                     prose-h3:text-[24px] prose-h3:mb-6 prose-h3:mt-12 prose-h3:text-turquoise prose-h3:font-bold prose-h3:leading-snug
-                    prose-h4:text-[22px] prose-h4:mb-5 prose-h4:mt-10 prose-h4:text-white prose-h4:font-semibold
-                    prose-h5:text-[20px] prose-h5:mb-4 prose-h5:mt-8 prose-h5:text-white prose-h5:font-semibold
-                    prose-h6:text-[18px] prose-h6:mb-3 prose-h6:mt-6 prose-h6:text-gray-300 prose-h6:font-medium
-                    prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:mb-4 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify
+                    prose-h4:text-[22px] prose-h4:mb-5 prose-h4:mt-10 prose-h4:text-foreground prose-h4:font-semibold
+                    prose-h5:text-[20px] prose-h5:mb-4 prose-h5:mt-8 prose-h5:text-foreground prose-h5:font-semibold
+                    prose-h6:text-[18px] prose-h6:mb-3 prose-h6:mt-6 prose-h6:text-muted-foreground prose-h6:font-medium
+                    prose-p:text-muted-foreground prose-p:leading-[1.8] prose-p:mb-4 prose-p:mt-0 prose-p:text-[17px] prose-p:text-justify
                     prose-a:text-red-500 prose-a:italic prose-a:underline prose-a:decoration-2 prose-a:underline-offset-4 prose-a:decoration-red-500/60 
                     hover:prose-a:text-red-400 hover:prose-a:decoration-red-400 hover:prose-a:bg-red-500/10 prose-a:transition-all prose-a:duration-200 
                     prose-a:font-semibold prose-a:px-1 prose-a:py-0.5 prose-a:rounded
-                    prose-strong:text-white prose-strong:font-bold prose-strong:text-lg
-                    prose-em:text-gray-300 prose-em:italic
-                    prose-ul:text-gray-300 prose-ul:mb-8 prose-ul:mt-8 prose-ul:space-y-3 prose-ul:pl-8 prose-ul:list-disc
-                    prose-ol:text-gray-300 prose-ol:mb-8 prose-ol:mt-8 prose-ol:space-y-3 prose-ol:pl-8 prose-ol:list-decimal
-                    prose-li:text-gray-300 prose-li:mb-3 prose-li:leading-relaxed prose-li:text-[17px]
+                    prose-strong:text-foreground prose-strong:font-bold prose-strong:text-lg
+                    prose-em:text-muted-foreground prose-em:italic
+                    prose-ul:text-muted-foreground prose-ul:mb-8 prose-ul:mt-8 prose-ul:space-y-3 prose-ul:pl-8 prose-ul:list-disc
+                    prose-ol:text-muted-foreground prose-ol:mb-8 prose-ol:mt-8 prose-ol:space-y-3 prose-ol:pl-8 prose-ol:list-decimal
+                    prose-li:text-muted-foreground prose-li:mb-3 prose-li:leading-relaxed prose-li:text-[17px]
                     prose-blockquote:border-l-4 prose-blockquote:border-l-turquoise prose-blockquote:bg-gradient-to-r prose-blockquote:from-turquoise/10 prose-blockquote:to-transparent
                     prose-blockquote:text-turquoise prose-blockquote:pl-6 prose-blockquote:py-6 prose-blockquote:mb-8 prose-blockquote:mt-6
                     prose-blockquote:italic prose-blockquote:text-lg prose-blockquote:font-medium prose-blockquote:rounded-r-lg prose-blockquote:shadow-lg
-                    prose-code:bg-gray-800 prose-code:text-turquoise prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono
-                    prose-pre:bg-gray-900 prose-pre:border prose-pre:border-gray-700 prose-pre:p-6 prose-pre:rounded-lg prose-pre:mb-8 prose-pre:mt-6
+                    prose-code:bg-secondary prose-code:text-turquoise prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-sm prose-code:font-mono
+                    prose-pre:bg-secondary/50 prose-pre:border prose-pre:border-border prose-pre:p-6 prose-pre:rounded-lg prose-pre:mb-8 prose-pre:mt-6
                     prose-img:rounded-lg prose-img:mb-8 prose-img:mt-6 prose-img:shadow-lg
-                    prose-hr:border-gray-700 prose-hr:my-12 prose-hr:border-t-2
-                    [&_h1]:text-[28px] [&_h1]:font-extrabold [&_h1]:text-white [&_h1]:mb-8 [&_h1]:mt-12 [&_h1]:leading-tight
+                    prose-hr:border-border prose-hr:my-12 prose-hr:border-t-2
+                    [&_h1]:text-[28px] [&_h1]:font-extrabold [&_h1]:text-foreground [&_h1]:mb-8 [&_h1]:mt-12 [&_h1]:leading-tight
                     [&_h2]:text-[26px] [&_h2]:font-bold [&_h2]:text-turquoise [&_h2]:mb-6 [&_h2]:mt-12
                     [&_h3]:text-[24px] [&_h3]:font-bold [&_h3]:text-turquoise [&_h3]:mb-5 [&_h3]:mt-10 [&_h3]:leading-snug
-                    [&_h4]:text-[22px] [&_h4]:font-semibold [&_h4]:text-white [&_h4]:mb-4 [&_h4]:mt-8
-                    [&_h5]:text-[20px] [&_h5]:font-semibold [&_h5]:text-white [&_h5]:mb-3 [&_h5]:mt-6
-                    [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-gray-300 [&_h6]:mb-3 [&_h6]:mt-5
+                    [&_h4]:text-[22px] [&_h4]:font-semibold [&_h4]:text-foreground [&_h4]:mb-4 [&_h4]:mt-8
+                    [&_h5]:text-[20px] [&_h5]:font-semibold [&_h5]:text-foreground [&_h5]:mb-3 [&_h5]:mt-6
+                    [&_h6]:text-[18px] [&_h6]:font-medium [&_h6]:text-muted-foreground [&_h6]:mb-3 [&_h6]:mt-5
                     [&_.related-article-inline]:not-prose [&_.related-article-inline_*]:m-0
                     [&_a]:text-red-500 [&_a]:italic [&_a]:no-underline hover:[&_a]:text-red-400 [&_a]:transition-colors
                     [&_ul]:mb-8 [&_ul]:mt-8 [&_ul]:pl-8 [&_ul]:space-y-3 [&_ul]:list-disc
@@ -240,7 +240,7 @@ const BlogPost = () => {
                 />
 
                 {/* Social Sharing */}
-                <div className="mt-12 pt-8 border-t border-gray-700">
+                <div className="mt-12 pt-8 border-t border-border">
                   <h3 className="text-lg font-semibold mb-4">Partager cet article</h3>
                   <div className="flex flex-wrap gap-3">
                     <Button
@@ -266,7 +266,7 @@ const BlogPost = () => {
                     </Button>
                     <Button
                       onClick={copyLink}
-                      className="flex items-center gap-2 bg-gray-600 hover:bg-gray-700 text-white"
+                      className="flex items-center gap-2 bg-secondary hover:bg-secondary/80 text-foreground"
                     >
                       {linkCopied ? <Check size={16} /> : <Copy size={16} />}
                       {linkCopied ? 'Copié!' : 'Copier le lien'}
@@ -275,7 +275,7 @@ const BlogPost = () => {
                 </div>
 
                 {/* Comments Form */}
-                <div className="mt-12 pt-8 border-t border-gray-700">
+                <div className="mt-12 pt-8 border-t border-border">
                   <h3 className="text-2xl font-semibold mb-6">Laisser un commentaire</h3>
                   <form className="space-y-4">
                     <div className="grid md:grid-cols-2 gap-4">
@@ -287,7 +287,7 @@ const BlogPost = () => {
                           type="text"
                           id="name"
                           required
-                          className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-turquoise focus:border-transparent"
+                          className="w-full px-3 py-2 bg-secondary border border-border rounded-lg focus:ring-2 focus:ring-turquoise focus:border-transparent"
                         />
                       </div>
                       <div>
@@ -298,7 +298,7 @@ const BlogPost = () => {
                           type="email"
                           id="email"
                           required
-                          className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-turquoise focus:border-transparent"
+                          className="w-full px-3 py-2 bg-secondary border border-border rounded-lg focus:ring-2 focus:ring-turquoise focus:border-transparent"
                         />
                       </div>
                     </div>
@@ -310,7 +310,7 @@ const BlogPost = () => {
                         id="comment"
                         rows={5}
                         required
-                        className="w-full px-3 py-2 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-turquoise focus:border-transparent"
+                        className="w-full px-3 py-2 bg-secondary border border-border rounded-lg focus:ring-2 focus:ring-turquoise focus:border-transparent"
                         placeholder="Partagez vos pensées..."
                       ></textarea>
                     </div>
@@ -333,8 +333,8 @@ const BlogPost = () => {
                         to={`/blog?category=${category.id}`}
                         className={`block px-3 py-2 rounded-lg text-sm transition-colors ${
                           category.id === postCategoryId
-                            ? 'bg-turquoise text-darkGray font-semibold'
-                            : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                            ? 'bg-turquoise text-black font-semibold'
+                            : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
                         }`}
                       >
                         {category.name} ({category.count})
@@ -346,7 +346,7 @@ const BlogPost = () => {
                 {/* À propos d'OREDY */}
                 <div className="card">
                   <h3 className="text-lg font-semibold mb-4">À propos d'OREDY</h3>
-                  <p className="text-gray-300 text-sm mb-4">
+                  <p className="text-muted-foreground text-sm mb-4">
                     OREDY Technologies est une agence spécialisée dans le développement web, 
                     le design et les solutions digitales innovantes.
                   </p>

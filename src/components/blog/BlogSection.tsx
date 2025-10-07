@@ -20,20 +20,20 @@ const BlogSection = () => {
 
   if (loading) {
     return (
-      <section className="section bg-darkGray" id="blog">
+      <section className="section bg-background" id="blog">
         <div className="container">
           <h2 className="section-title text-center">Blog</h2>
-          <p className="text-center text-gray-300 mb-12">
+          <p className="text-center text-muted-foreground mb-12">
             Découvrez nos derniers articles et actualités
           </p>
           <div className="grid md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
               <div key={i} className="card animate-pulse">
-                <div className="bg-gray-600 h-48 rounded-lg mb-4"></div>
-                <div className="h-4 bg-gray-600 rounded mb-2"></div>
-                <div className="h-4 bg-gray-600 rounded w-3/4 mb-4"></div>
-                <div className="h-3 bg-gray-600 rounded mb-2"></div>
-                <div className="h-3 bg-gray-600 rounded w-2/3"></div>
+                <div className="bg-muted h-48 rounded-lg mb-4"></div>
+                <div className="h-4 bg-muted rounded mb-2"></div>
+                <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
+                <div className="h-3 bg-muted rounded mb-2"></div>
+                <div className="h-3 bg-muted rounded w-2/3"></div>
               </div>
             ))}
           </div>
@@ -44,7 +44,7 @@ const BlogSection = () => {
 
   if (error) {
     return (
-      <section className="section bg-darkGray" id="blog">
+      <section className="section bg-background" id="blog">
         <div className="container">
           <h2 className="section-title text-center">Blog</h2>
           <div className="text-center text-red-400">
@@ -56,10 +56,10 @@ const BlogSection = () => {
   }
 
   return (
-    <section className="section bg-darkGray" id="blog">
+    <section className="section bg-background" id="blog">
       <div className="container">
         <h2 className="section-title text-center">Blog</h2>
-        <p className="text-center text-gray-300 mb-12">
+        <p className="text-center text-muted-foreground mb-12">
           Découvrez nos derniers articles et actualités
         </p>
         
@@ -67,7 +67,7 @@ const BlogSection = () => {
           {posts.slice(0, 3).map((post) => (
             <article key={post.id} className="card group hover:transform hover:scale-105">
               {post._embedded?.['wp:featuredmedia']?.[0] && (
-                <div className="aspect-video bg-gray-700 rounded-lg mb-4 overflow-hidden">
+                <div className="aspect-video bg-muted rounded-lg mb-4 overflow-hidden">
                   <img 
                     src={post._embedded['wp:featuredmedia'][0].source_url || '/placeholder.svg'}
                     alt={stripHtml(post.title.rendered)}
@@ -77,7 +77,7 @@ const BlogSection = () => {
                 </div>
               )}
               
-              <div className="flex items-center text-sm text-gray-400 mb-2">
+              <div className="flex items-center text-sm text-muted-foreground mb-2">
                 <Calendar size={14} className="mr-1" />
                 {formatDate(post.date)}
               </div>
@@ -90,7 +90,7 @@ const BlogSection = () => {
                 />
               </h3>
               
-              <p className="text-gray-300 mb-4 line-clamp-3">
+              <p className="text-muted-foreground mb-4 line-clamp-3">
                 {stripHtml(post.excerpt.rendered)}
               </p>
               

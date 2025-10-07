@@ -63,10 +63,10 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
         </div>
         <div>
           <Quote size={24} className="text-turquoise mb-2" />
-          <p className="text-gray-300 mb-4">{testimonial.text}</p>
+          <p className="text-muted-foreground mb-4">{testimonial.text}</p>
           <div>
             <h4 className="font-bold">{testimonial.name}</h4>
-            <p className="text-sm text-gray-400">- {testimonial.company}</p>
+            <p className="text-sm text-muted-foreground">- {testimonial.company}</p>
           </div>
         </div>
       </div>
@@ -82,10 +82,10 @@ const Testimonials = () => {
   }, []);
 
   return (
-    <section id="testimonials" className="section bg-mediumGray">
+    <section id="testimonials" className="section bg-secondary/30">
       <div className="container">
         <div className="text-center mb-16">
-          <p className="text-gray-400 mb-2">Nous distinguons dans nos core visual les</p>
+          <p className="text-muted-foreground mb-2">Nous distinguons dans nos core visual les</p>
           <h2 className="section-title">Témoignages des clients satisfaits</h2>
         </div>
         
