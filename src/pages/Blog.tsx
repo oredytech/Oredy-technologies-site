@@ -51,7 +51,7 @@ const Blog = () => {
       behavior: 'smooth'
     });
   };
-  return <div className="min-h-screen bg-background text-foreground">
+  return <div className="min-h-screen bg-darkGray text-white">
       <Header />
       
       <main className="pt-20">
@@ -74,7 +74,7 @@ const Blog = () => {
                       alt=""
                       className="w-full h-full object-cover scale-110 animate-fade-in"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background/90"></div>
+                    <div className="absolute inset-0 bg-gradient-to-b from-darkGray/70 via-darkGray/80 to-darkGray/90"></div>
                   </div>
                 );
               })}
@@ -86,7 +86,7 @@ const Blog = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">
                 Blog 
               </h1>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in">
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto animate-fade-in">
                 Découvrez nos articles, tutoriels et actualités sur les technologies web, 
                 le développement et les tendances du numérique.
               </p>
@@ -94,11 +94,11 @@ const Blog = () => {
 
             {loading ? <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[1, 2, 3, 4, 5, 6].map(i => <div key={i} className="card animate-pulse">
-                    <div className="bg-muted h-48 rounded-lg mb-4"></div>
-                    <div className="h-4 bg-muted rounded mb-2"></div>
-                    <div className="h-4 bg-muted rounded w-3/4 mb-4"></div>
-                    <div className="h-3 bg-muted rounded mb-2"></div>
-                    <div className="h-3 bg-muted rounded w-2/3"></div>
+                    <div className="bg-gray-600 h-48 rounded-lg mb-4"></div>
+                    <div className="h-4 bg-gray-600 rounded mb-2"></div>
+                    <div className="h-4 bg-gray-600 rounded w-3/4 mb-4"></div>
+                    <div className="h-3 bg-gray-600 rounded mb-2"></div>
+                    <div className="h-3 bg-gray-600 rounded w-2/3"></div>
                   </div>)}
               </div> : error ? <div className="text-center text-red-400 py-12">
                 <p className="text-xl mb-4">Erreur lors du chargement des articles</p>
@@ -107,12 +107,12 @@ const Blog = () => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {posts.map(post => <article key={post.id} className="card group hover:transform hover:scale-105">
                       {post._embedded?.['wp:featuredmedia']?.[0] && <Link to={`/blog/${post.slug}`}>
-                          <div className="aspect-video bg-muted rounded-lg mb-4 overflow-hidden">
+                          <div className="aspect-video bg-gray-700 rounded-lg mb-4 overflow-hidden">
                             <img src={post._embedded['wp:featuredmedia'][0].source_url || '/placeholder.svg'} alt={stripHtml(post.title.rendered)} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" />
                           </div>
                         </Link>}
                       
-                      <div className="flex items-center text-sm text-muted-foreground mb-2">
+                      <div className="flex items-center text-sm text-gray-400 mb-2">
                         <Calendar size={14} className="mr-1" />
                         {formatDate(post.date)}
                       </div>
@@ -123,7 +123,7 @@ const Blog = () => {
                   }} />
                       </h2>
                       
-                      <p className="text-muted-foreground mb-4 line-clamp-3">
+                      <p className="text-gray-300 mb-4 line-clamp-3">
                         {stripHtml(post.excerpt.rendered)}
                       </p>
                       
