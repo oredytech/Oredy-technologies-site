@@ -11,7 +11,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-end md:items-center justify-center bg-background overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20"></div>
       
@@ -28,7 +28,7 @@ const Hero = () => {
                 <img 
                   src={oredyPortrait}
                   alt="OREDY - Développeur Frontend" 
-                  className="w-full h-full object-cover opacity-30 md:opacity-90"
+                  className="w-full h-full object-cover md:opacity-90"
                 />
               </div>
             </div>
@@ -36,7 +36,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="container relative z-10 py-20 md:py-32">
+      <div className="container relative z-10 pb-5 pt-20 md:py-32">
         <div className="flex justify-center">
           {/* Text Content - Centered */}
           <div 
