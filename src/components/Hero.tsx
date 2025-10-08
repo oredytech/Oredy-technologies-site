@@ -16,9 +16,9 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20"></div>
       
       {/* Portrait Image - Background on mobile, right side on medium+ */}
-      <div className="absolute inset-0 md:relative md:inset-auto md:absolute md:right-0 md:top-0 md:bottom-0 md:w-1/2 lg:w-2/5 flex items-center justify-center md:justify-end">
+      <div className="absolute top-0 inset-x-0 md:relative md:inset-auto md:absolute md:right-0 md:top-0 md:bottom-0 md:w-1/2 lg:w-2/5 flex items-start md:items-center justify-center md:justify-end">
         <div 
-          className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 md:translate-x-0' : 'opacity-0 md:translate-x-12'} w-full h-full md:h-auto flex items-center justify-center md:justify-end md:pr-12 lg:pr-20`}
+          className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 md:translate-x-0' : 'opacity-0 md:translate-x-12'} w-full h-full md:h-auto flex items-start md:items-center justify-center md:justify-end md:pr-12 lg:pr-20`}
         >
           <div className="relative md:mt-0">
             {/* Gradient Border Effect - hidden on mobile */}
