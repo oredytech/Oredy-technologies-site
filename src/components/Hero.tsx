@@ -24,13 +24,22 @@ const Hero = () => {
           <div className="relative md:mt-0">
             {/* Gradient Border Effect - hidden on mobile */}
             <div className="hidden md:block absolute -inset-1 bg-gradient-to-br from-primary/50 via-secondary/50 to-accent/50 rounded-[2rem] blur-sm opacity-40"></div>
-            <div className="relative md:bg-background/10 md:backdrop-blur-sm rounded-[2rem] md:p-1.5">
-              <div className="relative rounded-[1.8rem] overflow-hidden w-full h-full md:w-[280px] md:h-[380px] lg:w-[360px] lg:h-[480px]">
+            <div className="relative md:bg-background/10 md:backdrop-blur-sm md:rounded-[2rem] md:p-1.5">
+              <div className="relative md:rounded-[1.8rem] overflow-hidden w-full h-full md:w-[280px] md:h-[380px] lg:w-[360px] lg:h-[480px]">
                 <img 
                   src={oredyMobile}
                   alt="OREDY - Développeur Frontend" 
                   className="w-full h-full object-cover md:hidden"
                 />
+                {/* Reflection effect on mobile */}
+                <div className="md:hidden absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-b from-transparent to-background pointer-events-none">
+                  <img 
+                    src={oredyMobile}
+                    alt="" 
+                    className="w-full h-full object-cover scale-y-[-1] opacity-30"
+                    style={{ maskImage: 'linear-gradient(to bottom, transparent, black)' }}
+                  />
+                </div>
                 <img 
                   src={oredyPortrait}
                   alt="OREDY - Développeur Frontend" 
