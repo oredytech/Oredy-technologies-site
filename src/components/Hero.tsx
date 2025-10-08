@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import oredyPortrait from '@/assets/oredy-portrait.png';
+import oredyMobile from '@/assets/oredy-mobile.png';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,9 +27,14 @@ const Hero = () => {
             <div className="relative md:bg-background/10 md:backdrop-blur-sm rounded-[2rem] md:p-1.5">
               <div className="relative rounded-[1.8rem] overflow-hidden w-full h-full md:w-[280px] md:h-[380px] lg:w-[360px] lg:h-[480px]">
                 <img 
+                  src={oredyMobile}
+                  alt="OREDY - Développeur Frontend" 
+                  className="w-full h-full object-cover md:hidden"
+                />
+                <img 
                   src={oredyPortrait}
                   alt="OREDY - Développeur Frontend" 
-                  className="w-full h-full object-cover md:opacity-90"
+                  className="hidden md:block w-full h-full object-cover opacity-90"
                 />
               </div>
             </div>
