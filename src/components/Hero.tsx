@@ -11,7 +11,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-end md:items-center bg-background overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
       {/* Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20"></div>
       
@@ -37,10 +37,10 @@ const Hero = () => {
       </div>
       
       <div className="container relative z-10 py-20 md:py-32">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left Side - Text Content */}
+        <div className="flex justify-center md:justify-start">
+          {/* Text Content - Centered */}
           <div 
-            className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 md:translate-x-0' : 'opacity-0 md:-translate-x-12'} text-center md:text-left flex flex-col items-center md:items-start`}
+            className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 md:translate-x-0' : 'opacity-0 md:-translate-x-12'} text-center md:text-left flex flex-col items-center md:items-start max-w-2xl`}
           >
             <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
               HELLO THERE, WELCOME TO MY SITE
@@ -64,9 +64,6 @@ const Hero = () => {
               </Link>
             </div>
           </div>
-
-          {/* Spacer for medium screens to push content left */}
-          <div className="hidden lg:block"></div>
         </div>
       </div>
     </section>
