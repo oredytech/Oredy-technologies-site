@@ -37,10 +37,10 @@ const Hero = () => {
       </div>
       
       <div className="container relative z-10 py-20 md:py-32">
-        <div className="flex justify-center md:justify-start">
+        <div className="flex justify-center">
           {/* Text Content - Centered */}
           <div 
-            className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 md:translate-x-0' : 'opacity-0 md:-translate-x-12'} text-center md:text-left flex flex-col items-center md:items-start max-w-2xl`}
+            className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 md:translate-x-0' : 'opacity-0 md:-translate-x-12'} text-center flex flex-col items-center max-w-2xl`}
           >
             <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
               HELLO THERE, WELCOME TO MY SITE
