@@ -1,5 +1,5 @@
-
 import React from 'react';
+import oredyProfile from '@/assets/oredy-profile.png';
 
 const PersonalInfo = () => {
   return (
@@ -7,7 +7,7 @@ const PersonalInfo = () => {
       <div className="flex flex-col items-center mb-6">
         <div className="w-32 h-32 rounded-full bg-lightGray mb-4 overflow-hidden">
           <img 
-            src="/lovable-uploads/cf0c9765-b0b7-401c-95ef-ca0fe62ee39d.png" 
+            src={oredyProfile} 
             alt="OREDY" 
             className="w-full h-full object-cover"
           />

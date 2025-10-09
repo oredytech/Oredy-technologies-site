@@ -1,6 +1,6 @@
-
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import oredyProfile from '@/assets/oredy-profile.png';
 
 const AboutMe = () => {
   return (
@@ -14,7 +14,7 @@ const AboutMe = () => {
                   <div className="w-full h-full p-4">
                     <div className="w-full h-full relative overflow-hidden rounded-lg border-2 border-turquoise/30">
                       <img 
-                        src="/lovable-uploads/cf0c9765-b0b7-401c-95ef-ca0fe62ee39d.png" 
+                        src={oredyProfile} 
                         alt="OREDY" 
                         className="w-full h-full object-cover"
                       />
