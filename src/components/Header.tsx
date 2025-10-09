@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SearchDialog from './SearchDialog';
+import { ThemeToggle } from './ThemeToggle';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,6 +51,7 @@ const Header = () => {
             >
               <Search size={20} className="group-hover:scale-110 transition-transform" />
             </button>
+            <ThemeToggle />
             <button 
               className="md:hidden text-white" 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
