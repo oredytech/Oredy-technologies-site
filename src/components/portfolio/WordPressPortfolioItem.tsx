@@ -1,5 +1,5 @@
-
 import React from 'react';
+import StarRating from '../StarRating';
 
 export type WordPressProject = {
   id: number;
@@ -42,15 +42,20 @@ const WordPressPortfolioItem: React.FC<WordPressPortfolioItemProps> = ({
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
         <p className="text-gray-400 text-sm mb-4">{item.description}</p>
-        <a 
-          href={item.url} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="text-turquoise hover:underline inline-block text-sm"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Visiter le site
-        </a>
+        <div className="flex items-center justify-between">
+          <a 
+            href={item.url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-turquoise hover:underline inline-block text-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Visiter le site
+          </a>
+          <div onClick={(e) => e.stopPropagation()}>
+            <StarRating projectName={item.title} showCount={false} />
+          </div>
+        </div>
       </div>
     </div>
   );

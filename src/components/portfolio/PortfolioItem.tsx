@@ -1,5 +1,5 @@
-
 import React from 'react';
+import StarRating from '../StarRating';
 
 type PortfolioItemProps = {
   id: number;
@@ -51,15 +51,20 @@ const PortfolioItem: React.FC<PortfolioItemProps> = ({
             </span>
           ))}
         </div>
-        <a 
-          href={url} 
-          target="_blank" 
-          rel="noopener noreferrer" 
-          className="text-turquoise hover:underline inline-block text-sm"
-          onClick={(e) => e.stopPropagation()}
-        >
-          Voir le projet
-        </a>
+        <div className="flex items-center justify-between">
+          <a 
+            href={url} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="text-turquoise hover:underline inline-block text-sm"
+            onClick={(e) => e.stopPropagation()}
+          >
+            Voir le projet
+          </a>
+          <div onClick={(e) => e.stopPropagation()}>
+            <StarRating projectName={title} showCount={false} />
+          </div>
+        </div>
       </div>
     </div>
   );
