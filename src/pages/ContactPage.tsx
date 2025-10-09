@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Facebook, Instagram, Mail, Phone, MapPin, Clock } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { useEmailJS } from '@/hooks/useEmailJS';
+import { useContactForm } from '@/hooks/useContactForm';
 import { toast } from 'sonner';
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -15,7 +15,7 @@ const ContactPage = () => {
   const {
     sendEmail,
     isLoading
-  } = useEmailJS();
+  } = useContactForm();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const {
       name,
