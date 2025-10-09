@@ -52,10 +52,7 @@ const ContactPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Contactez <span className="text-turquoise"></span>
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Vous avez un projet en tête ? Une question ? N'hésitez pas à me contacter. 
-                Je suis disponible 24/7 pour transformer vos idées en réalité numérique.
-              </p>
+              
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
