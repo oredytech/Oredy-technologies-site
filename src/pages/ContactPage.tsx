@@ -4,7 +4,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useEmailJS } from '@/hooks/useEmailJS';
 import { toast } from 'sonner';
-
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -13,19 +12,23 @@ const ContactPage = () => {
     subject: '',
     message: ''
   });
-
-  const { sendEmail, isLoading } = useEmailJS();
-
+  const {
+    sendEmail,
+    isLoading
+  } = useEmailJS();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const {
+      name,
+      value
+    } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     const result = await sendEmail(formData);
-    
     if (result.success) {
       toast.success('Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.');
       setFormData({
@@ -39,9 +42,7 @@ const ContactPage = () => {
       toast.error('Erreur lors de l\'envoi du message. Veuillez réessayer.');
     }
   };
-
-  return (
-    <div className="min-h-screen bg-darkGray text-white">
+  return <div className="min-h-screen bg-darkGray text-white">
       <Header />
       
       <main className="pt-20">
@@ -49,7 +50,7 @@ const ContactPage = () => {
           <div className="container">
             <div className="text-center mb-16">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Contactez <span className="text-turquoise">OREDY</span>
+                Contactez <span className="text-turquoise"></span>
               </h1>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Vous avez un projet en tête ? Une question ? N'hésitez pas à me contacter. 
@@ -113,24 +114,13 @@ const ContactPage = () => {
                   <div>
                     <h4 className="text-lg font-semibold mb-4">Suivez-moi</h4>
                     <div className="flex space-x-4">
-                      <a 
-                        href="https://www.facebook.com/profile.php?id=61561656035139&mibextid=ZbWKwL" 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors"
-                      >
+                      <a href="https://www.facebook.com/profile.php?id=61561656035139&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors">
                         <Facebook size={20} />
                       </a>
-                      <a 
-                        href="#" 
-                        className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors"
-                      >
+                      <a href="#" className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors">
                         <Instagram size={20} />
                       </a>
-                      <a 
-                        href="mailto:contact@oredytech.com" 
-                        className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors"
-                      >
+                      <a href="mailto:contact@oredytech.com" className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors">
                         <Mail size={20} />
                       </a>
                     </div>
@@ -149,32 +139,14 @@ const ContactPage = () => {
                         <label htmlFor="name" className="block text-sm font-medium mb-2">
                           Nom complet *
                         </label>
-                        <input
-                          type="text"
-                          id="name"
-                          name="name"
-                          placeholder="Votre nom complet"
-                          value={formData.name}
-                          onChange={handleChange}
-                          className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white"
-                          required
-                        />
+                        <input type="text" id="name" name="name" placeholder="Votre nom complet" value={formData.name} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" required />
                       </div>
                       
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium mb-2">
                           Adresse email *
                         </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          placeholder="votre@email.com"
-                          value={formData.email}
-                          onChange={handleChange}
-                          className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white"
-                          required
-                        />
+                        <input type="email" id="email" name="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" required />
                       </div>
                     </div>
                     
@@ -183,29 +155,14 @@ const ContactPage = () => {
                         <label htmlFor="phone" className="block text-sm font-medium mb-2">
                           Numéro de téléphone
                         </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          placeholder="+243 XXX XXX XXX"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white"
-                        />
+                        <input type="tel" id="phone" name="phone" placeholder="+243 XXX XXX XXX" value={formData.phone} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" />
                       </div>
                       
                       <div>
                         <label htmlFor="subject" className="block text-sm font-medium mb-2">
                           Type de projet *
                         </label>
-                        <select
-                          id="subject"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleChange}
-                          className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white"
-                          required
-                        >
+                        <select id="subject" name="subject" value={formData.subject} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" required>
                           <option value="">Sélectionnez un type</option>
                           <option value="web-design">Web Design</option>
                           <option value="wordpress">Développement WordPress</option>
@@ -220,23 +177,10 @@ const ContactPage = () => {
                       <label htmlFor="message" className="block text-sm font-medium mb-2">
                         Message *
                       </label>
-                      <textarea
-                        id="message"
-                        name="message"
-                        placeholder="Décrivez votre projet, vos besoins, votre budget approximatif..."
-                        value={formData.message}
-                        onChange={handleChange}
-                        rows={6}
-                        className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white resize-none"
-                        required
-                      ></textarea>
+                      <textarea id="message" name="message" placeholder="Décrivez votre projet, vos besoins, votre budget approximatif..." value={formData.message} onChange={handleChange} rows={6} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white resize-none" required></textarea>
                     </div>
                     
-                    <button 
-                      type="submit" 
-                      className="btn btn-primary w-full"
-                      disabled={isLoading}
-                    >
+                    <button type="submit" className="btn btn-primary w-full" disabled={isLoading}>
                       {isLoading ? 'ENVOI EN COURS...' : 'ENVOYER LE MESSAGE'}
                     </button>
                   </form>
@@ -290,8 +234,6 @@ const ContactPage = () => {
       </main>
       
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default ContactPage;
