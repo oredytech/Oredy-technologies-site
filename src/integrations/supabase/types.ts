@@ -14,16 +14,126 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      marketplace_sites: {
+        Row: {
+          code_snippets: string | null
+          created_at: string
+          demo_url: string | null
+          description: string
+          id: string
+          price: number
+          screenshots: string[] | null
+          short_description: string | null
+          site_url: string | null
+          status: Database["public"]["Enums"]["site_status"] | null
+          technologies: string[] | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          code_snippets?: string | null
+          created_at?: string
+          demo_url?: string | null
+          description: string
+          id?: string
+          price: number
+          screenshots?: string[] | null
+          short_description?: string | null
+          site_url?: string | null
+          status?: Database["public"]["Enums"]["site_status"] | null
+          technologies?: string[] | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          code_snippets?: string | null
+          created_at?: string
+          demo_url?: string | null
+          description?: string
+          id?: string
+          price?: number
+          screenshots?: string[] | null
+          short_description?: string | null
+          site_url?: string | null
+          status?: Database["public"]["Enums"]["site_status"] | null
+          technologies?: string[] | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      site_purchases: {
+        Row: {
+          buyer_email: string
+          buyer_name: string
+          id: string
+          purchase_date: string
+          site_id: string | null
+          status: string | null
+        }
+        Insert: {
+          buyer_email: string
+          buyer_name: string
+          id?: string
+          purchase_date?: string
+          site_id?: string | null
+          status?: string | null
+        }
+        Update: {
+          buyer_email?: string
+          buyer_name?: string
+          id?: string
+          purchase_date?: string
+          site_id?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "site_purchases_site_id_fkey"
+            columns: ["site_id"]
+            isOneToOne: false
+            referencedRelation: "marketplace_sites"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "user"
+      site_status: "available" | "sold" | "reserved"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +260,9 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "user"],
+      site_status: ["available", "sold", "reserved"],
+    },
   },
 } as const
