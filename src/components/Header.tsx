@@ -38,7 +38,7 @@ const Header = () => {
             <Link to="/services" className="text-white hover:text-turquoise transition-colors">Services</Link>
             <Link to="/blog" className="text-white hover:text-turquoise transition-colors">Blog</Link>
             <Link to="/boutique" className="text-white hover:text-turquoise transition-colors">Boutique</Link>
-            <Link to="/testimonials" className="text-white hover:text-turquoise transition-colors">Témoignages</Link>
+            <Link to="/marketplace" className="text-white hover:text-turquoise transition-colors">Marché</Link>
             <Link to="/contact" className="text-white hover:text-turquoise transition-colors">Contacts</Link>
           </nav>
 
@@ -68,7 +68,7 @@ const Header = () => {
               <Link to="/services" className="text-white hover:text-turquoise transition-colors py-2">Services</Link>
               <Link to="/blog" className="text-white hover:text-turquoise transition-colors py-2">Blog</Link>
               <Link to="/boutique" className="text-white hover:text-turquoise transition-colors py-2">Boutique</Link>
-              <Link to="/testimonials" className="text-white hover:text-turquoise transition-colors py-2">Témoignages</Link>
+              <Link to="/marketplace" className="text-white hover:text-turquoise transition-colors py-2">Marché</Link>
               <Link to="/contact" className="text-white hover:text-turquoise transition-colors py-2">Contacts</Link>
             </div>
           </div>

@@ -74,9 +74,9 @@ const searchData: SearchResult[] = [
   },
   {
     id: '8',
-    title: 'Témoignages',
-    description: 'Avis de clients satisfaits',
-    url: '/testimonials',
+    title: 'Marché de Sites Web',
+    description: 'Découvrez et achetez des sites web professionnels',
+    url: '/marketplace',
     category: 'Pages'
   },
   {
