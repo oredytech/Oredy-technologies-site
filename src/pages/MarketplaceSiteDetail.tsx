@@ -54,7 +54,7 @@ const MarketplaceSiteDetail = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 container mx-auto px-4 py-12">
+      <main className="flex-1 container mx-auto px-4 pt-24 pb-12">
         <div className="max-w-5xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
             <Link to="/marketplace">
