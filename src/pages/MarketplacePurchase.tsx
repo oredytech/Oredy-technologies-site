@@ -43,18 +43,42 @@ const MarketplacePurchase = () => {
     mutationFn: async (data: { buyer_name: string; buyer_email: string }) => {
       const validated = purchaseSchema.parse(data);
       
-      const { error } = await supabase.from("site_purchases").insert({
+      // Insérer la demande d'achat
+      const { error: insertError } = await supabase.from("site_purchases").insert({
         site_id: id,
         buyer_name: validated.buyer_name,
         buyer_email: validated.buyer_email,
       });
 
-      if (error) throw error;
+      if (insertError) throw insertError;
+
+      // Mettre à jour le statut du site à "pending"
+      const { error: updateError } = await supabase
+        .from("marketplace_sites")
+        .update({ status: "pending" })
+        .eq("id", id);
+
+      if (updateError) throw updateError;
+
+      // Envoyer les notifications par email
+      const { error: emailError } = await supabase.functions.invoke("send-purchase-notification", {
+        body: {
+          siteTitle: site?.title,
+          buyerName: validated.buyer_name,
+          buyerEmail: validated.buyer_email,
+          siteId: id,
+        },
+      });
+
+      if (emailError) {
+        console.error("Error sending emails:", emailError);
+        // Ne pas bloquer si l'email échoue
+      }
     },
     onSuccess: () => {
       toast({
         title: "Demande d'achat envoyée",
-        description: "Nous vous contactons bientôt avec les détails de paiement.",
+        description: "Consultez votre email pour les instructions de paiement.",
       });
       navigate("/marketplace");
     },
