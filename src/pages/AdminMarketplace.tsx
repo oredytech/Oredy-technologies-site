@@ -8,10 +8,11 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, Plus, Trash2 } from "lucide-react";
+import { Loader2, Plus, Trash2, LogOut } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { z } from "zod";
+import { useAdminAuth } from "@/hooks/useAdminAuth";
 
 const siteSchema = z.object({
   title: z.string().min(3, "Le titre doit contenir au moins 3 caractères").max(200),
@@ -26,6 +27,7 @@ const siteSchema = z.object({
 });
 
 const AdminMarketplace = () => {
+  const { isLoading: authLoading, logout } = useAdminAuth();
   const queryClient = useQueryClient();
   const [formData, setFormData] = useState({
     title: "",
@@ -142,12 +144,26 @@ const AdminMarketplace = () => {
     createMutation.mutate(formData);
   };
 
+  if (authLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 container mx-auto px-4 pt-24 pb-12">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">Administration du Marketplace</h1>
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-4xl font-bold">Administration du Marketplace</h1>
+            <Button variant="outline" onClick={logout}>
+              <LogOut className="mr-2 h-4 w-4" />
+              Déconnexion
+            </Button>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <Card>
