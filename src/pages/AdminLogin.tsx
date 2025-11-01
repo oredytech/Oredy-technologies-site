@@ -97,20 +97,6 @@ const AdminLogin = () => {
       if (error) throw error;
 
       if (data.user) {
-        // Ajouter le rôle admin pour le premier utilisateur (oredymusanda@gmail.com)
-        if (email === "oredymusanda@gmail.com") {
-          const { error: roleError } = await supabase
-            .from("user_roles")
-            .insert({
-              user_id: data.user.id,
-              role: "admin",
-            });
-
-          if (roleError) {
-            console.error("Erreur lors de l'ajout du rôle:", roleError);
-          }
-        }
-
         toast({
           title: "Inscription réussie",
           description: "Votre compte a été créé. Connectez-vous maintenant.",
