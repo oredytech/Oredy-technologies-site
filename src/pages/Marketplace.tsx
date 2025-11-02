@@ -16,7 +16,7 @@ const Marketplace = () => {
       const { data, error } = await supabase
         .from("marketplace_sites")
         .select("*")
-        .eq("status", "available")
+        .in("status", ["available", "pending"])
         .order("created_at", { ascending: false });
 
       if (error) throw error;
@@ -52,7 +52,12 @@ const Marketplace = () => {
                         className="w-full h-48 object-cover rounded-md mb-4"
                       />
                     )}
-                    <CardTitle>{site.title}</CardTitle>
+                    <div className="flex items-start justify-between gap-2 mb-2">
+                      <CardTitle className="flex-1">{site.title}</CardTitle>
+                      {site.status === "pending" && (
+                        <Badge variant="secondary">En cours d'achat</Badge>
+                      )}
+                    </div>
                     <CardDescription>{site.short_description}</CardDescription>
                   </CardHeader>
                   <CardContent className="flex-1">

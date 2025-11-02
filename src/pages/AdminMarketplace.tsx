@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, Plus, Trash2, LogOut } from "lucide-react";
+import { Loader2, Plus, Trash2, LogOut, RefreshCw } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { z } from "zod";
@@ -134,6 +135,31 @@ const AdminMarketplace = () => {
       toast({
         title: "Erreur",
         description: error instanceof Error ? error.message : "Impossible de supprimer le site",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const republishMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase
+        .from("marketplace_sites")
+        .update({ status: "available" })
+        .eq("id", id);
+
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast({
+        title: "Site republié",
+        description: "Le site est à nouveau disponible à l'achat.",
+      });
+      queryClient.invalidateQueries({ queryKey: ["admin-marketplace-sites"] });
+    },
+    onError: (error) => {
+      toast({
+        title: "Erreur",
+        description: error instanceof Error ? error.message : "Impossible de republier le site",
         variant: "destructive",
       });
     },
@@ -323,20 +349,40 @@ const AdminMarketplace = () => {
                       {sites?.map((site) => (
                         <div
                           key={site.id}
-                          className="flex items-center justify-between p-4 border rounded-lg"
+                          className="flex items-center justify-between gap-3 p-4 border rounded-lg"
                         >
                           <div className="flex-1">
-                            <h3 className="font-medium">{site.title}</h3>
+                            <div className="flex items-center gap-2 mb-1">
+                              <h3 className="font-medium">{site.title}</h3>
+                              {site.status === "pending" && (
+                                <Badge variant="secondary" className="text-xs">
+                                  En cours d'achat
+                                </Badge>
+                              )}
+                            </div>
                             <p className="text-sm text-muted-foreground">{site.price} €</p>
                           </div>
-                          <Button
-                            variant="destructive"
-                            size="icon"
-                            onClick={() => deleteMutation.mutate(site.id)}
-                            disabled={deleteMutation.isPending}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
+                          <div className="flex gap-2">
+                            {site.status === "pending" && (
+                              <Button
+                                variant="outline"
+                                size="icon"
+                                onClick={() => republishMutation.mutate(site.id)}
+                                disabled={republishMutation.isPending}
+                                title="Republier le site"
+                              >
+                                <RefreshCw className="h-4 w-4" />
+                              </Button>
+                            )}
+                            <Button
+                              variant="destructive"
+                              size="icon"
+                              onClick={() => deleteMutation.mutate(site.id)}
+                              disabled={deleteMutation.isPending}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
                       ))}
                       {sites?.length === 0 && (
