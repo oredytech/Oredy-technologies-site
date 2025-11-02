@@ -15,6 +15,7 @@ import Footer from "@/components/Footer";
 const purchaseSchema = z.object({
   buyer_name: z.string().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
   buyer_email: z.string().email("Email invalide").max(255),
+  buyer_phone: z.string().min(10, "Le numéro de téléphone doit contenir au moins 10 caractères").max(20),
 });
 
 const MarketplacePurchase = () => {
@@ -22,6 +23,7 @@ const MarketplacePurchase = () => {
   const [formData, setFormData] = useState({
     buyer_name: "",
     buyer_email: "",
+    buyer_phone: "",
   });
   const [showPaymentInfo, setShowPaymentInfo] = useState(false);
 
@@ -40,7 +42,7 @@ const MarketplacePurchase = () => {
   });
 
   const purchaseMutation = useMutation({
-    mutationFn: async (data: { buyer_name: string; buyer_email: string }) => {
+    mutationFn: async (data: { buyer_name: string; buyer_email: string; buyer_phone: string }) => {
       const validated = purchaseSchema.parse(data);
       
       // Insérer la demande d'achat
@@ -48,6 +50,7 @@ const MarketplacePurchase = () => {
         site_id: id,
         buyer_name: validated.buyer_name,
         buyer_email: validated.buyer_email,
+        buyer_phone: validated.buyer_phone,
       });
 
       if (insertError) throw insertError;
@@ -66,6 +69,7 @@ const MarketplacePurchase = () => {
           siteTitle: site?.title,
           buyerName: validated.buyer_name,
           buyerEmail: validated.buyer_email,
+          buyerPhone: validated.buyer_phone,
           siteId: id,
         },
       });
@@ -189,6 +193,21 @@ const MarketplacePurchase = () => {
                         />
                       </div>
 
+                      <div className="space-y-2">
+                        <Label htmlFor="buyer_phone">Numéro de téléphone *</Label>
+                        <Input
+                          id="buyer_phone"
+                          type="tel"
+                          value={formData.buyer_phone}
+                          onChange={(e) =>
+                            setFormData({ ...formData, buyer_phone: e.target.value })
+                          }
+                          required
+                          maxLength={20}
+                          placeholder="+243 XXX XXX XXX"
+                        />
+                      </div>
+
                       <Button
                         type="submit"
                         className="w-full"
@@ -263,7 +282,7 @@ const MarketplacePurchase = () => {
 
                     <div className="bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded p-4 mt-4">
                       <p className="text-blue-900 dark:text-blue-100 text-sm">
-                        📧 Un email de confirmation avec ces instructions a également été envoyé à <strong>{formData.buyer_email}</strong>
+                        📧 Nous avons bien reçu votre demande. Nous vous contacterons par email (<strong>{formData.buyer_email}</strong>) et par téléphone (<strong>{formData.buyer_phone}</strong>) pour finaliser l'achat.
                       </p>
                     </div>
                   </div>
