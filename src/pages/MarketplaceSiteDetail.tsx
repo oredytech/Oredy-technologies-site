@@ -143,12 +143,24 @@ const MarketplaceSiteDetail = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Button className="w-full" size="lg" asChild>
-                      <Link to={`/marketplace/${site.id}/purchase`}>
+                    {site.status === "available" ? (
+                      <Button className="w-full" size="lg" asChild>
+                        <Link to={`/marketplace/${site.id}/purchase`}>
+                          <ShoppingCart className="mr-2 h-4 w-4" />
+                          Acheter maintenant
+                        </Link>
+                      </Button>
+                    ) : site.status === "pending" ? (
+                      <Button disabled className="w-full" size="lg">
                         <ShoppingCart className="mr-2 h-4 w-4" />
-                        Acheter maintenant
-                      </Link>
-                    </Button>
+                        En cours d'achat
+                      </Button>
+                    ) : (
+                      <Button disabled className="w-full" size="lg">
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        Non disponible
+                      </Button>
+                    )}
 
                     {site.demo_url && (
                       <Button variant="outline" className="w-full" asChild>
@@ -171,7 +183,9 @@ const MarketplaceSiteDetail = () => {
 
                   <div className="pt-4 border-t">
                     <Badge variant={site.status === 'available' ? 'default' : 'secondary'}>
-                      {site.status === 'available' ? 'Disponible' : 'Indisponible'}
+                      {site.status === 'available' ? 'Disponible' : 
+                       site.status === 'pending' ? 'Quelqu\'un finalise le paiement' : 
+                       'Indisponible'}
                     </Badge>
                   </div>
                 </CardContent>
