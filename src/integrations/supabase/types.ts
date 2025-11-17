@@ -62,6 +62,53 @@ export type Database = {
         }
         Relationships: []
       }
+      payment_transactions: {
+        Row: {
+          amount: number
+          completed_at: string | null
+          created_at: string | null
+          currency: string | null
+          id: string
+          lygos_payment_id: string | null
+          payment_link: string | null
+          purchase_id: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          amount: number
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          lygos_payment_id?: string | null
+          payment_link?: string | null
+          purchase_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          amount?: number
+          completed_at?: string | null
+          created_at?: string | null
+          currency?: string | null
+          id?: string
+          lygos_payment_id?: string | null
+          payment_link?: string | null
+          purchase_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payment_transactions_purchase_id_fkey"
+            columns: ["purchase_id"]
+            isOneToOne: false
+            referencedRelation: "site_purchases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       site_purchases: {
         Row: {
           buyer_email: string
