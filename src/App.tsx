@@ -21,6 +21,8 @@ import TermsOfService from "./pages/TermsOfService";
 import Marketplace from "./pages/Marketplace";
 import MarketplaceSiteDetail from "./pages/MarketplaceSiteDetail";
 import MarketplacePurchase from "./pages/MarketplacePurchase";
+import PaymentSuccess from "./pages/PaymentSuccess";
+import PaymentFailure from "./pages/PaymentFailure";
 import AdminMarketplace from "./pages/AdminMarketplace";
 import AdminLogin from "./pages/AdminLogin";
 
@@ -50,6 +52,8 @@ const App = () => (
           <Route path="/marketplace" element={<Marketplace />} />
           <Route path="/marketplace/:id" element={<MarketplaceSiteDetail />} />
           <Route path="/marketplace/:id/purchase" element={<MarketplacePurchase />} />
+          <Route path="/marketplace/payment-success" element={<PaymentSuccess />} />
+          <Route path="/marketplace/payment-failure" element={<PaymentFailure />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin/marketplace" element={<AdminMarketplace />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
