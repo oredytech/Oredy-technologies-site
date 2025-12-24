@@ -8,12 +8,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "@/hooks/use-toast";
-import { Loader2, Plus, Trash2, LogOut, RefreshCw } from "lucide-react";
+import { Loader2, Plus, Trash2, LogOut, RefreshCw, Store, Globe } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { z } from "zod";
 import { useAdminAuth } from "@/hooks/useAdminAuth";
+import ProductForm from "@/components/admin/ProductForm";
+import ProductList from "@/components/admin/ProductList";
 
 const siteSchema = z.object({
   title: z.string().min(3, "Le titre doit contenir au moins 3 caractères").max(200),
@@ -184,218 +187,242 @@ const AdminMarketplace = () => {
       <main className="flex-1 container mx-auto px-4 pt-24 pb-12">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold">Administration du Marketplace</h1>
+            <h1 className="text-4xl font-bold">Administration</h1>
             <Button variant="outline" onClick={logout}>
               <LogOut className="mr-2 h-4 w-4" />
               Déconnexion
             </Button>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <CardTitle>Ajouter un site</CardTitle>
-                <CardDescription>
-                  Remplissez le formulaire pour ajouter un nouveau site au marketplace
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="title">Titre *</Label>
-                    <Input
-                      id="title"
-                      value={formData.title}
-                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      required
-                      maxLength={200}
-                    />
-                  </div>
+          <Tabs defaultValue="sites" className="space-y-6">
+            <TabsList className="grid w-full max-w-md grid-cols-2">
+              <TabsTrigger value="sites" className="flex items-center gap-2">
+                <Globe className="h-4 w-4" />
+                Marketplace (Sites)
+              </TabsTrigger>
+              <TabsTrigger value="products" className="flex items-center gap-2">
+                <Store className="h-4 w-4" />
+                Boutique (Produits)
+              </TabsTrigger>
+            </TabsList>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="short_description">Courte description</Label>
-                    <Input
-                      id="short_description"
-                      value={formData.short_description}
-                      onChange={(e) => setFormData({ ...formData, short_description: e.target.value })}
-                      maxLength={300}
-                    />
-                  </div>
+            {/* Onglet Sites Web */}
+            <TabsContent value="sites">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Ajouter un site</CardTitle>
+                    <CardDescription>
+                      Remplissez le formulaire pour ajouter un nouveau site au marketplace
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="title">Titre *</Label>
+                        <Input
+                          id="title"
+                          value={formData.title}
+                          onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                          required
+                          maxLength={200}
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="description">Description complète *</Label>
-                    <Textarea
-                      id="description"
-                      value={formData.description}
-                      onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                      required
-                      rows={4}
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="short_description">Courte description</Label>
+                        <Input
+                          id="short_description"
+                          value={formData.short_description}
+                          onChange={(e) => setFormData({ ...formData, short_description: e.target.value })}
+                          maxLength={300}
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="price">Prix (€) *</Label>
-                    <Input
-                      id="price"
-                      type="number"
-                      step="0.01"
-                      min="0"
-                      value={formData.price}
-                      onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                      required
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="description">Description complète *</Label>
+                        <Textarea
+                          id="description"
+                          value={formData.description}
+                          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                          required
+                          rows={4}
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="site_url">URL du site</Label>
-                    <Input
-                      id="site_url"
-                      type="url"
-                      value={formData.site_url}
-                      onChange={(e) => setFormData({ ...formData, site_url: e.target.value })}
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="price">Prix (€) *</Label>
+                        <Input
+                          id="price"
+                          type="number"
+                          step="0.01"
+                          min="0"
+                          value={formData.price}
+                          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                          required
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="demo_url">URL de démo</Label>
-                    <Input
-                      id="demo_url"
-                      type="url"
-                      value={formData.demo_url}
-                      onChange={(e) => setFormData({ ...formData, demo_url: e.target.value })}
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="site_url">URL du site</Label>
+                        <Input
+                          id="site_url"
+                          type="url"
+                          value={formData.site_url}
+                          onChange={(e) => setFormData({ ...formData, site_url: e.target.value })}
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="screenshots">URLs des captures (séparées par des virgules)</Label>
-                    <Textarea
-                      id="screenshots"
-                      value={formData.screenshots}
-                      onChange={(e) => setFormData({ ...formData, screenshots: e.target.value })}
-                      placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
-                      rows={2}
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="demo_url">URL de démo</Label>
+                        <Input
+                          id="demo_url"
+                          type="url"
+                          value={formData.demo_url}
+                          onChange={(e) => setFormData({ ...formData, demo_url: e.target.value })}
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="technologies">Technologies (séparées par des virgules)</Label>
-                    <Input
-                      id="technologies"
-                      value={formData.technologies}
-                      onChange={(e) => setFormData({ ...formData, technologies: e.target.value })}
-                      placeholder="React, TypeScript, Tailwind"
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="screenshots">URLs des captures (séparées par des virgules)</Label>
+                        <Textarea
+                          id="screenshots"
+                          value={formData.screenshots}
+                          onChange={(e) => setFormData({ ...formData, screenshots: e.target.value })}
+                          placeholder="https://example.com/image1.jpg, https://example.com/image2.jpg"
+                          rows={2}
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="code_snippets">Extraits de code</Label>
-                    <Textarea
-                      id="code_snippets"
-                      value={formData.code_snippets}
-                      onChange={(e) => setFormData({ ...formData, code_snippets: e.target.value })}
-                      rows={3}
-                    />
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="technologies">Technologies (séparées par des virgules)</Label>
+                        <Input
+                          id="technologies"
+                          value={formData.technologies}
+                          onChange={(e) => setFormData({ ...formData, technologies: e.target.value })}
+                          placeholder="React, TypeScript, Tailwind"
+                        />
+                      </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="status">Statut</Label>
-                    <Select
-                      value={formData.status}
-                      onValueChange={(value: "available" | "sold" | "reserved") =>
-                        setFormData({ ...formData, status: value })
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="available">Disponible</SelectItem>
-                        <SelectItem value="reserved">Réservé</SelectItem>
-                        <SelectItem value="sold">Vendu</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="code_snippets">Extraits de code</Label>
+                        <Textarea
+                          id="code_snippets"
+                          value={formData.code_snippets}
+                          onChange={(e) => setFormData({ ...formData, code_snippets: e.target.value })}
+                          rows={3}
+                        />
+                      </div>
 
-                  <Button type="submit" className="w-full" disabled={createMutation.isPending}>
-                    {createMutation.isPending ? (
-                      <>
-                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                        Ajout en cours...
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="mr-2 h-4 w-4" />
-                        Ajouter le site
-                      </>
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-
-            <div className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Sites existants</CardTitle>
-                  <CardDescription>Liste de tous les sites du marketplace</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {isLoading ? (
-                    <div className="flex justify-center py-8">
-                      <Loader2 className="h-6 w-6 animate-spin" />
-                    </div>
-                  ) : (
-                    <div className="space-y-3">
-                      {sites?.map((site) => (
-                        <div
-                          key={site.id}
-                          className="flex items-center justify-between gap-3 p-4 border rounded-lg"
+                      <div className="space-y-2">
+                        <Label htmlFor="status">Statut</Label>
+                        <Select
+                          value={formData.status}
+                          onValueChange={(value: "available" | "sold" | "reserved") =>
+                            setFormData({ ...formData, status: value })
+                          }
                         >
-                          <div className="flex-1">
-                            <div className="flex items-center gap-2 mb-1">
-                              <h3 className="font-medium">{site.title}</h3>
-                              {site.status === "pending" && (
-                                <Badge variant="secondary" className="text-xs">
-                                  En cours d'achat
-                                </Badge>
-                              )}
-                            </div>
-                            <p className="text-sm text-muted-foreground">{site.price} €</p>
-                          </div>
-                          <div className="flex gap-2">
-                            {site.status === "pending" && (
-                              <Button
-                                variant="outline"
-                                size="icon"
-                                onClick={() => republishMutation.mutate(site.id)}
-                                disabled={republishMutation.isPending}
-                                title="Republier le site"
-                              >
-                                <RefreshCw className="h-4 w-4" />
-                              </Button>
-                            )}
-                            <Button
-                              variant="destructive"
-                              size="icon"
-                              onClick={() => deleteMutation.mutate(site.id)}
-                              disabled={deleteMutation.isPending}
-                            >
-                              <Trash2 className="h-4 w-4" />
-                            </Button>
-                          </div>
+                          <SelectTrigger>
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="available">Disponible</SelectItem>
+                            <SelectItem value="reserved">Réservé</SelectItem>
+                            <SelectItem value="sold">Vendu</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+
+                      <Button type="submit" className="w-full" disabled={createMutation.isPending}>
+                        {createMutation.isPending ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Ajout en cours...
+                          </>
+                        ) : (
+                          <>
+                            <Plus className="mr-2 h-4 w-4" />
+                            Ajouter le site
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  </CardContent>
+                </Card>
+
+                <div className="space-y-4">
+                  <Card>
+                    <CardHeader>
+                      <CardTitle>Sites existants</CardTitle>
+                      <CardDescription>Liste de tous les sites du marketplace</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      {isLoading ? (
+                        <div className="flex justify-center py-8">
+                          <Loader2 className="h-6 w-6 animate-spin" />
                         </div>
-                      ))}
-                      {sites?.length === 0 && (
-                        <p className="text-center text-muted-foreground py-8">
-                          Aucun site pour le moment
-                        </p>
+                      ) : (
+                        <div className="space-y-3">
+                          {sites?.map((site) => (
+                            <div
+                              key={site.id}
+                              className="flex items-center justify-between gap-3 p-4 border rounded-lg"
+                            >
+                              <div className="flex-1">
+                                <div className="flex items-center gap-2 mb-1">
+                                  <h3 className="font-medium">{site.title}</h3>
+                                  {site.status === "pending" && (
+                                    <Badge variant="secondary" className="text-xs">
+                                      En cours d'achat
+                                    </Badge>
+                                  )}
+                                </div>
+                                <p className="text-sm text-muted-foreground">{site.price} €</p>
+                              </div>
+                              <div className="flex gap-2">
+                                {site.status === "pending" && (
+                                  <Button
+                                    variant="outline"
+                                    size="icon"
+                                    onClick={() => republishMutation.mutate(site.id)}
+                                    disabled={republishMutation.isPending}
+                                    title="Republier le site"
+                                  >
+                                    <RefreshCw className="h-4 w-4" />
+                                  </Button>
+                                )}
+                                <Button
+                                  variant="destructive"
+                                  size="icon"
+                                  onClick={() => deleteMutation.mutate(site.id)}
+                                  disabled={deleteMutation.isPending}
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </div>
+                          ))}
+                          {sites?.length === 0 && (
+                            <p className="text-center text-muted-foreground py-8">
+                              Aucun site pour le moment
+                            </p>
+                          )}
+                        </div>
                       )}
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </div>
-          </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            </TabsContent>
+
+            {/* Onglet Produits Boutique */}
+            <TabsContent value="products">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <ProductForm />
+                <ProductList />
+              </div>
+            </TabsContent>
+          </Tabs>
         </div>
       </main>
       <Footer />

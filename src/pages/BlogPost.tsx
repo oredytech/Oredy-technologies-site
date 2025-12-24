@@ -1,6 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, ArrowLeft, Share2, Facebook, Twitter, MessageCircle, Copy, Check, Tag } from 'lucide-react';
+import { Calendar, ArrowLeft, Share2, Facebook, Twitter, MessageCircle, Copy, Check, Tag, ShoppingBag, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { supabase } from '@/integrations/supabase/client';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useWordPressPost } from '@/hooks/useWordPressBlog';
@@ -20,6 +22,21 @@ const BlogPost = () => {
   
   // Récupérer les articles de la même catégorie
   const { posts: relatedPosts } = useWordPressPostsByCategory(postCategoryId || 0, post?.id);
+
+  // Récupérer les produits pour les recommandations
+  const { data: recommendedProducts } = useQuery({
+    queryKey: ["recommended-products"],
+    queryFn: async () => {
+      const { data, error } = await (supabase as any)
+        .from("products")
+        .select("id, title, image_url, price, is_affiliate, affiliate_url")
+        .eq("is_active", true)
+        .eq("is_featured", true)
+        .limit(3);
+      if (error) return [];
+      return data;
+    },
+  });
 
   // Fonction pour injecter les articles liés dans le contenu
   const injectRelatedArticles = (content: string) => {
@@ -273,6 +290,45 @@ const BlogPost = () => {
                     </Button>
                   </div>
                 </div>
+
+
+                {/* Produits recommandés */}
+                {recommendedProducts && recommendedProducts.length > 0 && (
+                  <div className="mt-12 pt-8 border-t border-gray-700">
+                    <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+                      <ShoppingBag className="w-5 h-5 text-turquoise" />
+                      Ces produits peuvent vous intéresser
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {recommendedProducts.map((product: any) => (
+                        <div key={product.id} className="bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-turquoise/50 transition-colors">
+                          {product.image_url && (
+                            <img 
+                              src={product.image_url} 
+                              alt={product.title}
+                              className="w-full h-32 object-cover rounded-lg mb-3"
+                            />
+                          )}
+                          <h4 className="font-medium text-sm mb-2 line-clamp-2">{product.title}</h4>
+                          <div className="flex items-center justify-between">
+                            <span className="text-turquoise font-bold text-sm">{product.price}</span>
+                            {product.is_affiliate && product.affiliate_url ? (
+                              <a href={product.affiliate_url} target="_blank" rel="noopener noreferrer">
+                                <Button size="sm" className="text-xs">
+                                  Voir <ExternalLink className="w-3 h-3 ml-1" />
+                                </Button>
+                              </a>
+                            ) : (
+                              <Link to="/boutique">
+                                <Button size="sm" className="text-xs">Voir</Button>
+                              </Link>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* Comments Form */}
                 <div className="mt-12 pt-8 border-t border-gray-700">

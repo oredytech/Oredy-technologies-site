@@ -9,7 +9,16 @@ export const useAdminAuth = () => {
 
   useEffect(() => {
     checkAdminStatus();
-  }, []);
+    
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        setIsAdmin(false);
+        navigate("/admin/login");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   const checkAdminStatus = async () => {
     try {
@@ -20,20 +29,39 @@ export const useAdminAuth = () => {
         return;
       }
 
-      const { data: roleData, error } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", user.id)
-        .eq("role", "admin")
-        .maybeSingle();
+      // Utiliser la fonction has_role pour vérifier le rôle admin
+      const { data: hasRole, error } = await supabase
+        .rpc('has_role', { _user_id: user.id, _role: 'admin' });
 
-      if (error || !roleData) {
+      if (error) {
+        console.error("Error checking admin role:", error);
+        // Fallback: essayer la requête directe
+        const { data: roleData, error: roleError } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", user.id)
+          .eq("role", "admin")
+          .maybeSingle();
+
+        if (roleError || !roleData) {
+          await supabase.auth.signOut();
+          navigate("/admin/login");
+          return;
+        }
+        
+        setIsAdmin(true);
+        return;
+      }
+
+      if (!hasRole) {
+        await supabase.auth.signOut();
         navigate("/admin/login");
         return;
       }
 
       setIsAdmin(true);
     } catch (error) {
+      console.error("Auth check error:", error);
       navigate("/admin/login");
     } finally {
       setIsLoading(false);
