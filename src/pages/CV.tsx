@@ -47,7 +47,18 @@ const CV = () => {
             <a 
               href="/assets/OREDY_CV.pdf" 
               download="OREDY_MUSANDA_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-primary inline-flex items-center justify-center"
+              onClick={(e) => {
+                e.preventDefault();
+                const link = document.createElement('a');
+                link.href = '/assets/OREDY_CV.pdf';
+                link.download = 'OREDY_MUSANDA_CV.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
             >
               <Download className="mr-2" size={18} />
               Télécharger le CV (PDF)
