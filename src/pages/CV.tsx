@@ -1,6 +1,7 @@
-
+import { useRef } from 'react';
 import { ArrowLeft, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import html2pdf from 'html2pdf.js';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PersonalInfo from '@/components/cv/PersonalInfo';
@@ -12,6 +13,22 @@ import Certifications from '@/components/cv/Certifications';
 import Projects from '@/components/cv/Projects';
 
 const CV = () => {
+  const cvRef = useRef<HTMLDivElement>(null);
+
+  const handleDownloadPDF = () => {
+    if (!cvRef.current) return;
+    
+    const opt = {
+      margin: 10,
+      filename: 'OREDY_MUSANDA_CV.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2, useCORS: true },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    
+    html2pdf().set(opt).from(cvRef.current).save();
+  };
+
   return (
     <div className="min-h-screen bg-darkGray text-white">
       <Header />
@@ -26,7 +43,7 @@ const CV = () => {
             <p className="text-gray-400 mb-8">Découvrez mon parcours professionnel et mes compétences</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div ref={cvRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-darkGray p-4">
             {/* Colonne gauche: Informations personnelles et compétences */}
             <div className="md:col-span-1 space-y-8">
               <PersonalInfo />
@@ -44,25 +61,13 @@ const CV = () => {
           </div>
           
           <div className="mt-12 text-center">
-            <a 
-              href="/assets/OREDY_CV.pdf" 
-              download="OREDY_MUSANDA_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+            <button 
+              onClick={handleDownloadPDF}
               className="btn btn-primary inline-flex items-center justify-center"
-              onClick={(e) => {
-                e.preventDefault();
-                const link = document.createElement('a');
-                link.href = '/assets/OREDY_CV.pdf';
-                link.download = 'OREDY_MUSANDA_CV.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-              }}
             >
               <Download className="mr-2" size={18} />
               Télécharger le CV (PDF)
-            </a>
+            </button>
           </div>
         </div>
       </main>
