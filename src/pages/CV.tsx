@@ -1,7 +1,6 @@
-import { useRef } from 'react';
-import { ArrowLeft, Download } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { ArrowLeft, Download, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import html2pdf from 'html2pdf.js';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import PersonalInfo from '@/components/cv/PersonalInfo';
@@ -14,19 +13,45 @@ import Projects from '@/components/cv/Projects';
 
 const CV = () => {
   const cvRef = useRef<HTMLDivElement>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  const handleDownloadPDF = () => {
-    if (!cvRef.current) return;
+  const handleDownloadPDF = async () => {
+    if (!cvRef.current || isGenerating) return;
     
-    const opt = {
-      margin: 10,
-      filename: 'OREDY_MUSANDA_CV.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2, useCORS: true },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
+    setIsGenerating(true);
     
-    html2pdf().set(opt).from(cvRef.current).save();
+    try {
+      const html2canvas = (await import('html2canvas')).default;
+      const { default: jsPDF } = await import('jspdf');
+      
+      const canvas = await html2canvas(cvRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#1a1a2e'
+      });
+      
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+      
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width;
+      const imgHeight = canvas.height;
+      const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+      const imgX = (pdfWidth - imgWidth * ratio) / 2;
+      const imgY = 0;
+      
+      pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+      pdf.save('OREDY_MUSANDA_CV.pdf');
+    } catch (error) {
+      console.error('Erreur lors de la génération du PDF:', error);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   return (
@@ -44,14 +69,12 @@ const CV = () => {
           </div>
 
           <div ref={cvRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-darkGray p-4">
-            {/* Colonne gauche: Informations personnelles et compétences */}
             <div className="md:col-span-1 space-y-8">
               <PersonalInfo />
               <Skills />
               <Languages />
             </div>
             
-            {/* Colonne droite: Expérience et formation */}
             <div className="md:col-span-2 space-y-8">
               <Experience />
               <Education />
@@ -63,10 +86,20 @@ const CV = () => {
           <div className="mt-12 text-center">
             <button 
               onClick={handleDownloadPDF}
-              className="btn btn-primary inline-flex items-center justify-center"
+              disabled={isGenerating}
+              className="btn btn-primary inline-flex items-center justify-center disabled:opacity-50"
             >
-              <Download className="mr-2" size={18} />
-              Télécharger le CV (PDF)
+              {isGenerating ? (
+                <>
+                  <Loader2 className="mr-2 animate-spin" size={18} />
+                  Génération en cours...
+                </>
+              ) : (
+                <>
+                  <Download className="mr-2" size={18} />
+                  Télécharger le CV (PDF)
+                </>
+              )}
             </button>
           </div>
         </div>
