@@ -25,6 +25,18 @@ const PersonalInfo = () => {
             <li>Localisation: Goma, RDC/NORD-KIVU</li>
           </ul>
         </div>
+
+        <div>
+          <h4 className="font-semibold text-turquoise mb-2">Informations légales</h4>
+          <ul className="space-y-2 text-sm">
+            <li>Nom commercial : FABRICE OREDY MUSANDA</li>
+            <li>Sigle : FABROM</li>
+            <li>Forme juridique : Personne physique commerçante</li>
+            <li>N° RCCM : CD/KNM/RCCM/26-A-02595</li>
+            <li>Date d'immatriculation : 16 juil. 2026</li>
+            <li>Id Nat : 01-G4701-N00001R</li>
+          </ul>
+        </div>
       </div>
     </div>
   );
