@@ -1,6 +1,7 @@
 
 import { ChevronUp, Phone, Mail, MapPin, Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import fabromLogo from '@/assets/fabrom-logo.png.asset.json';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -115,12 +116,20 @@ const Footer = () => {
 
         {/* Informations légales / fiscales */}
         <div className="border-t border-gray-800 pt-6 mb-6">
-          <h3 className="text-lg font-semibold text-white mb-3">Informations légales</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-gray-400 text-sm">
-            <p><span className="text-turquoise">Nom commercial :</span> FABRICE OREDY MUSANDA</p>
-            <p><span className="text-turquoise">Sigle :</span> FABROM</p>
-            <p><span className="text-turquoise">N° RCCM :</span> CD/KNM/RCCM/26-A-02595</p>
-            <p><span className="text-turquoise">Id Nat :</span> 01-G4701-N00001R</p>
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
+            <img
+              src={fabromLogo.url}
+              alt="Logo Ets FABROM"
+              className="h-16 w-auto flex-shrink-0"
+            />
+            <div className="text-gray-400 text-sm space-y-1">
+              <p className="text-white font-semibold">FABRICE OREDY MUSANDA — FABROM</p>
+              <p>
+                <span className="text-turquoise">N° RCCM :</span> CD/KNM/RCCM/26-A-02595
+                <span className="mx-2">|</span>
+                <span className="text-turquoise">Id Nat :</span> 01-G4701-N00001R
+              </p>
+            </div>
           </div>
         </div>
 
