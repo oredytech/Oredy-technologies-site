@@ -1,7 +1,7 @@
 
 import { ChevronUp, Phone, Mail, MapPin, Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import fabromLogo from '@/assets/fabrom-logo.png.asset.json';
+const fabromLogoUrl = '/__l5e/assets-v1/ef152028-8017-4f4f-b961-1da269cab4ea/fabrom-logo.png';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -118,7 +118,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-6 mb-6">
           <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left">
             <img
-              src={fabromLogo.url}
+              src={fabromLogoUrl}
               alt="Logo Ets FABROM"
               className="h-16 w-auto flex-shrink-0"
             />
