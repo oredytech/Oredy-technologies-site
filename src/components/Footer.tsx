@@ -1,7 +1,7 @@
 
 import { ChevronUp, Phone, Mail, MapPin, Youtube, Facebook, Instagram, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import fabromLogo from '@/assets/fabrom-logo.png.asset.json';
+import fabromLogo from '@/assets/fabrom-logo.png.asset.json' with { type: 'json' };
 
 const Footer = () => {
   const scrollToTop = () => {
