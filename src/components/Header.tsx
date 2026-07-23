@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Menu, X, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -10,72 +9,66 @@ const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const linkCls = "text-primary-foreground hover:text-white transition-colors font-medium";
+
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md py-3' : 'bg-transparent py-5'}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-primary ${isScrolled ? 'py-3 shadow-lg' : 'py-4'}`}>
         <div className="container flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2">
-            <div className="font-bold text-xl flex items-center">
-              <img 
-                src="/lovable-uploads/87061d3a-bd9e-4646-a028-77c0524dc6b5.png" 
-                alt="OREDY Technologies Logo" 
-                className="h-10 w-auto"
-              />
-            </div>
+          <Link to="/" className="flex items-center">
+            <span className="font-display text-xl md:text-2xl font-black text-primary-foreground tracking-tight">
+              OREDY MUSANDA
+            </span>
           </Link>
-          
+
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-white hover:text-turquoise transition-colors">Home</Link>
-            <Link to="/about" className="text-white hover:text-turquoise transition-colors">About</Link>
-            <Link to="/services" className="text-white hover:text-turquoise transition-colors">Services</Link>
-            <Link to="/blog" className="text-white hover:text-turquoise transition-colors">Blog</Link>
-            <Link to="/boutique" className="text-white hover:text-turquoise transition-colors">Boutique</Link>
-            <Link to="/marketplace" className="text-white hover:text-turquoise transition-colors">Marché</Link>
-            <Link to="/contact" className="text-white hover:text-turquoise transition-colors">Contacts</Link>
+            <Link to="/" className={linkCls}>Accueil</Link>
+            <Link to="/about" className={linkCls}>À propos</Link>
+            <Link to="/services" className={linkCls}>Services</Link>
+            <Link to="/blog" className={linkCls}>Blog</Link>
+            <Link to="/boutique" className={linkCls}>Boutique</Link>
+            <Link to="/marketplace" className={linkCls}>Marché</Link>
+            <Link to="/contact" className={linkCls}>Contact</Link>
           </nav>
 
           <div className="flex items-center space-x-4">
-            <button 
-              className="text-white hover:text-turquoise transition-colors group"
+            <button
+              className="text-primary-foreground hover:text-white transition-colors"
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
             >
-              <Search size={20} className="group-hover:scale-110 transition-transform" />
+              <Search size={20} />
             </button>
-            <button 
-              className="md:hidden text-white" 
+            <button
+              className="md:hidden text-primary-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Menu"
             >
               {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-md animate-fadeIn">
+          <div className="md:hidden absolute top-full left-0 w-full bg-primary animate-fadeIn">
             <div className="container py-5 flex flex-col space-y-4">
-              <Link to="/" className="text-white hover:text-turquoise transition-colors py-2">Home</Link>
-              <Link to="/about" className="text-white hover:text-turquoise transition-colors py-2">About</Link>
-              <Link to="/services" className="text-white hover:text-turquoise transition-colors py-2">Services</Link>
-              <Link to="/blog" className="text-white hover:text-turquoise transition-colors py-2">Blog</Link>
-              <Link to="/boutique" className="text-white hover:text-turquoise transition-colors py-2">Boutique</Link>
-              <Link to="/marketplace" className="text-white hover:text-turquoise transition-colors py-2">Marché</Link>
-              <Link to="/contact" className="text-white hover:text-turquoise transition-colors py-2">Contacts</Link>
+              <Link to="/" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Accueil</Link>
+              <Link to="/about" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>À propos</Link>
+              <Link to="/services" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Services</Link>
+              <Link to="/blog" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Blog</Link>
+              <Link to="/boutique" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Boutique</Link>
+              <Link to="/marketplace" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Marché</Link>
+              <Link to="/contact" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Contact</Link>
             </div>
           </div>
         )}
       </header>
 
-      {/* Search Dialog */}
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );

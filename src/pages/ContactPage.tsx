@@ -42,7 +42,7 @@ const ContactPage = () => {
       toast.error('Erreur lors de l\'envoi du message. Veuillez réessayer.');
     }
   };
-  return <div className="min-h-screen bg-darkGray text-white">
+  return <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       
       <main className="pt-20">
@@ -69,8 +69,8 @@ const ContactPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold mb-1">Téléphone</h4>
-                          <p className="text-gray-300">+243 815 066 176</p>
-                          <p className="text-gray-300">+243 996 886 079</p>
+                          <p className="text-muted-foreground">+243 815 066 176</p>
+                          <p className="text-muted-foreground">+243 996 886 079</p>
                         </div>
                       </div>
                       
@@ -80,7 +80,7 @@ const ContactPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold mb-1">Email</h4>
-                          <p className="text-gray-300">contact@oredytech.com</p>
+                          <p className="text-muted-foreground">contact@oredytech.com</p>
                         </div>
                       </div>
                       
@@ -90,8 +90,8 @@ const ContactPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold mb-1">Localisation</h4>
-                          <p className="text-gray-300">Goma, Nord-Kivu</p>
-                          <p className="text-gray-300">République Démocratique du Congo</p>
+                          <p className="text-muted-foreground">Goma, Nord-Kivu</p>
+                          <p className="text-muted-foreground">République Démocratique du Congo</p>
                         </div>
                       </div>
                       
@@ -101,8 +101,8 @@ const ContactPage = () => {
                         </div>
                         <div>
                           <h4 className="font-semibold mb-1">Disponibilité</h4>
-                          <p className="text-gray-300">24/7 pour vos projets</p>
-                          <p className="text-gray-300">Réponse sous 24h</p>
+                          <p className="text-muted-foreground">24/7 pour vos projets</p>
+                          <p className="text-muted-foreground">Réponse sous 24h</p>
                         </div>
                       </div>
                     </div>
@@ -111,13 +111,13 @@ const ContactPage = () => {
                   <div>
                     <h4 className="text-lg font-semibold mb-4">Suivez-moi</h4>
                     <div className="flex space-x-4">
-                      <a href="https://www.facebook.com/profile.php?id=61561656035139&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors">
+                      <a href="https://www.facebook.com/profile.php?id=61561656035139&mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg bg-card flex items-center justify-center text-foreground hover:bg-turquoise hover:text-black transition-colors">
                         <Facebook size={20} />
                       </a>
-                      <a href="#" className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors">
+                      <a href="#" className="w-12 h-12 rounded-lg bg-card flex items-center justify-center text-foreground hover:bg-turquoise hover:text-black transition-colors">
                         <Instagram size={20} />
                       </a>
-                      <a href="mailto:contact@oredytech.com" className="w-12 h-12 rounded-lg bg-gray-800 flex items-center justify-center text-white hover:bg-turquoise hover:text-black transition-colors">
+                      <a href="mailto:contact@oredytech.com" className="w-12 h-12 rounded-lg bg-card flex items-center justify-center text-foreground hover:bg-turquoise hover:text-black transition-colors">
                         <Mail size={20} />
                       </a>
                     </div>
@@ -136,14 +136,14 @@ const ContactPage = () => {
                         <label htmlFor="name" className="block text-sm font-medium mb-2">
                           Nom complet *
                         </label>
-                        <input type="text" id="name" name="name" placeholder="Votre nom complet" value={formData.name} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" required />
+                        <input type="text" id="name" name="name" placeholder="Votre nom complet" value={formData.name} onChange={handleChange} className="w-full p-3 bg-card border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-foreground" required />
                       </div>
                       
                       <div>
                         <label htmlFor="email" className="block text-sm font-medium mb-2">
                           Adresse email *
                         </label>
-                        <input type="email" id="email" name="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" required />
+                        <input type="email" id="email" name="email" placeholder="votre@email.com" value={formData.email} onChange={handleChange} className="w-full p-3 bg-card border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-foreground" required />
                       </div>
                     </div>
                     
@@ -152,14 +152,14 @@ const ContactPage = () => {
                         <label htmlFor="phone" className="block text-sm font-medium mb-2">
                           Numéro de téléphone
                         </label>
-                        <input type="tel" id="phone" name="phone" placeholder="+243 XXX XXX XXX" value={formData.phone} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" />
+                        <input type="tel" id="phone" name="phone" placeholder="+243 XXX XXX XXX" value={formData.phone} onChange={handleChange} className="w-full p-3 bg-card border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-foreground" />
                       </div>
                       
                       <div>
                         <label htmlFor="subject" className="block text-sm font-medium mb-2">
                           Type de projet *
                         </label>
-                        <select id="subject" name="subject" value={formData.subject} onChange={handleChange} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white" required>
+                        <select id="subject" name="subject" value={formData.subject} onChange={handleChange} className="w-full p-3 bg-card border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-foreground" required>
                           <option value="">Sélectionnez un type</option>
                           <option value="web-design">Web Design</option>
                           <option value="wordpress">Développement WordPress</option>
@@ -174,7 +174,7 @@ const ContactPage = () => {
                       <label htmlFor="message" className="block text-sm font-medium mb-2">
                         Message *
                       </label>
-                      <textarea id="message" name="message" placeholder="Décrivez votre projet, vos besoins, votre budget approximatif..." value={formData.message} onChange={handleChange} rows={6} className="w-full p-3 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-white resize-none" required></textarea>
+                      <textarea id="message" name="message" placeholder="Décrivez votre projet, vos besoins, votre budget approximatif..." value={formData.message} onChange={handleChange} rows={6} className="w-full p-3 bg-card border border-gray-700 rounded-md focus:outline-none focus:border-turquoise text-foreground resize-none" required></textarea>
                     </div>
                     
                     <button type="submit" className="btn btn-primary w-full" disabled={isLoading}>
@@ -189,13 +189,13 @@ const ContactPage = () => {
             <div className="mt-20">
               <div className="text-center mb-12">
                 <h3 className="text-2xl font-bold mb-4">Questions fréquemment posées</h3>
-                <p className="text-gray-300">Quelques réponses aux questions les plus courantes</p>
+                <p className="text-muted-foreground">Quelques réponses aux questions les plus courantes</p>
               </div>
               
               <div className="grid md:grid-cols-2 gap-8">
                 <div className="card">
                   <h4 className="font-semibold mb-2">Quel est le délai moyen pour un projet ?</h4>
-                  <p className="text-gray-300 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Cela dépend de la complexité du projet. Un site vitrine simple prend 1-2 semaines, 
                     tandis qu'un projet plus complexe peut nécessiter 4-8 semaines.
                   </p>
@@ -203,7 +203,7 @@ const ContactPage = () => {
                 
                 <div className="card">
                   <h4 className="font-semibold mb-2">Proposez-vous un service de maintenance ?</h4>
-                  <p className="text-gray-300 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Oui, je propose des services de maintenance et de support continus 
                     pour assurer le bon fonctionnement de votre site.
                   </p>
@@ -211,7 +211,7 @@ const ContactPage = () => {
                 
                 <div className="card">
                   <h4 className="font-semibold mb-2">Travaillez-vous avec des clients internationaux ?</h4>
-                  <p className="text-gray-300 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Absolument ! Je travaille avec des clients du monde entier et je suis 
                     disponible pour des échanges en français et anglais.
                   </p>
@@ -219,7 +219,7 @@ const ContactPage = () => {
                 
                 <div className="card">
                   <h4 className="font-semibold mb-2">Comment se déroule le processus de développement ?</h4>
-                  <p className="text-gray-300 text-sm">
+                  <p className="text-muted-foreground text-sm">
                     Analyse des besoins → Maquette → Développement → Tests → 
                     Livraison → Maintenance. Je vous tiens informé à chaque étape.
                   </p>

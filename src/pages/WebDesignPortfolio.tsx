@@ -80,7 +80,7 @@ const WebDesignPortfolio = () => {
   const { portfolioItems, selectedItem, setSelectedItem } = usePortfolioData(initialPortfolioItems);
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container">
@@ -91,7 +91,7 @@ const WebDesignPortfolio = () => {
             </Link>
             <div className="text-center bg-secondary/30 rounded-lg p-8 mb-6">
               <h1 className="text-3xl md:text-4xl font-bold mb-3 text-turquoise">Projets Web Design</h1>
-              <p className="text-gray-400">Découvrez mes créations web design et interfaces utilisateur.</p>
+              <p className="text-muted-foreground">Découvrez mes créations web design et interfaces utilisateur.</p>
             </div>
           </div>
 

@@ -1,7 +1,7 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
+import portrait from '@/assets/oredy-profile.png';
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,37 +11,45 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-darkGray overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        {/* Image d'arrière-plan */}
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: 'url("/lovable-uploads/44ac66f7-c374-4e1d-aef0-fc263b369f8d.png")' }}></div>
-        {/* Overlay foncé pour améliorer la lisibilité du texte */}
-        <div className="absolute inset-0 bg-black/70"></div>
-        {/* Dégradé vers le bas pour une transition fluide avec la section suivante */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-darkGray"></div>
-      </div>
-      
+    <section id="home" className="relative min-h-screen flex items-center bg-background overflow-hidden pt-24 pb-12">
+      {/* Decorative yellow circles */}
+      <div className="deco-circle w-[520px] h-[520px] right-[-80px] top-[10%] opacity-95 hidden md:block" />
+      <div className="deco-circle w-[160px] h-[160px] right-[42%] bottom-[8%] hidden md:block" />
+      <div className="deco-circle w-[280px] h-[280px] right-[-120px] bottom-[-100px] hidden md:block" />
+      <div className="deco-circle w-[300px] h-[300px] right-[-60px] top-[15%] md:hidden" />
+
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center md:text-left md:mx-0">
-          <div 
-            className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+        <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div
+            className={`transition-all duration-1000 delay-200 text-center md:text-left ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Bonjour, je suis <span className="text-white">OREDY</span>
+            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[1.05] text-primary mb-6">
+              Bienvenue sur<br />mon portfolio
             </h1>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-turquoise">
-              Développeur Frontend
-            </h2>
-            <p className="text-lg text-gray-300 mb-8 max-w-2xl">
-              Transformez votre vision en réalité numérique avec notre expertise en création de sites web
+            <p className="text-lg text-foreground/80 mb-8 max-w-xl mx-auto md:mx-0">
+              Je suis <span className="font-semibold">Oredy Musanda</span>, développeur web et web designer.
+              Je crée des sites web modernes, responsives et adaptés aux besoins des organisations,
+              entreprises et projets numériques.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link to="/cv" className="btn btn-primary inline-flex items-center">
+              <Link to="/development" className="btn btn-primary inline-flex items-center justify-center">
+                Voir mes projets
+              </Link>
+              <Link to="/cv" className="btn btn-outline inline-flex items-center justify-center">
                 <Download className="mr-2" size={16} />
                 Voir mon CV
               </Link>
-              <a href="#contact" className="btn btn-outline">Me contacter</a>
             </div>
+          </div>
+
+          <div
+            className={`relative flex justify-center md:justify-end transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+          >
+            <img
+              src={portrait}
+              alt="Oredy Musanda"
+              className="relative z-10 max-h-[70vh] w-auto object-contain drop-shadow-2xl"
+            />
           </div>
         </div>
       </div>

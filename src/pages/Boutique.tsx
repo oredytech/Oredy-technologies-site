@@ -63,7 +63,7 @@ const Boutique = () => {
   };
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       
       <main className="pt-20">
@@ -74,7 +74,7 @@ const Boutique = () => {
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
                 Notre <span className="turquoise-text">Boutique</span>
               </h1>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Découvrez nos services et solutions technologiques pour faire évoluer votre entreprise
               </p>
             </div>
@@ -82,7 +82,7 @@ const Boutique = () => {
         </section>
 
         {/* Features */}
-        <section className="section bg-gray-900/50">
+        <section className="section bg-primary/50">
           <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature, index) => (
@@ -91,7 +91,7 @@ const Boutique = () => {
                     <feature.icon className="w-8 h-8 text-turquoise" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.description}</p>
+                  <p className="text-muted-foreground">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -109,8 +109,8 @@ const Boutique = () => {
               </div>
             ) : error || !products || products.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-400 text-lg">Aucun produit disponible pour le moment.</p>
-                <p className="text-gray-500 mt-2">Revenez bientôt pour découvrir nos offres !</p>
+                <p className="text-muted-foreground text-lg">Aucun produit disponible pour le moment.</p>
+                <p className="text-muted-foreground mt-2">Revenez bientôt pour découvrir nos offres !</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
@@ -128,7 +128,7 @@ const Boutique = () => {
                       </div>
                     )}
                     
-                    <div className="aspect-square bg-gray-800 rounded-lg mb-4 overflow-hidden">
+                    <div className="aspect-square bg-card rounded-lg mb-4 overflow-hidden">
                       {product.image_url ? (
                         <img
                           src={product.image_url}
@@ -140,7 +140,7 @@ const Boutique = () => {
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
-                          <ShoppingBag className="w-16 h-16 text-gray-600" />
+                          <ShoppingBag className="w-16 h-16 text-muted-foreground" />
                         </div>
                       )}
                     </div>
@@ -160,7 +160,7 @@ const Boutique = () => {
                       </Badge>
                     )}
                     
-                    <p className="text-gray-400 text-sm mb-4 line-clamp-2">
+                    <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
                       {product.short_description || product.description}
                     </p>
                     
@@ -168,7 +168,7 @@ const Boutique = () => {
                       <div className="flex flex-col">
                         <span className="text-turquoise font-bold text-lg">{product.price}</span>
                         {product.original_price && (
-                          <span className="text-gray-500 line-through text-sm">{product.original_price}</span>
+                          <span className="text-muted-foreground line-through text-sm">{product.original_price}</span>
                         )}
                       </div>
                       
@@ -196,12 +196,12 @@ const Boutique = () => {
         </section>
 
         {/* Call to Action */}
-        <section className="section bg-gray-900/50">
+        <section className="section bg-primary/50">
           <div className="container text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Prêt à commencer votre projet ?
             </h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
               Contactez-nous dès aujourd'hui pour discuter de vos besoins et obtenir un devis personnalisé
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

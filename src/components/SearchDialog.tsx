@@ -227,9 +227,9 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ open, onOpenChange }) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[600px] p-0 gap-0 bg-black/95 border border-turquoise/20 backdrop-blur-md">
+      <DialogContent className="sm:max-w-[600px] p-0 gap-0 bg-primary/95 border border-turquoise/20 backdrop-blur-md">
         <DialogHeader className="p-4 pb-0">
-          <DialogTitle className="text-xl font-semibold text-white flex items-center gap-2">
+          <DialogTitle className="text-xl font-semibold text-foreground flex items-center gap-2">
             <SearchIcon className="h-5 w-5 text-turquoise" />
             Recherche
           </DialogTitle>
@@ -244,7 +244,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ open, onOpenChange }) => {
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm text-white outline-none placeholder:text-gray-400 disabled:cursor-not-allowed disabled:opacity-50 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
+              className="flex h-10 w-full rounded-md bg-transparent py-3 text-sm text-foreground outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
               placeholder="Rechercher sur le site..."
               autoFocus
             />
@@ -252,7 +252,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ open, onOpenChange }) => {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 w-8 p-0 text-gray-400"
+                className="h-8 w-8 p-0 text-muted-foreground"
                 onClick={() => setQuery("")}
               >
                 <X className="h-4 w-4" />
@@ -262,7 +262,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ open, onOpenChange }) => {
           
           <CommandList className="max-h-[300px] overflow-y-auto custom-scrollbar py-2">
             {Object.keys(groupedResults).length === 0 && query && (
-              <CommandEmpty className="py-6 text-center text-sm text-gray-400">
+              <CommandEmpty className="py-6 text-center text-sm text-muted-foreground">
                 Aucun résultat trouvé pour "{query}"
               </CommandEmpty>
             )}
@@ -276,16 +276,16 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ open, onOpenChange }) => {
                     onSelect={() => handleSelect(result)}
                     className="flex flex-col items-start gap-1 px-4 py-3 rounded-md cursor-pointer hover:bg-turquoise/10 aria-selected:bg-turquoise/10"
                   >
-                    <div className="font-medium text-white text-sm">{result.title}</div>
-                    <div className="text-xs text-gray-400">{result.description}</div>
+                    <div className="font-medium text-foreground text-sm">{result.title}</div>
+                    <div className="text-xs text-muted-foreground">{result.description}</div>
                   </CommandItem>
                 ))}
               </CommandGroup>
             ))}
           </CommandList>
           
-          <div className="flex items-center justify-between border-t border-turquoise/20 px-4 py-2 text-xs text-gray-400">
-            <div>Appuyez sur <kbd className="px-1 bg-gray-800 rounded">↵</kbd> pour naviguer</div>
+          <div className="flex items-center justify-between border-t border-turquoise/20 px-4 py-2 text-xs text-muted-foreground">
+            <div>Appuyez sur <kbd className="px-1 bg-card rounded">↵</kbd> pour naviguer</div>
             <div>Trouvé {results.length} résultat{results.length !== 1 ? 's' : ''}</div>
           </div>
         </Command>

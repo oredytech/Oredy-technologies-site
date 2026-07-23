@@ -30,7 +30,7 @@ const Projects = () => {
         {projects.map((project, index) => (
           <div key={index}>
             <h4 className="font-semibold">{project.title}</h4>
-            <p className="text-gray-300 text-sm">{project.description}</p>
+            <p className="text-muted-foreground text-sm">{project.description}</p>
           </div>
         ))}
       </div>

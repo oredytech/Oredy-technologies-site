@@ -55,7 +55,7 @@ const CV = () => {
   };
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container">
@@ -65,7 +65,7 @@ const CV = () => {
               Retour à l'accueil
             </Link>
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Mon Curriculum Vitae</h1>
-            <p className="text-gray-400 mb-8">Découvrez mon parcours professionnel et mes compétences</p>
+            <p className="text-muted-foreground mb-8">Découvrez mon parcours professionnel et mes compétences</p>
           </div>
 
           <div ref={cvRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-darkGray p-4">

@@ -25,7 +25,7 @@ const RelatedArticleCard = ({ post }: RelatedArticleCardProps) => {
   return (
     <Link 
       to={`/blog/${post.slug}`}
-      className="flex items-center gap-3 p-4 bg-gray-800/50 rounded-lg border border-gray-700 hover:border-turquoise/50 transition-colors group mb-6"
+      className="flex items-center gap-3 p-4 bg-card/50 rounded-lg border border-gray-700 hover:border-turquoise/50 transition-colors group mb-6"
     >
       {featuredImage && (
         <div className="flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden">
@@ -39,7 +39,7 @@ const RelatedArticleCard = ({ post }: RelatedArticleCardProps) => {
       <div className="flex-1 min-w-0">
         <p className="text-sm text-turquoise font-medium mb-1">Lire aussi :</p>
         <h4 
-          className="text-sm font-semibold text-white line-clamp-2 group-hover:text-turquoise transition-colors"
+          className="text-sm font-semibold text-foreground line-clamp-2 group-hover:text-turquoise transition-colors"
           dangerouslySetInnerHTML={{ __html: post.title.rendered }}
         />
       </div>
