@@ -119,9 +119,7 @@ const Footer = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 text-gray-400 text-sm">
             <p><span className="text-turquoise">Nom commercial :</span> FABRICE OREDY MUSANDA</p>
             <p><span className="text-turquoise">Sigle :</span> FABROM</p>
-            <p><span className="text-turquoise">Forme juridique :</span> Personne physique commerçante</p>
             <p><span className="text-turquoise">N° RCCM :</span> CD/KNM/RCCM/26-A-02595</p>
-            <p><span className="text-turquoise">Date d'immatriculation :</span> 16 juil. 2026</p>
             <p><span className="text-turquoise">Id Nat :</span> 01-G4701-N00001R</p>
           </div>
         </div>
