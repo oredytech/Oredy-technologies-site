@@ -53,10 +53,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				turquoise: '#0ff',
-				darkGray: '#222222',
-				mediumGray: '#333333',
-				lightGray: '#444444',
+				turquoise: 'hsl(var(--primary))',
+				darkGray: 'hsl(var(--background))',
+				mediumGray: 'hsl(var(--card))',
+				lightGray: 'hsl(var(--muted))',
+				brandRed: 'hsl(var(--primary))',
+				brandYellow: 'hsl(var(--accent))',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -73,8 +75,8 @@ export default {
 					to: { height: '0' },
 				},
 				'glow': {
-					'0%, 100%': { boxShadow: '0 0 15px 0 rgba(0, 255, 255, 0.4)' },
-					'50%': { boxShadow: '0 0 30px 10px rgba(0, 255, 255, 0.7)' },
+					'0%, 100%': { boxShadow: '0 0 20px 0 hsl(var(--primary) / 0.3)' },
+					'50%': { boxShadow: '0 0 40px 10px hsl(var(--primary) / 0.5)' },
 				},
 				'fadeIn': {
 					'0%': { opacity: '0', transform: 'translateY(20px)' },
