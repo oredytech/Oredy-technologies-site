@@ -23,7 +23,7 @@ const BlogSection = () => {
       <section className="section bg-darkGray" id="blog">
         <div className="container">
           <h2 className="section-title text-center">Blog</h2>
-          <p className="text-center text-gray-300 mb-12">
+          <p className="text-center text-muted-foreground mb-12">
             Découvrez nos derniers articles et actualités
           </p>
           <div className="grid md:grid-cols-3 gap-8">
@@ -59,7 +59,7 @@ const BlogSection = () => {
     <section className="section bg-darkGray" id="blog">
       <div className="container">
         <h2 className="section-title text-center">Blog</h2>
-        <p className="text-center text-gray-300 mb-12">
+        <p className="text-center text-muted-foreground mb-12">
           Découvrez nos derniers articles et actualités
         </p>
         
@@ -77,7 +77,7 @@ const BlogSection = () => {
                 </div>
               )}
               
-              <div className="flex items-center text-sm text-gray-400 mb-2">
+              <div className="flex items-center text-sm text-muted-foreground mb-2">
                 <Calendar size={14} className="mr-1" />
                 {formatDate(post.date)}
               </div>
@@ -90,7 +90,7 @@ const BlogSection = () => {
                 />
               </h3>
               
-              <p className="text-gray-300 mb-4 line-clamp-3">
+              <p className="text-muted-foreground mb-4 line-clamp-3">
                 {stripHtml(post.excerpt.rendered)}
               </p>
               

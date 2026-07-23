@@ -52,14 +52,14 @@ const StarRating = ({
               className={`${
                 star <= (hover || rating)
                   ? 'fill-turquoise text-turquoise'
-                  : 'text-gray-400'
+                  : 'text-muted-foreground'
               } transition-colors duration-200`}
             />
           </button>
         ))}
       </div>
       {showCount && rating > 0 && (
-        <span className="text-sm text-gray-400">
+        <span className="text-sm text-muted-foreground">
           ({rating}/5)
         </span>
       )}

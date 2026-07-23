@@ -26,7 +26,7 @@ const WordPressPortfolioItem: React.FC<WordPressPortfolioItemProps> = ({
     >
       <div className="h-48 bg-lightGray relative overflow-hidden">
         {item.isLoading ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-800/50">
+          <div className="absolute inset-0 flex items-center justify-center bg-card/50">
             <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-turquoise"></div>
           </div>
         ) : null}
@@ -35,13 +35,13 @@ const WordPressPortfolioItem: React.FC<WordPressPortfolioItemProps> = ({
           alt={`${item.title} Logo`} 
           className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-2">
-          <span className="text-xs text-gray-300 font-light">{item.url}</span>
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/80 to-transparent p-2">
+          <span className="text-xs text-muted-foreground font-light">{item.url}</span>
         </div>
       </div>
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-        <p className="text-gray-400 text-sm mb-4">{item.description}</p>
+        <p className="text-muted-foreground text-sm mb-4">{item.description}</p>
         <div className="flex items-center justify-between">
           <a 
             href={item.url} 

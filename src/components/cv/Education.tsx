@@ -34,7 +34,7 @@ const Education = () => {
             <div className="absolute w-3 h-3 bg-turquoise rounded-full -left-[7px] top-0"></div>
             <h4 className="font-semibold">{item.title}</h4>
             <p className="text-turquoise text-sm mb-2">{item.institution} | {item.period}</p>
-            <p className="text-gray-300 text-sm">{item.description}</p>
+            <p className="text-muted-foreground text-sm">{item.description}</p>
           </div>
         ))}
       </div>

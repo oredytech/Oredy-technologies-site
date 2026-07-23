@@ -42,7 +42,7 @@ const DevelopmentPortfolio = () => {
   const { portfolioItems, selectedItem, setSelectedItem } = usePortfolioData(initialPortfolioItems);
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container">
@@ -52,7 +52,7 @@ const DevelopmentPortfolio = () => {
               Retour aux services
             </Link>
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Projets de Développement</h1>
-            <p className="text-gray-400">Découvrez mes projets de développement d'applications web et mobiles.</p>
+            <p className="text-muted-foreground">Découvrez mes projets de développement d'applications web et mobiles.</p>
           </div>
 
           <PortfolioList 

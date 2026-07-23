@@ -6,7 +6,7 @@ import Header from '@/components/Header';
 
 const AboutMePage = () => {
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
@@ -30,7 +30,7 @@ const AboutMePage = () => {
                       alt="OREDY" 
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-darkGray/80 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
                   </div>
                 </div>
                 
@@ -38,19 +38,19 @@ const AboutMePage = () => {
                   <h3 className="text-xl font-bold mb-4">Contactez-moi</h3>
                   <div className="space-y-3">
                     <p className="flex items-center">
-                      <span className="w-24 text-gray-400">Email:</span>
+                      <span className="w-24 text-muted-foreground">Email:</span>
                       <a href="mailto:contact@oredy.com" className="text-turquoise hover:underline">contact@oredytech.com</a>
                     </p>
                     <p className="flex items-center">
-                      <span className="w-24 text-gray-400">Téléphone:</span>
+                      <span className="w-24 text-muted-foreground">Téléphone:</span>
                       <a href="tel:+243851006476" className="text-turquoise hover:underline">+243 851 006 476</a>
                     </p>
                     <p className="flex items-center">
-                      <span className="w-24 text-gray-400">Linkedin:</span>
+                      <span className="w-24 text-muted-foreground">Linkedin:</span>
                       <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" className="text-turquoise hover:underline">@oredy-musanda</a>
                     </p>
                     <p className="flex items-center">
-                      <span className="w-24 text-gray-400">GitHub:</span>
+                      <span className="w-24 text-muted-foreground">GitHub:</span>
                       <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-turquoise hover:underline">@oredytech</a>
                     </p>
                   </div>
@@ -61,13 +61,13 @@ const AboutMePage = () => {
             <div className="md:col-span-2 space-y-10">
               <section>
                 <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-turquoise/30">Qui suis-je?</h2>
-                <p className="text-gray-300 mb-4">
+                <p className="text-muted-foreground mb-4">
                   Si nous sommes le reflet de ce que nous créons, alors je suis les touches du clavier qui capturent mes pensées, les écrans qui éclairent mes idées. Chaque fonction, chaque balise, chaque style que j'écris n'est pas simplement du code, mais une extension de moi-même, une manière de transformer une vision en réalité numérique.
                 </p>
-                <p className="text-gray-300 mb-4">
+                <p className="text-muted-foreground mb-4">
                   Je suis un développeur web passionné, spécialisé dans la création d'expériences web immersives et fonctionnelles. Avec plusieurs années d'expérience dans le développement web et la conception d'interfaces utilisateur, j'ai appris à transformer des idées complexes en solutions élégantes et accessibles.
                 </p>
-                <p className="text-gray-300">
+                <p className="text-muted-foreground">
                   Ma philosophie est simple : la technologie doit servir l'humain, pas l'inverse. C'est pourquoi je m'efforce de créer des sites web et des applications qui sont non seulement esthétiquement plaisants, mais aussi intuitifs et accessibles pour tous les utilisateurs.
                 </p>
               </section>
@@ -77,7 +77,7 @@ const AboutMePage = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <h3 className="text-xl mb-3">Développement</h3>
-                    <ul className="space-y-2 text-gray-300">
+                    <ul className="space-y-2 text-muted-foreground">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-turquoise rounded-full mr-2"></span>
                         JavaScript / TypeScript
@@ -102,7 +102,7 @@ const AboutMePage = () => {
                   </div>
                   <div>
                     <h3 className="text-xl mb-3">Design</h3>
-                    <ul className="space-y-2 text-gray-300">
+                    <ul className="space-y-2 text-muted-foreground">
                       <li className="flex items-center">
                         <span className="w-2 h-2 bg-turquoise rounded-full mr-2"></span>
                         Figma, Adobe XD
@@ -130,13 +130,13 @@ const AboutMePage = () => {
 
               <section>
                 <h2 className="text-2xl font-bold mb-4 pb-2 border-b border-turquoise/30">Mon approche</h2>
-                <p className="text-gray-300 mb-4">
+                <p className="text-muted-foreground mb-4">
                   Je crois fermement que le succès d'un projet web réside dans l'équilibre entre une esthétique attrayante et une fonctionnalité solide. Chaque ligne de code que j'écris, chaque pixel que je place, est pensé pour offrir une expérience utilisateur optimale.
                 </p>
-                <p className="text-gray-300 mb-4">
+                <p className="text-muted-foreground mb-4">
                   Ma méthodologie de travail est basée sur l'écoute active des besoins clients, la recherche approfondie, et l'itération constante. Je m'adapte rapidement aux nouvelles technologies et tendances du web, tout en maintenant une attention particulière aux bonnes pratiques et aux standards de l'industrie.
                 </p>
-                <p className="text-gray-300">
+                <p className="text-muted-foreground">
                   Je valorise la communication transparente et régulière avec mes clients, car je crois que c'est la clé d'une collaboration réussie et de la livraison d'un produit qui dépasse les attentes.
                 </p>
               </section>
@@ -148,7 +148,7 @@ const AboutMePage = () => {
                     <span className="absolute left-0 top-1 w-2 h-2 bg-turquoise rounded-full -translate-x-1/2"></span>
                     <h3 className="text-xl font-bold">2023 - Présent</h3>
                     <p className="text-turquoise">Freelance Developer & Designer</p>
-                    <p className="text-gray-300 mt-2">
+                    <p className="text-muted-foreground mt-2">
                       Création de sites web et d'applications pour divers clients, de la conception à la mise en production.
                     </p>
                   </div>
@@ -157,7 +157,7 @@ const AboutMePage = () => {
                     <span className="absolute left-0 top-1 w-2 h-2 bg-turquoise rounded-full -translate-x-1/2"></span>
                     <h3 className="text-xl font-bold">2022 - 2024</h3>
                     <p className="text-turquoise">Créateur & Gestionnaire</p>
-                    <p className="text-gray-300 mt-2">
+                    <p className="text-muted-foreground mt-2">
                       Rédacteur, Webmaster et Développeur du site radiotayna.com.
                     </p>
                   </div>
@@ -166,7 +166,7 @@ const AboutMePage = () => {
                     <span className="absolute left-0 top-1 w-2 h-2 bg-turquoise rounded-full -translate-x-1/2"></span>
                     <h3 className="text-xl font-bold">2018 - 2020</h3>
                     <p className="text-turquoise">Rédacteur Web & Blogueur</p>
-                    <p className="text-gray-300 mt-2">
+                    <p className="text-muted-foreground mt-2">
                       Passionné du Web, Rédacteur & Créateur de Contenu
                     </p>
                   </div>

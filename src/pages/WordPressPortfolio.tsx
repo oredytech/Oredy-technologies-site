@@ -48,7 +48,7 @@ const WordPressPortfolio = () => {
   const projectsWithLogos = useWordPressLogos(initialProjects);
 
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container">
@@ -58,7 +58,7 @@ const WordPressPortfolio = () => {
               Retour aux services
             </Link>
             <h1 className="text-3xl md:text-4xl font-bold mb-3">Projets WordPress</h1>
-            <p className="text-gray-400">Découvrez mes réalisations WordPress personnalisées pour divers clients.</p>
+            <p className="text-muted-foreground">Découvrez mes réalisations WordPress personnalisées pour divers clients.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

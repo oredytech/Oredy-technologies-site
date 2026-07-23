@@ -24,7 +24,7 @@ const ServiceCard = ({
         </div>
       </div>
       <h3 className="text-xl font-bold mb-4">{title}</h3>
-      <p className="text-gray-300 mb-6">{description}</p>
+      <p className="text-muted-foreground mb-6">{description}</p>
       <Link to={linkUrl} className="text-turquoise hover:underline inline-block">{linkText}</Link>
     </div>
   );
@@ -32,7 +32,7 @@ const ServiceCard = ({
 
 const ServicesPage = () => {
   return (
-    <div className="min-h-screen bg-darkGray text-white">
+    <div className="min-h-screen bg-darkGray text-foreground">
       <Header />
       
       <main className="pt-20">
@@ -42,8 +42,8 @@ const ServicesPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 Mes <span className="text-turquoise">Services</span>
               </h1>
-              <h3 className="text-xl text-gray-400 mb-6">Ce que je fais</h3>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              <h3 className="text-xl text-muted-foreground mb-6">Ce que je fais</h3>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
                 Découvrez la gamme complète de mes services numériques conçus pour transformer 
                 vos idées en réalité digitale et propulser votre entreprise vers le succès.
               </p>
@@ -84,29 +84,29 @@ const ServicesPage = () => {
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-turquoise rounded-full flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Expertise technique</h4>
-                      <p className="text-gray-300">Maîtrise des dernières technologies et frameworks</p>
+                      <p className="text-muted-foreground">Maîtrise des dernières technologies et frameworks</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-turquoise rounded-full flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Design créatif</h4>
-                      <p className="text-gray-300">Interfaces modernes et expérience utilisateur optimale</p>
+                      <p className="text-muted-foreground">Interfaces modernes et expérience utilisateur optimale</p>
                     </div>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-6 h-6 bg-turquoise rounded-full flex items-center justify-center mt-1">
-                      <div className="w-2 h-2 bg-black rounded-full"></div>
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1">Support dédié</h4>
-                      <p className="text-gray-300">Accompagnement personnalisé tout au long de votre projet</p>
+                      <p className="text-muted-foreground">Accompagnement personnalisé tout au long de votre projet</p>
                     </div>
                   </div>
                 </div>
@@ -126,7 +126,7 @@ const ServicesPage = () => {
 
             <div className="text-center mt-16">
               <h3 className="text-2xl font-bold mb-4">Prêt à démarrer votre projet ?</h3>
-              <p className="text-gray-300 mb-8">Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé</p>
+              <p className="text-muted-foreground mb-8">Contactez-moi pour discuter de vos besoins et obtenir un devis personnalisé</p>
               <Link to="/contact" className="btn btn-primary">
                 Commencer un projet
               </Link>
