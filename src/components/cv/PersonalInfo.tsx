@@ -31,9 +31,7 @@ const PersonalInfo = () => {
           <ul className="space-y-2 text-sm">
             <li>Nom commercial : FABRICE OREDY MUSANDA</li>
             <li>Sigle : FABROM</li>
-            <li>Forme juridique : Personne physique commerçante</li>
             <li>N° RCCM : CD/KNM/RCCM/26-A-02595</li>
-            <li>Date d'immatriculation : 16 juil. 2026</li>
             <li>Id Nat : 01-G4701-N00001R</li>
           </ul>
         </div>
