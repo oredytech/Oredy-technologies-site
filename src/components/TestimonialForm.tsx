@@ -40,8 +40,7 @@ const TestimonialForm = ({ onSubmitted }: { onSubmitted?: (t: LocalTestimonial) 
 
     // Attempt to save to backend; if the table isn't available yet, fall back to local storage
     try {
-      // @ts-expect-error - table may not yet exist in generated types
-      const { error } = await supabase.from('user_testimonials').insert({
+      const { error } = await (supabase.from as any)('user_testimonials').insert({
         name: name.trim(),
         company: company.trim() || null,
         message: message.trim(),
