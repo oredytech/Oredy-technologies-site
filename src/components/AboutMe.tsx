@@ -1,6 +1,7 @@
 import { ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import oredyProfile from '@/assets/oredy-profile.png';
+import oredyProfileAsset from '@/assets/oredy-hero-illustration.webp.asset.json';
+const oredyProfile = oredyProfileAsset.url;
 
 const AboutMe = () => {
   return (

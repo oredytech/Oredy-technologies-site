@@ -1,8 +1,6 @@
 
-import { useState, useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { toast } from "@/components/ui/use-toast";
 import { PortfolioItemType } from '@/components/portfolio/types';
 import PortfolioList from '@/components/portfolio/PortfolioList';
 import PortfolioModal from '@/components/portfolio/PortfolioModal';
@@ -10,95 +8,131 @@ import { usePortfolioData } from '@/components/portfolio/usePortfolioData';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+const shot = (url: string) =>
+  `https://image.thum.io/get/width/800/crop/600/noanimate/${url}`;
+
 const initialPortfolioItems: PortfolioItemType[] = [
   {
     id: 1,
-    title: "Goma Webradio",
-    imageUrl: "/lovable-uploads/GOMA WEBRADIO.JPG",
-    url: "https://gomawebradio.com",
-    description: "Site web d'information couplé à une radio en ligne, offrant un accès direct à l'actualité locale et aux émissions en streaming.",
-    technologies: ["WordPress", "HTML5", "CSS3", "JavaScript"],
-    isLoading: true
+    title: "Totalement Actus",
+    imageUrl: shot("https://totalementactus.net"),
+    url: "https://totalementactus.net",
+    description: "Site d'actualité en ligne offrant des informations locales et internationales.",
+    technologies: ["WordPress", "News CMS", "SEO"],
+    isLoading: false,
   },
   {
     id: 2,
-    title: "GOWERA",
-    imageUrl: "/lovable-uploads/GOWERA.JPG",
-    url: "https://gowera.com",
-    description: "Une plateforme de streaming radio gratuite, connectant les auditeurs aux stations du monde entier en un clic.",
-    technologies: ["React", "Node.js", "CSS3", "API Integration"],
-    isLoading: true
+    title: "Kivu7",
+    imageUrl: shot("https://kivu7.net"),
+    url: "https://kivu7.net",
+    description: "Plateforme d'information et de reportages sur la région du Kivu.",
+    technologies: ["WordPress", "Responsive", "SEO"],
+    isLoading: false,
   },
   {
     id: 3,
-    title: "FOMUBISA-ASBL",
-    imageUrl: "/lovable-uploads/FOMUBISA.ORG.JPG",
-    url: "https://fomubisa.org",
-    description: "Site institutionnel déterminé pour la réhabilitation de la dignité de la femme congolaise, luttant contre les violences basées sur le genre.",
-    technologies: ["WordPress", "CSS3", "Responsive Design", "JavaScript"],
-    isLoading: true
+    title: "PNTS-CNTS",
+    imageUrl: shot("https://pnts-cnts.org"),
+    url: "https://pnts-cnts.org",
+    description: "Site institutionnel du Programme National de Transfusion Sanguine.",
+    technologies: ["WordPress", "Institutionnel"],
+    isLoading: false,
   },
   {
     id: 4,
-    title: "KAKO FM 97.2 MHz",
-    imageUrl: "/lovable-uploads/KAKOFM.NET.JPG",
-    url: "https://kakofm.net",
-    description: "Radio & Télévision Kako - La voix de la jeunesse engagée, avec streaming en direct et programmes interactifs.",
-    technologies: ["HTML5", "CSS3", "JavaScript", "Audio Streaming"],
-    isLoading: true
+    title: "PESH ONG",
+    imageUrl: shot("https://pesh-ngo.org"),
+    url: "https://pesh-ngo.org",
+    description: "Site officiel de l'ONG PESH, engagée dans le développement communautaire.",
+    technologies: ["WordPress", "ONG", "Responsive"],
+    isLoading: false,
   },
   {
     id: 5,
-    title: "La Fortune RDC",
-    imageUrl: "/lovable-uploads/LA_FORTURE_RDC_lafortunerdc.net.JPG",
-    url: "https://lafortunerdc.net",
-    description: "Site d'actualités et d'informations sur la République Démocratique du Congo avec contenu multimédia riche.",
-    technologies: ["WordPress", "News CMS", "Responsive Design", "SEO"],
-    isLoading: true
+    title: "7 sur 7 Magazine",
+    imageUrl: shot("http://7sur7magazine.net"),
+    url: "http://7sur7magazine.net/",
+    description: "Magazine d'actualité 7 jours sur 7 avec dossiers et reportages.",
+    technologies: ["WordPress", "Magazine", "News"],
+    isLoading: false,
   },
   {
     id: 6,
-    title: "Radio Sauti ya Injili",
-    imageUrl: "/lovable-uploads/RSIRDC.JPG",
-    url: "https://rsirdc.org",
-    description: "Radio chrétienne à Goma, diffusant la Bonne Nouvelle à travers le monde avec streaming en direct.",
-    technologies: ["WordPress", "Audio Streaming", "Responsive Design", "CMS"],
-    isLoading: true
+    title: "La Fortune RDC",
+    imageUrl: shot("https://lafortunerdc.net"),
+    url: "https://lafortunerdc.net",
+    description: "Site d'actualités et d'informations sur la République Démocratique du Congo.",
+    technologies: ["WordPress", "News CMS", "SEO"],
+    isLoading: false,
   },
   {
     id: 7,
-    title: "Visite Congo",
-    imageUrl: "/lovable-uploads/VISITECONGO.NET.JPG",
-    url: "https://visitecongo.net",
-    description: "Premier site du tourisme en ligne pour découvrir la RDC dans toute sa splendeur avec galeries et documentaires.",
-    technologies: ["WordPress", "Tourism CMS", "Gallery", "Responsive Design"],
-    isLoading: true
-  }
+    title: "Kivu Citizens",
+    imageUrl: shot("https://kivucitizens.net"),
+    url: "https://kivucitizens.net",
+    description: "Plateforme citoyenne d'information et d'engagement communautaire au Kivu.",
+    technologies: ["WordPress", "Communauté", "News"],
+    isLoading: false,
+  },
+  {
+    id: 8,
+    title: "Bi450",
+    imageUrl: shot("https://bi450.com"),
+    url: "https://bi450.com/",
+    description: "Site web moderne et responsive avec design personnalisé.",
+    technologies: ["WordPress", "Design", "Responsive"],
+    isLoading: false,
+  },
+  {
+    id: 9,
+    title: "Pana Radio",
+    imageUrl: shot("https://panaradio.net"),
+    url: "https://panaradio.net",
+    description: "Radio en ligne avec streaming direct et grille de programmes.",
+    technologies: ["WordPress", "Audio Streaming", "Radio"],
+    isLoading: false,
+  },
+  {
+    id: 10,
+    title: "Goma Webradio",
+    imageUrl: shot("https://gomawebradio.com"),
+    url: "https://gomawebradio.com",
+    description: "Site d'information couplé à une radio en ligne, actualité locale et streaming.",
+    technologies: ["WordPress", "Radio", "News"],
+    isLoading: false,
+  },
+  {
+    id: 11,
+    title: "KAKO FM 97.2 MHz",
+    imageUrl: shot("https://kakofm.net"),
+    url: "https://kakofm.net",
+    description: "Radio & Télévision Kako - la voix de la jeunesse engagée, streaming direct.",
+    technologies: ["WordPress", "Audio Streaming"],
+    isLoading: false,
+  },
 ];
 
 const WebDesignPortfolio = () => {
   const { portfolioItems, selectedItem, setSelectedItem } = usePortfolioData(initialPortfolioItems);
 
   return (
-    <div className="min-h-screen bg-darkGray text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <Header />
       <main className="pt-24 pb-16">
         <div className="container">
           <div className="mb-10">
-            <Link to="/#services" className="inline-flex items-center text-turquoise hover:underline mb-6">
+            <Link to="/#services" className="inline-flex items-center text-primary hover:underline mb-6">
               <ArrowLeft size={16} className="mr-2" />
               Retour aux services
             </Link>
-            <div className="text-center bg-secondary/30 rounded-lg p-8 mb-6">
-              <h1 className="text-3xl md:text-4xl font-bold mb-3 text-turquoise">Projets Web Design</h1>
-              <p className="text-muted-foreground">Découvrez mes créations web design et interfaces utilisateur.</p>
+            <div className="text-center bg-muted rounded-lg p-8 mb-6">
+              <h1 className="text-3xl md:text-4xl font-bold mb-3 text-primary">Mes réalisations</h1>
+              <p className="text-muted-foreground">Découvrez les sites web que j'ai conçus et développés.</p>
             </div>
           </div>
 
-          <PortfolioList 
-            items={portfolioItems}
-            onItemSelect={setSelectedItem}
-          />
+          <PortfolioList items={portfolioItems} onItemSelect={setSelectedItem} />
 
           {selectedItem && <PortfolioModal item={selectedItem} onClose={() => setSelectedItem(null)} />}
         </div>

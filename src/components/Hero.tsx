@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
-import portrait from '@/assets/oredy-profile.png';
+import portraitAsset from '@/assets/oredy-hero-illustration.webp.asset.json';
+const portrait = portraitAsset.url;
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +12,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center bg-background overflow-hidden pt-24 pb-12">
+    <section id="home" className="relative min-h-screen flex items-end bg-background overflow-hidden pt-24 pb-0">
       {/* Decorative yellow circles */}
       <div className="deco-circle w-[520px] h-[520px] right-[-80px] top-[10%] opacity-95 hidden md:block" />
       <div className="deco-circle w-[160px] h-[160px] right-[42%] bottom-[8%] hidden md:block" />
@@ -43,12 +44,13 @@ const Hero = () => {
           </div>
 
           <div
-            className={`relative flex justify-center md:justify-end transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`relative flex justify-center md:justify-end items-end self-end transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             <img
               src={portrait}
               alt="Oredy Musanda"
-              className="relative z-10 max-h-[70vh] w-auto object-contain drop-shadow-2xl"
+              className="relative z-10 max-h-[80vh] w-auto object-contain drop-shadow-2xl -scale-x-100 mb-0"
+              style={{ marginBottom: 0 }}
             />
           </div>
         </div>
