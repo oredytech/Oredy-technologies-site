@@ -26,7 +26,7 @@ const Header = () => {
             </span>
           </Link>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <Link to="/" className={linkCls}>Accueil</Link>
             <Link to="/about" className={linkCls}>À propos</Link>
             <Link to="/services" className={linkCls}>Services</Link>
@@ -45,7 +45,7 @@ const Header = () => {
               <Search size={20} />
             </button>
             <button
-              className="md:hidden text-primary-foreground"
+              className="lg:hidden text-primary-foreground"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Menu"
             >
@@ -55,7 +55,7 @@ const Header = () => {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 w-full bg-primary animate-fadeIn">
+          <div className="lg:hidden absolute top-full left-0 w-full bg-primary animate-fadeIn">
             <div className="container py-5 flex flex-col space-y-4">
               <Link to="/" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>Accueil</Link>
               <Link to="/about" className={`${linkCls} py-2`} onClick={() => setMobileMenuOpen(false)}>À propos</Link>
