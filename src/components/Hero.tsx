@@ -14,6 +14,9 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-end bg-background overflow-hidden pt-24 pb-0">
+      {/* Matrix rain background */}
+      <MatrixRain />
+
       {/* Decorative yellow circles */}
       <div className="deco-circle w-[520px] h-[520px] right-[-80px] top-[10%] opacity-95 hidden lg:block" />
       <div className="deco-circle w-[160px] h-[160px] right-[42%] bottom-[8%] hidden lg:block" />
