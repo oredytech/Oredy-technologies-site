@@ -12,7 +12,7 @@ const Footer = () => {
   const iconClass = "text-accent";
 
   return (
-    <footer className="bg-primary text-primary-foreground py-12 relative">
+    <footer className="bg-[hsl(0_78%_22%)] text-primary-foreground py-12 relative">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Logo et description */}
