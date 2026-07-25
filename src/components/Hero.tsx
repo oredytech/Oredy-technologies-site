@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import portraitAsset from '@/assets/oredy-hero-illustration.webp.asset.json';
+import MatrixRain from './MatrixRain';
 const portrait = portraitAsset.url;
 
 const Hero = () => {
