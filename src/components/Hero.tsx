@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Download } from 'lucide-react';
 import portraitAsset from '@/assets/oredy-hero-illustration.webp.asset.json';
+import MatrixRain from './MatrixRain';
 const portrait = portraitAsset.url;
 
 const Hero = () => {
@@ -13,6 +14,9 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-end bg-background overflow-hidden pt-24 pb-0">
+      {/* Matrix rain background */}
+      <MatrixRain />
+
       {/* Decorative yellow circles */}
       <div className="deco-circle w-[520px] h-[520px] right-[-80px] top-[10%] opacity-95 hidden lg:block" />
       <div className="deco-circle w-[160px] h-[160px] right-[42%] bottom-[8%] hidden lg:block" />
