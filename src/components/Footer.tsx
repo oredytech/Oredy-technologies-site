@@ -95,7 +95,7 @@ const Footer = () => {
             <div className="text-primary-foreground/90 text-sm space-y-1">
               <p className="text-accent font-semibold">FABRICE OREDY MUSANDA — FABROM</p>
               <p>
-                <span className="text-accent">N° RCCM :</span>{' '}
+                <span className="text-accent">RCCM :</span>{' '}
                 <a href="https://rccm.cd/" target="_blank" rel="noopener noreferrer" className="underline hover:text-accent">
                   CD/KNM/RCCM/26-A-02595
                 </a>
