@@ -44,12 +44,12 @@ const Hero = () => {
           </div>
 
           <div
-            className={`relative flex justify-center md:justify-end items-end self-end transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`relative flex justify-center md:justify-end items-end self-end md:mr-[-10vw] lg:mr-[-14vw] transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
           >
             <img
               src={portrait}
               alt="Oredy Musanda"
-              className="relative z-10 max-h-[80vh] w-auto object-contain drop-shadow-2xl -scale-x-100 mb-0"
+              className="relative z-10 max-h-[92vh] md:max-h-[95vh] lg:max-h-[100vh] w-auto object-contain drop-shadow-2xl -scale-x-100 mb-0"
               style={{ marginBottom: 0 }}
             />
           </div>
