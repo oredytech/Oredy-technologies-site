@@ -115,7 +115,7 @@ const Footer = () => {
         <div className="border-t border-primary-foreground/20 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-primary-foreground/80 text-sm mb-4 md:mb-0">
-              Copyright © 2024 Tout droit réservé | OREDY TECHNOLOGIES
+              Copyright © 2024 - {new Date().getFullYear()} Tout droit réservé | OREDY TECHNOLOGIES
             </p>
             <div className="flex space-x-6 text-sm">
               <Link to="/privacy-policy" className={linkClass}>Politique de confidentialité</Link>
