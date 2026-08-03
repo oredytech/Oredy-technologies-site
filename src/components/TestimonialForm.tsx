@@ -38,35 +38,39 @@ const TestimonialForm = ({ onSubmitted }: { onSubmitted?: (t: LocalTestimonial) 
     }
     setSubmitting(true);
 
-    // Attempt to save to backend; if the table isn't available yet, fall back to local storage
-    try {
-      const { error } = await (supabase.from as any)('user_testimonials').insert({
-        name: name.trim(),
-        company: company.trim() || null,
-        message: message.trim(),
-        rating,
-      });
-      if (error) throw error;
-    } catch (err) {
-      console.warn('Fallback to localStorage for testimonial:', err);
-    }
+    const payload = {
+      name: name.trim(),
+      company: company.trim() || null,
+      message: message.trim(),
+      rating,
+    };
 
     const local: LocalTestimonial = {
       id: crypto.randomUUID(),
-      name: name.trim(),
-      company: company.trim() || undefined,
-      message: message.trim(),
+      name: payload.name,
+      company: payload.company || undefined,
+      message: payload.message,
       rating,
       createdAt: new Date().toISOString(),
     };
-    const all = [local, ...readLocalTestimonials()].slice(0, 20);
-    localStorage.setItem(LS_KEY, JSON.stringify(all));
-    onSubmitted?.(local);
 
-    toast.success('Merci pour votre témoignage !');
+    try {
+      const { error } = await (supabase.from as any)('user_testimonials').insert(payload);
+      if (error) throw error;
+
+      toast.success('Merci ! Votre témoignage a été envoyé et sera publié après validation.');
+    } catch (err) {
+      console.warn('Fallback localStorage pour le témoignage :', err);
+      const all = [local, ...readLocalTestimonials()].slice(0, 20);
+      localStorage.setItem(LS_KEY, JSON.stringify(all));
+      onSubmitted?.(local);
+      toast.success('Merci pour votre témoignage !');
+    }
+
     setName(''); setCompany(''); setMessage(''); setRating(0);
     setSubmitting(false);
   };
+
 
   return (
     <form onSubmit={handleSubmit} className="card max-w-2xl mx-auto space-y-4">
