@@ -94,12 +94,35 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
 
 const Testimonials = () => {
   const [userTestimonials, setUserTestimonials] = useState<LocalTestimonial[]>([]);
+  const [dbTestimonials, setDbTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
     setUserTestimonials(readLocalTestimonials());
+
+    (async () => {
+      try {
+        const { data, error } = await (supabase.from as any)('user_testimonials')
+          .select('id, name, company, message, rating')
+          .eq('approved', true)
+          .order('created_at', { ascending: false });
+        if (error) throw error;
+        setDbTestimonials(
+          (data || []).map((t: any) => ({
+            id: t.id,
+            name: t.name,
+            company: t.company || '',
+            text: t.message,
+            rating: t.rating,
+          }))
+        );
+      } catch (err) {
+        console.warn('Témoignages non disponibles depuis la base :', err);
+      }
+    })();
   }, []);
 
   const combined: Testimonial[] = [
+    ...dbTestimonials,
     ...userTestimonials.map((t) => ({
       id: t.id,
       name: t.name,
@@ -109,6 +132,7 @@ const Testimonials = () => {
     })),
     ...TESTIMONIALS,
   ];
+
 
   return (
     <section id="testimonials" className="section bg-muted">
