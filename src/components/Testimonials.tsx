@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Quote, Star } from 'lucide-react';
 import TestimonialForm, { readLocalTestimonials, LocalTestimonial } from './TestimonialForm';
+import { supabase } from '@/integrations/supabase/client';
 
 interface Testimonial {
   id: string | number;
