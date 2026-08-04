@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Oredy Témoignages
  * Description: Réception, modération et exposition des témoignages clients (avec note et photo) via l'API REST pour le site React oredytech.com.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: Oredy MUSANDA
  * Text Domain: oredy-testimonials
  */
