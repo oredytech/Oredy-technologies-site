@@ -79,8 +79,60 @@ add_action('manage_' . OREDY_T_CPT . '_posts_custom_column', function ($col, $po
         echo esc_html(get_post_meta($post_id, '_oredy_rating', true)) . ' / 5';
     }
     if ($col === 'oredy_approved') {
-        echo get_post_meta($post_id, '_oredy_approved', true) === '1' ? '✅ Oui' : '⏳ En attente';
+        $approved = get_post_meta($post_id, '_oredy_approved', true) === '1';
+        echo $approved ? '<strong style="color:#0a7d28">✅ Approuvé</strong>' : '<strong style="color:#b26b00">⏳ En attente</strong>';
+
+        $url = wp_nonce_url(
+            admin_url('admin-post.php?action=oredy_t_toggle_approval&post=' . $post_id . '&to=' . ($approved ? '0' : '1')),
+            'oredy_t_toggle_' . $post_id
+        );
+        echo '<br><a href="' . esc_url($url) . '" class="button button-small ' . ($approved ? '' : 'button-primary') . '" style="margin-top:6px">'
+            . ($approved ? 'Retirer du site' : 'Approuver') . '</a>';
     }
+}, 10, 2);
+
+/* Bouton d'approbation : traitement */
+add_action('admin_post_oredy_t_toggle_approval', function () {
+    $post_id = intval($_GET['post'] ?? 0);
+    $to      = ($_GET['to'] ?? '0') === '1' ? '1' : '0';
+
+    if (!$post_id || !current_user_can('edit_post', $post_id)) {
+        wp_die('Action non autorisée.');
+    }
+    check_admin_referer('oredy_t_toggle_' . $post_id);
+
+    update_post_meta($post_id, '_oredy_approved', $to);
+
+    wp_safe_redirect(add_query_arg(
+        array('post_type' => OREDY_T_CPT, 'oredy_t_msg' => $to === '1' ? 'approved' : 'unapproved'),
+        admin_url('edit.php')
+    ));
+    exit;
+});
+
+/* Notice de confirmation */
+add_action('admin_notices', function () {
+    if (empty($_GET['oredy_t_msg'])) {
+        return;
+    }
+    $msg = $_GET['oredy_t_msg'] === 'approved'
+        ? 'Témoignage approuvé : il est maintenant visible sur oredytech.com.'
+        : 'Témoignage retiré du site.';
+    echo '<div class="notice notice-success is-dismissible"><p>' . esc_html($msg) . '</p></div>';
+});
+
+/* Actions rapides dans la ligne (row actions) */
+add_filter('post_row_actions', function ($actions, $post) {
+    if ($post->post_type !== OREDY_T_CPT) {
+        return $actions;
+    }
+    $approved = get_post_meta($post->ID, '_oredy_approved', true) === '1';
+    $url = wp_nonce_url(
+        admin_url('admin-post.php?action=oredy_t_toggle_approval&post=' . $post->ID . '&to=' . ($approved ? '0' : '1')),
+        'oredy_t_toggle_' . $post->ID
+    );
+    $actions['oredy_approve'] = '<a href="' . esc_url($url) . '">' . ($approved ? 'Retirer du site' : 'Approuver') . '</a>';
+    return $actions;
 }, 10, 2);
 
 /* -------------------------------------------------------------------------
