@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import { Helmet } from 'react-helmet-async';
 import { Star, Send, ImagePlus, X, Quote, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import Header from '@/components/Header';
@@ -77,15 +76,6 @@ const TestimonialPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <Helmet>
-        <title>Laisser un témoignage | Oredy MUSANDA</title>
-        <meta
-          name="description"
-          content="Partagez votre expérience de collaboration avec Oredy MUSANDA : note en étoiles, message et photo ou logo de votre organisation."
-        />
-        <link rel="canonical" href="https://oredytech.com/temoignages" />
-      </Helmet>
-
       <Header />
 
       <main className="pt-28 pb-20">
