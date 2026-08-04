@@ -1,8 +1,7 @@
 
-import { useState, useEffect } from 'react';
 import { Quote, Star } from 'lucide-react';
-import TestimonialForm, { readLocalTestimonials, LocalTestimonial } from './TestimonialForm';
-import { supabase } from '@/integrations/supabase/client';
+import { Link } from 'react-router-dom';
+import { useWordPressTestimonials } from '@/hooks/useWordPressTestimonials';
 
 interface Testimonial {
   id: string | number;
@@ -94,46 +93,19 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
 };
 
 const Testimonials = () => {
-  const [userTestimonials, setUserTestimonials] = useState<LocalTestimonial[]>([]);
-  const [dbTestimonials, setDbTestimonials] = useState<Testimonial[]>([]);
-
-  useEffect(() => {
-    setUserTestimonials(readLocalTestimonials());
-
-    (async () => {
-      try {
-        const { data, error } = await (supabase.from as any)('user_testimonials')
-          .select('id, name, company, message, rating')
-          .eq('approved', true)
-          .order('created_at', { ascending: false });
-        if (error) throw error;
-        setDbTestimonials(
-          (data || []).map((t: any) => ({
-            id: t.id,
-            name: t.name,
-            company: t.company || '',
-            text: t.message,
-            rating: t.rating,
-          }))
-        );
-      } catch (err) {
-        console.warn('Témoignages non disponibles depuis la base :', err);
-      }
-    })();
-  }, []);
+  const { testimonials: wpTestimonials } = useWordPressTestimonials(20);
 
   const combined: Testimonial[] = [
-    ...dbTestimonials,
-    ...userTestimonials.map((t) => ({
-      id: t.id,
+    ...wpTestimonials.map((t) => ({
+      id: `wp-${t.id}`,
       name: t.name,
       company: t.company || '',
       text: t.message,
+      avatarUrl: t.avatarUrl || undefined,
       rating: t.rating,
     })),
     ...TESTIMONIALS,
   ];
-
 
   return (
     <section id="testimonials" className="section bg-muted">
@@ -143,13 +115,18 @@ const Testimonials = () => {
           <h2 className="section-title">Témoignages des clients satisfaits</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
           {combined.map((testimonial) => (
             <TestimonialCard key={testimonial.id} testimonial={testimonial} />
           ))}
         </div>
 
-        <TestimonialForm onSubmitted={(t) => setUserTestimonials((prev) => [t, ...prev])} />
+        <div className="text-center">
+          <Link to="/temoignages" className="btn btn-primary inline-flex items-center gap-2">
+            <Star size={16} />
+            Laisser un témoignage
+          </Link>
+        </div>
       </div>
     </section>
   );
