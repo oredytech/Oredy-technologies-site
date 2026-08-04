@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Star, Send, ImagePlus, X, Quote, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import Header from '@/components/Header';
@@ -26,6 +26,10 @@ const TestimonialPage = () => {
   const [preview, setPreview] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    document.title = 'Laisser un témoignage | Oredy MUSANDA';
+  }, []);
 
   const handleFile = (file?: File | null) => {
     if (!file) return;
