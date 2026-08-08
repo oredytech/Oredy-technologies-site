@@ -68,19 +68,23 @@ const CV = () => {
             <p className="text-muted-foreground mb-8">Découvrez mon parcours professionnel et mes compétences</p>
           </div>
 
-          <div ref={cvRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-darkGray p-4">
-            <div className="md:col-span-1 space-y-8">
-              <PersonalInfo />
-              <Skills />
-              <Languages />
+          <div ref={cvRef} className="bg-darkGray py-4 md:p-4 space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="md:col-span-1 space-y-8">
+                <PersonalInfo />
+                <Skills />
+                <Languages />
+              </div>
+
+              <div className="md:col-span-2 space-y-8">
+                <Experience />
+                <Education />
+                <Certifications />
+                <Projects />
+              </div>
             </div>
-            
-            <div className="md:col-span-2 space-y-8">
-              <Experience />
-              <Education />
-              <Certifications />
-              <Projects />
-            </div>
+
+            <Organigramme />
           </div>
           
           <div className="mt-12 text-center">
