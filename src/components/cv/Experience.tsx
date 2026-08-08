@@ -16,6 +16,12 @@ const jobs: Job[] = [
     description: 'Gestion des équipements techniques de radiodiffusion et supervision de l\'équipe technique pour assurer une diffusion optimale des programmes.'
   },
   {
+    title: 'Directeur Général',
+    company: 'KAKO Fm',
+    period: 'Juillet 2025 - Septembre 2025',
+    description: '3 mois de direction de la radio : pilotage global de la station, coordination des équipes et supervision des activités éditoriales et administratives.'
+  },
+  {
     title: 'Enseignant',
     company: 'UCNDK',
     period: '2025 - Présent',
