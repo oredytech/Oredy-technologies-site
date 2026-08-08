@@ -12,7 +12,7 @@ const jobs: Job[] = [
   {
     title: 'Directeur Technique',
     company: 'KAKO Fm',
-    period: 'Septembre 2025 - Septembre 2026',
+    period: 'Septembre 2024 - Septembre 2025',
     description: 'Gestion des équipements techniques de radiodiffusion et supervision de l\'équipe technique pour assurer une diffusion optimale des programmes.'
   },
   {
