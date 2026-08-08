@@ -26,6 +26,7 @@ import PaymentFailure from "./pages/PaymentFailure";
 import AdminMarketplace from "./pages/AdminMarketplace";
 import AdminLogin from "./pages/AdminLogin";
 import TestimonialPage from "./pages/TestimonialPage";
+import MesProjets from "./pages/MesProjets";
 
 const queryClient = new QueryClient();
 
