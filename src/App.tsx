@@ -26,6 +26,7 @@ import PaymentFailure from "./pages/PaymentFailure";
 import AdminMarketplace from "./pages/AdminMarketplace";
 import AdminLogin from "./pages/AdminLogin";
 import TestimonialPage from "./pages/TestimonialPage";
+import MesProjets from "./pages/MesProjets";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/development" element={<MesProjets />} />
+          <Route path="/mes-projets" element={<MesProjets />} />
           <Route path="/portfolio/wordpress" element={<WordPressPortfolio />} />
           <Route path="/portfolio/webdesign" element={<WebDesignPortfolio />} />
           <Route path="/portfolio/development" element={<DevelopmentPortfolio />} />
