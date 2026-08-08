@@ -38,6 +38,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/development" element={<MesProjets />} />
+          <Route path="/mes-projets" element={<MesProjets />} />
           <Route path="/portfolio/wordpress" element={<WordPressPortfolio />} />
           <Route path="/portfolio/webdesign" element={<WebDesignPortfolio />} />
           <Route path="/portfolio/development" element={<DevelopmentPortfolio />} />
