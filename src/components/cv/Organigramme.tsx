@@ -1,6 +1,6 @@
-import { AudioLines, Cpu } from 'lucide-react';
-
 const fabromLogoUrl = '/assets/fabrom-logo.png';
+const gomaWebradioLogoUrl = '/assets/goma-webradio-logo.png';
+const fabromIcdLogoUrl = '/assets/fabrom-icd-logo.png';
 
 type Pole = {
   name: string;
@@ -31,13 +31,19 @@ const poles: Pole[] = [
 
 const PoleIcon = ({ icon }: { icon: Pole['icon'] }) => {
   if (icon === 'logo') {
-    return <img src={fabromLogoUrl} alt="Logo FABROM ICD" className="h-20 w-auto" />;
+    return <img src={fabromIcdLogoUrl} alt="Logo FABROM ICD" className="h-20 w-auto object-contain" />;
   }
   if (icon === 'radio') {
-    return <AudioLines className="h-16 w-16 text-accent" strokeWidth={2.5} />;
+    return <img src={gomaWebradioLogoUrl} alt="Logo Goma Webradio" className="h-20 w-auto object-contain" />;
   }
-  return <Cpu className="h-16 w-16 text-primary" strokeWidth={2} />;
+  return (
+    <div className="text-center">
+      <p className="font-display text-2xl font-black tracking-tight text-primary">OREDY</p>
+      <p className="font-display text-[10px] font-bold tracking-[0.3em] text-accent">TECHNOLOGIES</p>
+    </div>
+  );
 };
+
 
 const Organigramme = () => {
   return (
