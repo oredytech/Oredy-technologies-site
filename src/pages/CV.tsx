@@ -10,6 +10,7 @@ import Experience from '@/components/cv/Experience';
 import Education from '@/components/cv/Education';
 import Certifications from '@/components/cv/Certifications';
 import Projects from '@/components/cv/Projects';
+import Organigramme from '@/components/cv/Organigramme';
 
 const CV = () => {
   const cvRef = useRef<HTMLDivElement>(null);
