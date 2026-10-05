@@ -1,4 +1,5 @@
 import React from 'react';
+import { Download } from 'lucide-react';
 import badgeAsset from '@/assets/badge-dclic-2026.png.asset.json';
 
 type Certification = {
@@ -6,6 +7,7 @@ type Certification = {
   issuer: string;
   year: string;
   badgeUrl?: string;
+  downloadUrl?: string;
 };
 
 const certifications: Certification[] = [
@@ -13,11 +15,13 @@ const certifications: Certification[] = [
     title: 'Start Writing Prompts like a Pro',
     issuer: 'Google / Coursera',
     year: 'Novembre 2025',
+    downloadUrl: '/assets/certificat-coursera-prompts.pdf',
   },
   {
     title: 'Techniques du reportage radio (Bourse Ghislaine Dupont & Claude Verlon)',
     issuer: 'RFI Académie',
     year: 'Octobre 2021',
+    downloadUrl: '/assets/certificat-rfi-reportage.pdf',
   },
   {
     title: 'Développement Web (Niveau débutant)',
@@ -49,9 +53,21 @@ const Certifications = () => {
                 className="w-12 h-12 rounded-full object-contain flex-shrink-0"
               />
             )}
-            <div>
+            <div className="flex-1">
               <h4 className="font-semibold">{cert.title}</h4>
               <p className="text-primary text-sm">{cert.issuer} | {cert.year}</p>
+              {cert.downloadUrl && (
+                <a
+                  href={cert.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download
+                  className="inline-flex items-center gap-1 text-xs text-accent hover:underline mt-1"
+                >
+                  <Download size={12} />
+                  Télécharger le certificat
+                </a>
+              )}
             </div>
           </div>
         ))}
