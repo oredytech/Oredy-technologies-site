@@ -49,7 +49,7 @@ const ServicesPage = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <ServiceCard 
                 icon={Monitor}
                 title="Web Design"
@@ -72,6 +72,14 @@ const ServicesPage = () => {
                 description="Propulsez l'image numérique de votre entreprise avec mon expertise pointue en développement web et mobile d'applications modernes et performantes."
                 linkText="Voir mes travaux"
                 linkUrl="/portfolio/development"
+              />
+
+              <ServiceCard 
+                icon={Radio}
+                title="Consultation radio & IA"
+                description="Consultation en techniques de radiodiffusion (équipements, diffusion, production) et utilisation de l'intelligence artificielle dans la production radiophonique. Formateur en techniques de production des reportages."
+                linkText="Me contacter"
+                linkUrl="/contact"
               />
             </div>
 
