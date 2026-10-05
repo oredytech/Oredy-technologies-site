@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Smartphone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -167,6 +167,51 @@ const MesProjets = () => {
                 )}
               </article>
             ))}
+          </div>
+
+          <h2 className="text-2xl font-display font-bold mb-6 mt-16">Codes sources & applications</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <a
+              href="https://github.com/oredytech/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card border border-border rounded-lg p-6 flex items-start gap-4 hover:shadow-lg transition-shadow group"
+            >
+              <div className="w-12 h-12 rounded-md bg-muted flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <Github size={26} />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">GitHub — Oredy Technologies</h3>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Explorez les codes sources de mes sites web et applications : projets open source, thèmes et expérimentations.
+                </p>
+                <span className="inline-flex items-center text-sm text-primary hover:underline">
+                  Voir les dépôts
+                  <ExternalLink size={14} className="ml-1" />
+                </span>
+              </div>
+            </a>
+
+            <a
+              href="https://play.google.com/store/apps/dev?id=7816224299438864443"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-card border border-border rounded-lg p-6 flex items-start gap-4 hover:shadow-lg transition-shadow group"
+            >
+              <div className="w-12 h-12 rounded-md bg-muted flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                <Smartphone size={26} />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-1">Google Play — Applications Android</h3>
+                <p className="text-muted-foreground text-sm mb-2">
+                  Téléchargez mes applications mobiles Android publiées sur le Google Play Store.
+                </p>
+                <span className="inline-flex items-center text-sm text-primary hover:underline">
+                  Voir les applications
+                  <ExternalLink size={14} className="ml-1" />
+                </span>
+              </div>
+            </a>
           </div>
         </div>
       </main>
