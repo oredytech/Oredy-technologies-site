@@ -10,6 +10,16 @@ type Certification = {
 
 const certifications: Certification[] = [
   {
+    title: 'Start Writing Prompts like a Pro',
+    issuer: 'Google / Coursera',
+    year: 'Novembre 2025',
+  },
+  {
+    title: 'Techniques du reportage radio (Bourse Ghislaine Dupont & Claude Verlon)',
+    issuer: 'RFI Académie',
+    year: 'Octobre 2021',
+  },
+  {
     title: 'Développement Web (Niveau débutant)',
     issuer: "D-CLIC / Ateliers du Numérique",
     year: 'Mai 2026',

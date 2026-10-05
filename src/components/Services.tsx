@@ -1,5 +1,5 @@
 
-import { Monitor, Smartphone, Bookmark } from 'lucide-react';
+import { Monitor, Smartphone, Bookmark, Radio } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ 
@@ -38,7 +38,7 @@ const Services = () => {
           <h2 className="section-title">Mes services</h2>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <ServiceCard 
             icon={Monitor}
             title="Web design"
@@ -61,6 +61,14 @@ const Services = () => {
             description="Propulsez l'image numérique de votre entreprise avec mon expertise pointue en développement mobile d'applications."
             linkText="Voir mes travaux"
             linkUrl="/portfolio/development"
+          />
+
+          <ServiceCard 
+            icon={Radio}
+            title="Consultation radio & IA"
+            description="Consultation en techniques de radiodiffusion (équipements, diffusion, production) et utilisation de l'intelligence artificielle dans la production radiophonique. Formateur en techniques de production des reportages."
+            linkText="Me contacter"
+            linkUrl="/contact"
           />
         </div>
       </div>
