@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchCommerceSite } from "@/lib/wordpressCommerce";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -12,18 +12,9 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 const MarketplaceSiteDetail = () => {
   const { id } = useParams();
 
-  const { data: site, isLoading } = useQuery({
-    queryKey: ["marketplace-site", id],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("marketplace_sites")
-        .select("*")
-        .eq("id", id)
-        .single();
-
-      if (error) throw error;
-      return data;
-    },
+  const { data: site, isLoading, error } = useQuery({
+    queryKey: ["wordpress-commerce-site", id],
+    queryFn: () => fetchCommerceSite(id || ''), enabled: Boolean(id),
   });
 
   if (isLoading) {
@@ -40,7 +31,7 @@ const MarketplaceSiteDetail = () => {
         <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold mb-4">Site non trouvé</h1>
+            <h1 className="text-2xl font-bold mb-4">{error ? "Impossible de charger ce site" : "Site non trouvé"}</h1>
             <Button asChild>
               <Link to="/marketplace">Retour au marché</Link>
             </Button>
@@ -54,7 +45,7 @@ const MarketplaceSiteDetail = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 container mx-auto px-4 pt-24 pb-12">
+      <main className="flex-1 container mx-auto pt-24 pb-12">
         <div className="max-w-5xl mx-auto">
           <Button variant="ghost" asChild className="mb-6">
             <Link to="/marketplace">
@@ -138,7 +129,7 @@ const MarketplaceSiteDetail = () => {
                 <CardContent className="space-y-4">
                   <div>
                     <p className="text-3xl font-bold text-primary">
-                      {site.price} €
+                      {site.price} {site.currency}
                     </p>
                   </div>
 
