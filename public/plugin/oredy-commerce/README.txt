@@ -1,0 +1,9 @@
+OREDY COMMERCE 1.0.0
+Installation : Extensions > Ajouter une extension > Téléverser, choisissez oredy-commerce.zip puis activez.
+Ouvrez Oredy Commerce > Sites du marché ou Produits boutique. Renseignez titre, description, extrait, image mise en avant, prix et devise. Publiez pour afficher sur le site.
+Produits : cochez Actif. Pour l’affiliation, cochez Produit en affiliation et ajoutez le lien affilié. Pour un produit direct, ajoutez le lien du produit / commande. Mis en avant permet l’affichage dans les articles de blog. La commission reste privée.
+Sites : ajoutez les captures, technologies, démo, lien du site et éventuellement un lien de paiement externe. Sans lien externe, le formulaire du site crée une demande privée dans WordPress et passe le site en En cours d’achat. Après vérification du paiement, changez la disponibilité en Vendu ou Disponible. Avec un lien externe, le prestataire gère le paiement ; modifiez manuellement la disponibilité dans WordPress.
+Notifications : envoyées à oredymusanda@gmail.com via wp_mail ; configurez un service SMTP pour garantir la réception.
+API : GET /wp-json/oredy-commerce/v1/sites ; GET /sites/{id} ; GET /products ; POST /purchases. Lecture paginée (page, per_page 1–100). Aucun compte WordPress ou mot de passe n’est envoyé au navigateur. Seuls les administrateurs peuvent gérer le catalogue et consulter les demandes privées.
+L’application utilise https://oredytech.com comme adresse WordPress, comme les témoignages existants. Si WordPress est installé ailleurs, définissez VITE_WORDPRESS_COMMERCE_URL avec son URL et republiez l’application.
+Les anciens produits et sites Cloud ne sont pas importés automatiquement : ajoutez-les au plugin. Les paiements Lygos Cloud historiques ne sont pas liés aux identifiants WordPress. Un lien de paiement Lygos peut être renseigné dans chaque fiche.

@@ -1,6 +1,5 @@
-import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchCommerceSites } from "@/lib/wordpressCommerce";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,24 +9,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const Marketplace = () => {
-  const { data: sites, isLoading } = useQuery({
-    queryKey: ["marketplace-sites"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("marketplace_sites")
-        .select("*")
-        .in("status", ["available", "pending"])
-        .order("created_at", { ascending: false });
-
-      if (error) throw error;
-      return data;
-    },
+  const { data: sites, isLoading, error, refetch } = useQuery({
+    queryKey: ["wordpress-commerce-sites"], queryFn: fetchCommerceSites,
   });
 
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 container mx-auto px-4 pt-24 pb-12">
+      <main className="flex-1 container mx-auto pt-24 pb-12">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">Marché de Sites Web</h1>
@@ -36,7 +25,12 @@ const Marketplace = () => {
             </p>
           </div>
 
-          {isLoading ? (
+          {error ? (
+            <div role="alert" className="text-center py-12 space-y-4">
+              <p className="text-destructive">Le marché est temporairement indisponible.</p>
+              <Button variant="outline" onClick={() => refetch()}>Réessayer</Button>
+            </div>
+          ) : isLoading ? (
             <div className="flex justify-center py-12">
               <Loader2 className="h-8 w-8 animate-spin" />
             </div>
@@ -69,7 +63,7 @@ const Marketplace = () => {
                       ))}
                     </div>
                     <p className="text-2xl font-bold text-primary">
-                      {site.price} €
+                      {site.price} {site.currency}
                     </p>
                   </CardContent>
                   <CardFooter className="flex gap-2">

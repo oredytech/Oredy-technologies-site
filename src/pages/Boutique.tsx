@@ -1,26 +1,12 @@
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
+import { fetchCommerceProducts, productLink } from '@/lib/wordpressCommerce';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ShoppingBag, Package, CreditCard, Truck, ExternalLink, Star, Loader2 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-
-interface Product {
-  id: string;
-  title: string;
-  description: string;
-  short_description: string | null;
-  price: string;
-  original_price: string | null;
-  image_url: string | null;
-  category: string | null;
-  is_affiliate: boolean;
-  affiliate_url: string | null;
-  is_featured: boolean;
-}
 
 const Boutique = () => {
   useEffect(() => {
@@ -31,22 +17,8 @@ const Boutique = () => {
     }
   }, []);
 
-  const { data: products, isLoading, error } = useQuery({
-    queryKey: ["boutique-products"],
-    queryFn: async () => {
-      const { data, error } = await (supabase as any)
-        .from("products")
-        .select("*")
-        .eq("is_active", true)
-        .order("is_featured", { ascending: false })
-        .order("created_at", { ascending: false });
-
-      if (error) {
-        console.error("Error fetching products:", error);
-        return [];
-      }
-      return data as Product[];
-    },
+  const { data: products, isLoading, error, refetch } = useQuery({
+    queryKey: ["wordpress-commerce-products"], queryFn: fetchCommerceProducts,
   });
 
   const features = [
@@ -56,11 +28,7 @@ const Boutique = () => {
     { icon: ShoppingBag, title: "Satisfaction Garantie", description: "100% de satisfaction client" }
   ];
 
-  const handleProductClick = (product: Product) => {
-    if (product.is_affiliate && product.affiliate_url) {
-      window.open(product.affiliate_url, '_blank');
-    }
-  };
+
 
   return (
     <div className="min-h-screen bg-darkGray text-foreground">
@@ -103,11 +71,16 @@ const Boutique = () => {
           <div className="container">
             <h2 className="section-title text-center mb-12">Nos Produits & Services</h2>
             
-            {isLoading ? (
+            {error ? (
+              <div role="alert" className="text-center py-12 space-y-4">
+                <p className="text-destructive">La boutique est temporairement indisponible.</p>
+                <Button variant="outline" onClick={() => refetch()}>Réessayer</Button>
+              </div>
+            ) : isLoading ? (
               <div className="flex justify-center py-12">
                 <Loader2 className="h-8 w-8 animate-spin text-turquoise" />
               </div>
-            ) : error || !products || products.length === 0 ? (
+            ) : !products || products.length === 0 ? (
               <div className="text-center py-12">
                 <p className="text-muted-foreground text-lg">Aucun produit disponible pour le moment.</p>
                 <p className="text-muted-foreground mt-2">Revenez bientôt pour découvrir nos offres !</p>
@@ -121,7 +94,7 @@ const Boutique = () => {
                   >
                     {product.is_featured && (
                       <div className="absolute -top-2 -right-2 z-10">
-                        <Badge className="bg-yellow-500 text-black">
+                        <Badge className="bg-accent text-accent-foreground">
                           <Star className="w-3 h-3 mr-1" />
                           Populaire
                         </Badge>
@@ -172,20 +145,14 @@ const Boutique = () => {
                         )}
                       </div>
                       
-                      {product.is_affiliate && product.affiliate_url ? (
-                        <Button 
-                          onClick={() => handleProductClick(product)}
-                          className="btn-primary flex items-center gap-1"
-                        >
-                          Voir
-                          <ExternalLink className="w-4 h-4" />
+                      {productLink(product) ? (
+                        <Button asChild>
+                          <a href={productLink(product)} target="_blank" rel={product.is_affiliate ? 'sponsored noopener noreferrer' : 'noopener noreferrer'}>
+                            {product.is_affiliate ? 'Voir' : 'Commander'} <ExternalLink className="w-4 h-4" />
+                          </a>
                         </Button>
                       ) : (
-                        <Link to="/contact">
-                          <Button className="btn-primary">
-                            Commander
-                          </Button>
-                        </Link>
+                        <Button asChild><Link to="/contact">Commander</Link></Button>
                       )}
                     </div>
                   </div>

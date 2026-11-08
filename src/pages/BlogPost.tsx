@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Calendar, ArrowLeft, Share2, Facebook, Twitter, MessageCircle, Copy, Check, Tag, ShoppingBag, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { supabase } from '@/integrations/supabase/client';
+import { fetchCommerceProducts, featuredProducts } from '@/lib/wordpressCommerce';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { useWordPressPost } from '@/hooks/useWordPressBlog';
@@ -25,17 +25,8 @@ const BlogPost = () => {
 
   // Récupérer les produits pour les recommandations
   const { data: recommendedProducts } = useQuery({
-    queryKey: ["recommended-products"],
-    queryFn: async () => {
-      const { data, error } = await (supabase as any)
-        .from("products")
-        .select("id, title, image_url, price, is_affiliate, affiliate_url")
-        .eq("is_active", true)
-        .eq("is_featured", true)
-        .limit(3);
-      if (error) return [];
-      return data;
-    },
+    queryKey: ["wordpress-commerce-products"], queryFn: fetchCommerceProducts,
+    select: featuredProducts,
   });
 
   // Fonction pour injecter les articles liés dans le contenu
@@ -300,7 +291,7 @@ const BlogPost = () => {
                       Ces produits peuvent vous intéresser
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {recommendedProducts.map((product: any) => (
+                      {recommendedProducts.map((product) => (
                         <div key={product.id} className="bg-card/50 border border-gray-700 rounded-lg p-4 hover:border-turquoise/50 transition-colors">
                           {product.image_url && (
                             <img 
@@ -313,7 +304,7 @@ const BlogPost = () => {
                           <div className="flex items-center justify-between">
                             <span className="text-turquoise font-bold text-sm">{product.price}</span>
                             {product.is_affiliate && product.affiliate_url ? (
-                              <a href={product.affiliate_url} target="_blank" rel="noopener noreferrer">
+                              <a href={product.affiliate_url} target="_blank" rel="sponsored noopener noreferrer">
                                 <Button size="sm" className="text-xs">
                                   Voir <ExternalLink className="w-3 h-3 ml-1" />
                                 </Button>

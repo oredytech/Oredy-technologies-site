@@ -1,0 +1,4 @@
+# Architecture rules
+- WordPress Commerce is the single catalog source for marketplace listings, shop products and blog product recommendations; use the shared typed REST client to keep their field contracts consistent.
+- WordPress catalog writes and purchase moderation run inside the installable plugin with capability checks and nonces; the SPA consumes public endpoints without administrator credentials.
+- WordPress site IDs must never be passed to the legacy Cloud purchase tables, whose IDs belong to a different catalog; plugin purchase requests or administrator-configured checkout URLs handle WordPress listings.

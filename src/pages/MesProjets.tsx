@@ -44,6 +44,12 @@ const brands: Brand[] = [
 
 const projects = [
   {
+    title: 'FACELECT',
+    description: 'Outil de facturation électronique pour gérer les factures, les dépenses et les clients, avec un fonctionnement hors ligne et plusieurs devises.',
+    url: 'https://facelect.com',
+    tags: ['Facturation', 'Hors ligne', 'Multi-devises'],
+  },
+  {
     title: 'GOWERA',
     description:
       "Plateforme de streaming radio gratuite qui connecte les auditeurs aux stations du monde entier en un clic.",
