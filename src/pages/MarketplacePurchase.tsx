@@ -34,7 +34,8 @@ const MarketplacePurchase = () => {
   const purchaseMutation = useMutation({
     mutationFn: async (data: { buyer_name: string; buyer_email: string; buyer_phone: string }) => {
       if (!id) throw new Error('Site non trouvé.');
-      return submitCommercePurchase(id, purchaseSchema.parse(data));
+      purchaseSchema.parse(data);
+      return submitCommercePurchase(id, data);
     },
     onSuccess: (data) => {
       setReference(data.reference);

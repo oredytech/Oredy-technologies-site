@@ -1,4 +1,5 @@
-import { describe, expect, test } from 'bun:test';
+import { describe, test } from 'node:test';
+import { strict as assert } from 'node:assert';
 import { featuredProducts, productLink, type CommerceProduct } from './wordpressCommerce';
 
 const product = (overrides: Partial<CommerceProduct> = {}): CommerceProduct => ({
@@ -8,12 +9,12 @@ const product = (overrides: Partial<CommerceProduct> = {}): CommerceProduct => (
 });
 describe('catalogue WordPress', () => {
   test('les produits affiliés utilisent le lien affilié, pas le lien du produit', () => {
-    expect(productLink(product({ is_affiliate: true, affiliate_url: 'https://example.com/?ref=oredy' }))).toBe('https://example.com/?ref=oredy');
+    assert.equal(productLink(product({ is_affiliate: true, affiliate_url: 'https://example.com/?ref=oredy' })), 'https://example.com/?ref=oredy');
   });
   test('les produits directs utilisent le lien du produit', () => {
-    expect(productLink(product())).toBe('https://facelect.com');
+    assert.equal(productLink(product()), 'https://facelect.com');
   });
   test('les recommandations excluent les produits inactifs et non mis en avant', () => {
-    expect(featuredProducts([product(), product({ id: '2', is_active: false }), product({ id: '3', is_featured: false })]).map(p => p.id)).toEqual(['1']);
+    assert.deepEqual(featuredProducts([product(), product({ id: '2', is_active: false }), product({ id: '3', is_featured: false })]).map(p => p.id), ['1']);
   });
 });
