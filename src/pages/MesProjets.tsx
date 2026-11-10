@@ -9,7 +9,7 @@ type Brand = {
   description: string;
   url?: string;
   logo?: string;
-  wordmark?: boolean;
+  tileClass?: string;
   tags: string[];
 };
 
@@ -18,7 +18,7 @@ type Project = {
   description: string;
   url?: string;
   logo?: string;
-  icon?: 'file' | 'store';
+  icon?: 'store';
   tags: string[];
   status?: string;
 };
@@ -39,7 +39,8 @@ const brands: Brand[] = [
     description:
       "Studio de création web : développement d'applications, sites vitrines, thèmes WordPress premium et accompagnement digital.",
     url: 'https://oredytech.com',
-    wordmark: true,
+    logo: '/assets/oredy-technologies-logo.png',
+    tileClass: 'bg-primary',
     tags: ['React', 'TypeScript', 'WordPress', 'SEO'],
   },
   {
@@ -78,11 +79,19 @@ const projects: Project[] = [
     tags: ['JavaScript', 'SPA', 'Outil en ligne'],
   },
   {
+    title: 'FABARTO',
+    description:
+      'Se connecte à votre site WordPress, récupère vos articles et génère automatiquement des visuels professionnels pour les réseaux sociaux.',
+    url: 'https://fabarto.com',
+    logo: '/assets/fabarto-logo.png',
+    tags: ['WordPress', 'Réseaux sociaux', 'Automatisation'],
+  },
+  {
     title: 'HARIRI Docs',
     description:
       'Outil de modification des PDF : éditer, annoter et préparer vos documents directement dans le navigateur.',
     url: 'https://hariridocs.com',
-    icon: 'file',
+    logo: '/assets/hariri-docs-logo.png',
     tags: ['PDF', 'Édition', 'Navigateur'],
     status: 'En cours de développement',
   },
@@ -105,13 +114,9 @@ const ProjectLogo = ({ project }: { project: Project }) => (
         loading="lazy"
         className="max-h-24 max-w-full object-contain"
       />
-    ) : project.icon === 'store' ? (
-      <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center text-primary">
-        <Store size={32} />
-      </div>
     ) : (
       <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center text-primary">
-        <FileText size={32} />
+        <Store size={32} />
       </div>
     )}
   </div>
@@ -143,21 +148,14 @@ const MesProjets = () => {
                 key={brand.name}
                 className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
               >
-                <div className="h-40 bg-muted flex items-center justify-center p-6">
-                  {brand.logo ? (
+                <div className={`h-40 ${brand.tileClass ?? 'bg-muted'} flex items-center justify-center p-6`}>
+                  {brand.logo && (
                     <img
                       src={brand.logo}
                       alt={`Logo ${brand.name}`}
                       loading="lazy"
                       className="max-h-28 w-auto object-contain"
                     />
-                  ) : (
-                    <div className="text-center">
-                      <p className="font-display text-2xl font-black tracking-tight text-primary">OREDY</p>
-                      <p className="font-display text-sm font-bold tracking-[0.3em] text-accent">
-                        TECHNOLOGIES
-                      </p>
-                    </div>
                   )}
                 </div>
                 <div className="p-6">
