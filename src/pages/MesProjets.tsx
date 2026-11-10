@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink, FileText, Github, Smartphone, Store } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Smartphone, Store } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
