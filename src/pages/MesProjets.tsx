@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink, Github, Smartphone } from 'lucide-react';
+import { ArrowLeft, ExternalLink, FileText, Github, Smartphone, Store } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -11,6 +11,16 @@ type Brand = {
   logo?: string;
   wordmark?: boolean;
   tags: string[];
+};
+
+type Project = {
+  title: string;
+  description: string;
+  url?: string;
+  logo?: string;
+  icon?: 'file' | 'store';
+  tags: string[];
+  status?: string;
 };
 
 const brands: Brand[] = [
@@ -42,11 +52,13 @@ const brands: Brand[] = [
   },
 ];
 
-const projects = [
+const projects: Project[] = [
   {
     title: 'FACELECT',
-    description: 'Outil de facturation électronique pour gérer les factures, les dépenses et les clients, avec un fonctionnement hors ligne et plusieurs devises.',
+    description:
+      'Outil de facturation électronique pour gérer les factures, les dépenses et les clients, avec un fonctionnement hors ligne et plusieurs devises.',
     url: 'https://facelect.com',
+    logo: '/assets/facelect-logo.png',
     tags: ['Facturation', 'Hors ligne', 'Multi-devises'],
   },
   {
@@ -54,22 +66,56 @@ const projects = [
     description:
       "Plateforme de streaming radio gratuite qui connecte les auditeurs aux stations du monde entier en un clic.",
     url: 'https://gowera.com',
+    logo: '/assets/gowera-logo.png',
     tags: ['TypeScript', 'Radio API'],
   },
   {
-    title: 'Thème WordPress Premium',
+    title: 'Oredy SPA Loader',
     description:
-      "Conception et développement d'un thème WordPress pour professionnels : rapide, responsive et optimisé SEO.",
-    tags: ['PHP', 'WordPress', 'Design'],
+      'Outil qui charge et lance vos applications monopages (SPA) depuis une seule adresse : ouverture, préchargement et navigation rapide.',
+    url: 'https://oredytech.com/oredy-spa-loader/index.html',
+    logo: '/assets/oredy-spa-loader-logo.png',
+    tags: ['JavaScript', 'SPA', 'Outil en ligne'],
+  },
+  {
+    title: 'HARIRI Docs',
+    description:
+      'Outil de modification des PDF : éditer, annoter et préparer vos documents directement dans le navigateur.',
+    url: 'https://hariridocs.com',
+    icon: 'file',
+    tags: ['PDF', 'Édition', 'Navigateur'],
+    status: 'En cours de développement',
   },
   {
     title: 'Marché de sites web',
     description:
       "Place de marché permettant d'acheter des sites web clés en main, avec paiement Mobile Money intégré.",
     url: '/marketplace',
+    icon: 'store',
     tags: ['React', 'Paiement', 'Cloud'],
   },
 ];
+
+const ProjectLogo = ({ project }: { project: Project }) => (
+  <div className="h-32 bg-white border border-border rounded-lg flex items-center justify-center p-4 mb-4">
+    {project.logo ? (
+      <img
+        src={project.logo}
+        alt={`Logo ${project.title}`}
+        loading="lazy"
+        className="max-h-24 max-w-full object-contain"
+      />
+    ) : project.icon === 'store' ? (
+      <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center text-primary">
+        <Store size={32} />
+      </div>
+    ) : (
+      <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center text-primary">
+        <FileText size={32} />
+      </div>
+    )}
+  </div>
+);
 
 const MesProjets = () => {
   return (
@@ -144,18 +190,29 @@ const MesProjets = () => {
           <h2 className="text-2xl font-display font-bold mb-6">Projets personnels</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {projects.map((project) => (
-              <article key={project.title} className="bg-card border border-border rounded-lg p-6">
-                <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+              <article
+                key={project.title}
+                className="bg-card border border-border rounded-lg p-6 flex flex-col"
+              >
+                <ProjectLogo project={project} />
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
+                  <h3 className="text-lg font-semibold">{project.title}</h3>
+                  {project.status && (
+                    <span className="text-[11px] font-medium bg-accent/20 text-accent-foreground px-2 py-0.5 rounded-full">
+                      {project.status}
+                    </span>
+                  )}
+                </div>
                 <p className="text-muted-foreground text-sm mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-2 mb-4 mt-auto">
                   {project.tags.map((tag) => (
                     <span key={tag} className="text-xs bg-muted px-2 py-1 rounded-full text-primary">
                       {tag}
                     </span>
                   ))}
                 </div>
-                {project.url && (
-                  project.url.startsWith('/') ? (
+                {project.url &&
+                  (project.url.startsWith('/') ? (
                     <Link to={project.url} className="text-sm text-primary hover:underline">
                       Découvrir
                     </Link>
@@ -169,8 +226,7 @@ const MesProjets = () => {
                       Visiter le site
                       <ExternalLink size={14} className="ml-1" />
                     </a>
-                  )
-                )}
+                  ))}
               </article>
             ))}
           </div>
