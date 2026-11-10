@@ -37,7 +37,7 @@ const Footer = () => {
               <Link to="/" className={linkClass}>Accueil</Link>
               <Link to="/about" className={linkClass}>À propos</Link>
               <Link to="/services" className={linkClass}>Services</Link>
-              <Link to="/wordpress-portfolio" className={linkClass}>Portfolio</Link>
+              <Link to="/portfolio/wordpress" className={linkClass}>Portfolio</Link>
               <Link to="/blog" className={linkClass}>Blog</Link>
               <Link to="/contact" className={linkClass}>Contact</Link>
             </nav>
@@ -127,7 +127,7 @@ const Footer = () => {
 
       <button
         onClick={scrollToTop}
-        className="absolute right-8 bottom-8 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-primary hover:brightness-110 transition-colors shadow-lg"
+        className="absolute right-4 top-6 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-primary hover:brightness-110 transition-colors shadow-lg"
         aria-label="Scroll to top"
       >
         <ChevronUp size={24} />
